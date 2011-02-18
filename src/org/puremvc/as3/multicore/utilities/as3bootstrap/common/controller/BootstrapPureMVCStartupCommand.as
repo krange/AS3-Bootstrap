@@ -3,13 +3,16 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 	import as3bootstrap.common.Bootstrap;
 	import as3bootstrap.common.IBootstrap;
 	import as3bootstrap.common.constants.BootstrapConstants;
+	import as3bootstrap.common.progress.IProgress;
 	
 	import flash.display.DisplayObject;
 	
 	import org.puremvc.as3.multicore.interfaces.INotification;
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.constants.BootstrapPureMVCConstants;
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.model.BootstrapProxy;
+	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.model.ConfigProxy;
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.model.IBootstrapProxy;
+	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.model.IConfigProxy;
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.view.mediators.IBootStrapMediator;
 	import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;
 	
@@ -31,6 +34,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		private static const ERROR_GET_APP_MEDIATOR				:String = "Mediator for this Application or Module was not set. The getApplicationMediator() method was not overriden."; 
 		private static const ERROR_REGISTER_APP_MEDIATOR		:String = "The mediator provided either did not implement IBootstrapMediator or the Constructor did not take the correct arguments."; 
 		private static const ERROR_REGISTER_BOOTSTRAP_PROXY		:String = "Instantation of the class specified in the getBootstrapProxy() method failed.";
+		private static const ERROR_REGISTER_CONFIG_PROXY		:String = "Instantation of the class specified in the getConfigProxy() method failed.";
 		private static const ERROR_INSTANTIATE_BOOTSTRAP		:String = "Instantation of the class specified in the getBootstrap() method failed.";
 		
 		//----------------------------------
@@ -47,12 +51,14 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		//----------------------------------
 		
 		private var _bootstrap : IBootstrap;
+		private var _appProgress : IProgress;
 		
 		//----------------------------------
 		//  PureMVC variables
 		//----------------------------------
 		
 		private var _bootstrapProxy : IBootstrapProxy;
+		private var _configProxy : IConfigProxy;
 		
 		//---------------------------------------------------------------------
 		//
@@ -106,7 +112,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 			// Attempt to register bootstrap
 			try
 			{
-				_bootstrap = new BootstrapClass();
+				_bootstrap = new BootstrapClass( getAppProgress() );
 			}
 			catch( e : Error )
 			{
@@ -132,6 +138,39 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 			registerConfigLoadCommands();
 		}
 		
+		/**
+		 * Returns the bootstrap class to use
+		 *  
+		 * @return <code>IBootstrap</code> class reference
+		 */		
+		protected function getBootstrap():Class
+		{
+			return Bootstrap;
+		}
+		
+		/**
+		 * Returns the application level <code>IProgress</code> instance that 
+		 * will be used to track load
+		 * 
+		 * @return IProgress
+		 */		
+		protected function getAppProgress():IProgress
+		{
+			return null;
+		}
+		
+		/**
+		 * Returns the Flash Vars parameters required for load. Must be 
+		 * overriden by subclass to determine how to retrieve the parameters
+		 * 
+		 * @return Object FlashVars parameters
+		 */ 
+		protected function getFlashVarsParams():Object 
+		{
+			// Must be overriden
+			throw new Error( BootstrapConstants.ERROR_RETRIEVE_FLASH_VARS );
+		}
+		
 		//----------------------------------
 		//  Mediator instantiations
 		//----------------------------------
@@ -142,13 +181,13 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		 */
 		protected function registerApplicationMediator() : void 
 		{
-			var ApplicationMediator : Object = getApplicationMediator();
+			var ApplicationMediatorClass : Object = getApplicationMediator();
 			var appMediator : IBootStrapMediator;
 			
 			// Attempt to register the Mediator
 			try 
 			{
-				appMediator = new ApplicationMediator( ApplicationMediator.NAME, viewComponent, bootstrap.viewProgress );
+				appMediator = new ApplicationMediatorClass( ApplicationMediatorClass.NAME, viewComponent, bootstrap.viewProgress );
 			} 
 			catch( e : Error ) 
 			{
@@ -158,6 +197,17 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 			// Instantation of the application mediator was a success, so 
 			// register it
 			registerMediator( appMediator );
+		}
+		
+		/**
+		 * Returns the application mediator class to be used
+		 * 
+		 * @return <code>IBoostrapMediator</code> class reference
+		 */ 
+		protected function getApplicationMediator():Class 
+		{
+			// Must be overriden
+			throw new Error( ERROR_GET_APP_MEDIATOR );
 		}
 		
 		//----------------------------------
@@ -217,7 +267,6 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		protected function registerBootstrapProxy() : void 
 		{
 			var BootstrapProxyClass : Object = getBootstrapProxy();
-			_bootstrapProxy = new BootstrapProxyClass( BootstrapProxyClass.NAME, bootstrap );
 			try
 			{
 				_bootstrapProxy = new BootstrapProxyClass( BootstrapProxyClass.NAME, bootstrap );
@@ -232,46 +281,43 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		}
 		
 		/**
-		 * Returns the Flash Vars parameters required for load. Must be 
-		 * overriden by subclass to determine how to retrieve the parameters
-		 * 
-		 * @return Object FlashVars parameters
-		 */ 
-		protected function getFlashVarsParams():Object 
-		{
-			// Must be overriden
-			throw new Error( BootstrapConstants.ERROR_RETRIEVE_FLASH_VARS );
-		}
-		
-		/**
-		 * Returns the bootstrap class to use
-		 *  
-		 * @return <code>IBootstrap</code> class reference
-		 */		
-		protected function getBootstrap():Class
-		{
-			return Bootstrap;
-		}
-		
-		/**
-		 * Returns the application mediator class to be used
-		 * 
-		 * @return <code>IBoostrapMediator</code> class reference
-		 */ 
-		protected function getApplicationMediator():Class 
-		{
-			// Must be overriden
-			throw new Error( ERROR_GET_APP_MEDIATOR );
-		}
-		
-		/**
 		 * Return the bootstrap proxy class to use
 		 * 
 		 * @return <code>IBootstrapProxy</code> class reference
-		 */		
+		 */
 		protected function getBootstrapProxy():Class
 		{
 			return BootstrapProxy;
+		}
+		
+		/** 
+		 * @private
+		 * Register the config proxy
+		 */
+		protected function registerConfigProxy() : void 
+		{
+			var ConfigProxyClass : Object = getConfigProxy();
+			try
+			{
+				_configProxy = new ConfigProxyClass( ConfigProxyClass.NAME, bootstrap.configModel );
+			}
+			catch( e : Error )
+			{
+				throw new Error( ERROR_REGISTER_CONFIG_PROXY );
+			}
+			
+			// Instantation of the config proxy was a success, so register it
+			registerProxy( _configProxy );
+		}
+		
+		/**
+		 * Return the config proxy class to use
+		 * 
+		 * @return <code>IConfigProxy</code> class reference
+		 */		
+		protected function getConfigProxy():Class
+		{
+			return ConfigProxy;
 		}
 		
 		//---------------------------------------------------------------------

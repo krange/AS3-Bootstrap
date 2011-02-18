@@ -5,6 +5,9 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.view.mediators
 	/**
 	 * Interface for Bootstrap mediators
 	 * 
+	 * @langversion ActionScript 3.0
+	 * @playerversion Flash 9.0.124
+	 * 
 	 * @author krisrange
 	 */ 
 	public interface IBootStrapMediator 

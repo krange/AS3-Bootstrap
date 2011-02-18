@@ -22,6 +22,9 @@ package as3bootstrap.flex.moxie.model
 	import as3bootstrap.flex.moxie.services.css.IFlexStylesheetService;
 	
 	import flash.events.Event;
+	import flash.text.StyleSheet;
+	
+	import mx.styles.StyleManager;
 	
 	/**
 	 * BootstrapFlexStylesheetModel
@@ -141,6 +144,16 @@ package as3bootstrap.flex.moxie.model
 		//  Getter/Setter methods
 		//
 		//---------------------------------------------------------------------
+		
+		/**
+		 * Since in Flex3 all data is stored in the StyleManager
+		 * 
+		 * @return StyleSheet 
+		 */		
+		public function get stylesheets():StyleSheet
+		{
+			return null;
+		}
 		
 		/**
 		 * Get the services holder

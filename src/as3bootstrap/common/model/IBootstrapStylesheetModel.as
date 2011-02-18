@@ -1,5 +1,7 @@
 package as3bootstrap.common.model
 {
+	import flash.text.StyleSheet;
+
 	/**
 	 * IStylesheetModel
 	 *
@@ -17,5 +19,12 @@ package as3bootstrap.common.model
 		 * @param url URL request
 		 */		
 		function load( $data : XMLList ):void;
+		
+		/**
+		 * All stylehseet service data merged into a signular value object.
+		 * 
+		 * @return StyleSheet 
+		 */		
+		function get stylesheets():StyleSheet;
 	}
 }

@@ -158,6 +158,24 @@ package as3bootstrap.common.model
 		//---------------------------------------------------------------------
 		
 		/**
+		 * All stylehseet service data merged into a signular value object.
+		 * 
+		 * @return StyleSheet 
+		 */		
+		public function get stylesheets():StyleSheet
+		{
+			var serLen : int = services.length;
+			var serviceData : StyleSheet = new StyleSheet();
+			while( serLen-- )
+			{
+				var service : IStylesheetService = services[serLen] as IStylesheetService;
+				serviceData.parseCSS( service.css );
+			}
+			
+			return serviceData;
+		}
+		
+		/**
 		 * Get the services holder
 		 * 
 		 * @return Array 

@@ -211,5 +211,15 @@ package as3bootstrap.common.services.css
 		{
 			return _data;
 		}
+		
+		/**
+		 * The loaded CSS styles in the raw string format
+		 * 
+		 * @return String 
+		 */		
+		public function get css():String
+		{
+			return loader.data as String;
+		}
 	}
 }

@@ -7,6 +7,9 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.view.mediators
 	/**
 	 * PureMVC mediator interface that have a stored progress instance
 	 * 
+	 * @langversion ActionScript 3.0
+	 * @playerversion Flash 9.0.124
+	 * 
 	 * @author krisrange
 	 */ 
 	public interface IProgressMediator 
