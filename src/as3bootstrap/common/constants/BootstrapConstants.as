@@ -19,27 +19,27 @@ package as3bootstrap.common.constants
 		 * environments without having to modify individual URLs. This also 
 		 * helps facilitate with CDN loading as assets.
 		 */
-		public static const FLASH_VARS_BASE_URL				:String = "baseUrl";
+		public static const FLASH_VARS_BASE_URL					:String = "baseUrl";
 		
 		/** 
 		 * Config XML Base URL parameter. Similiar to base URL except for that 
 		 * it applies to the config XML file. This is so that you can specify a 
 		 * different URL for this file, or none at all
 		 */
-		public static const FLASH_VARS_CONFIG_XML_BASE_URL	:String = "configXmlBaseUrl";
+		public static const FLASH_VARS_CONFIG_XML_BASE_URL		:String = "configXmlBaseUrl";
 		
 		/**
 		 * Config XML parameter. URL parameter for where to load the 
 		 * configuration XML file.
 		 */
-		public static const FLASH_VARS_CONFIG_XML_URL		:String = "configXmlUrl";
+		public static const FLASH_VARS_CONFIG_XML_URL			:String = "configXmlUrl";
 		
 		/**
 		 * Locale and Lang parameters. This helps with localizations of 
 		 * different regions and languages		
 		 */ 
-		public static const FLASH_VARS_LOCALE				:String = "locale";
-		public static const FLASH_VARS_LANG					:String = "lang";
+		public static const FLASH_VARS_LOCALE					:String = "locale";
+		public static const FLASH_VARS_LANG						:String = "lang";
 		
 		//---------------------------------------------------------------------
 		//

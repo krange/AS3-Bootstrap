@@ -38,7 +38,7 @@ package as3bootstrap.common.model
 		 * 
 		 * @param $progress <code>IProgress</code> instance
 		 */
-		public function BootstrapLocalizationModel( $progress : IProgress )
+		public function BootstrapLocalizationModel( $progress:IProgress )
 		{
 			super($progress);
 		}
@@ -48,7 +48,7 @@ package as3bootstrap.common.model
 		 * 
 		 * @param url URL request
 		 */		
-		public function load( $data : XMLList ):void
+		public function load( $data:XMLList ):void
 		{
 			if( $data && $data.length() > 0 )
 			{
@@ -77,7 +77,7 @@ package as3bootstrap.common.model
 		 * @param id ID of the XML service node
 		 * @return LocalizationVO
 		 */		
-		public function getLocalizationById( $id : String ):LocalizationVO
+		public function getLocalizationById( $id:String ):LocalizationVO
 		{
 			var locLen : int = services.length;
 			while( locLen-- )
@@ -126,7 +126,7 @@ package as3bootstrap.common.model
 		 *  
 		 * @param event <code>Event.COMPLETE</code>
 		 */		
-		protected function onAllServicesLoaded( event : Event ):void
+		protected function onAllServicesLoaded( $event:Event ):void
 		{
 			// Remove the event listener
 			_dependency.removeEventListener( Event.COMPLETE, onAllServicesLoaded );
@@ -142,10 +142,10 @@ package as3bootstrap.common.model
 		 *  
 		 * @param service <code>IXmlService</code>
 		 */		
-		protected function onServiceLoaded( service : IXmlService ):void
+		protected function onServiceLoaded( $service:IXmlService ):void
 		{
-			_localizations.addLocalizedValues( service.data );
-			_dependency.setLoadDependencyMet( service );
+			_localizations.addLocalizedValues( $service.data );
+			_dependency.setLoadDependencyMet( $service );
 		}
 		
 		/**
@@ -154,9 +154,9 @@ package as3bootstrap.common.model
 		 *  
 		 * @param event <code>Event</code>
 		 */		
-		protected function onServiceErrored( event : Event ):void
+		protected function onServiceErrored( $event:Event ):void
 		{
-			errored.dispatch( event );
+			errored.dispatch( $event );
 		}
 		
 		//---------------------------------------------------------------------
@@ -190,7 +190,7 @@ package as3bootstrap.common.model
 		 * 
 		 * @param $value Array 
 		 */		
-		protected function set services($value:Array):void
+		protected function set services( $value:Array ):void
 		{
 			_services = $value;
 		}

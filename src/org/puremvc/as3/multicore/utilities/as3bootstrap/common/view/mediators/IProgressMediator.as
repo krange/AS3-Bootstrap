@@ -14,17 +14,19 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.view.mediators
 	 */ 
 	public interface IProgressMediator 
 		extends IMediator
-	{
+	{	
 		/**
-		 * Sets a new progress reference to this mediator
+		 * Set the <code>IProgress</code> instance
 		 * 
-		 * @param progress IProgress instance 
-		 */ 
-		function set progress( progress : IProgress ) : void
+		 * @param $progress <code>IProgress</code> instance to set
+		 */		
+		function set progress( $progress:IProgress ):void;
 		
-		/** 
-		 * @return IProgress IProgress instance associated to this mediator 
-		 */
-		function get progress() : IProgress
+		/**
+		 * Get the <code>IProgress</code> instance
+		 *  
+		 * @return IProgress
+		 */		
+		function get progress():IProgress;
 	}
 }

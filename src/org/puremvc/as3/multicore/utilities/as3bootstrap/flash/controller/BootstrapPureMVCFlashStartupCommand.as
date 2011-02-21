@@ -35,6 +35,9 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flash.controller
 		//  Override
 		//----------------------------------
 		
+		/**
+		 * @inheritDoc 
+		 */	
 		override protected function getFlashVarsParams():Object
 		{
 			return viewComponent.loaderInfo.parameters;

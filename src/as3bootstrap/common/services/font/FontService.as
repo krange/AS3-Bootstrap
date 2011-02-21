@@ -41,24 +41,24 @@ package as3bootstrap.common.services.font
 		/**
 		 * Constructor
 		 * 
-		 * @param progress <code>IProgress</code> instance 
+		 * @param $progress <code>IProgress</code> instance 
 		 * @param $fontName Name of the font. This value is optional. If
 		 * 					provided, after the font is loaded, it will attempt
 		 * 					to register the font. If not, the service assumes 
 		 * 					that font registration will be handled by the SWF
 		 */		
-		public function FontService($progress:IProgress=null, $fontName:String=null)
+		public function FontService( $progress:IProgress = null, $fontName:String = null )
 		{
 			_fontName = $fontName;
-			super($progress);
+			super( $progress );
 		}
 		
 		/**
 		 * Load an font resource from an <code>URLRequest</code>
 		 * 
-		 * @param request URLRequest to load 
+		 * @param $request URLRequest to load 
 		 */		
-		override public function loadWithUrlRequest( request : URLRequest ):void
+		override public function loadWithUrlRequest( $request:URLRequest ):void
 		{
 			// Since we are starting a new load request, remove any
 			// previous listeners
@@ -71,7 +71,7 @@ package as3bootstrap.common.services.font
 			addListeners();
 			
 			// Load it!
-			_loader.load( request );
+			_loader.load( $request );
 		}
 		
 		//---------------------------------------------------------------------
@@ -153,9 +153,9 @@ package as3bootstrap.common.services.font
 		
 		/**
 		 * @private 
-		 * @param event <code>Event.COMPLETE</code>
+		 * @param $event <code>Event.COMPLETE</code>
 		 */		
-		protected function onLoadComplete( event : Event ):void
+		protected function onLoadComplete( $event:Event ):void
 		{	
 			// Remove listeners
 			removeListeners();
@@ -172,36 +172,36 @@ package as3bootstrap.common.services.font
 		
 		/**
 		 * @private
-		 * @param event <code>ProgressEvent.PROGRESS</code> 
+		 * @param $event <code>ProgressEvent.PROGRESS</code> 
 		 */		
-		protected function onLoadProgress( event : ProgressEvent ):void
+		protected function onLoadProgress( $event:ProgressEvent ):void
 		{	
 			// Update our progress amount
-			progress.setAmountLoaded( event.bytesLoaded / event.bytesTotal );
+			progress.setAmountLoaded( $event.bytesLoaded / $event.bytesTotal );
 		}
 		
 		/**
 		 * @private 
-		 * @param event <code>IOErrorEvent.IO_ERROR</code>
+		 * @param $event <code>IOErrorEvent.IO_ERROR</code>
 		 */		
-		protected function onLoadIOError( event : IOErrorEvent ):void
+		protected function onLoadIOError( $event:IOErrorEvent ):void
 		{
 			// Remove listeners
 			removeListeners();
 			
-			errored.dispatch( event );
+			errored.dispatch( $event );
 		}
 		
 		/**
 		 * @private 
-		 * @param event <code>SecurityErrorEvent.SECURITY_ERROR</code>
+		 * @param $event <code>SecurityErrorEvent.SECURITY_ERROR</code>
 		 */
-		protected function onLoadSecurityError( event : SecurityErrorEvent ):void
+		protected function onLoadSecurityError( $event:SecurityErrorEvent ):void
 		{
 			// Remove listeners
 			removeListeners();
 			
-			errored.dispatch( event );
+			errored.dispatch( $event );
 		}
 		
 		//----------------------------------

@@ -17,6 +17,6 @@ package as3bootstrap.common.model
 		 * 
 		 * @param url URL request
 		 */		
-		function load( $data : XMLList ):void;
+		function load( $data:XMLList ):void;
 	}
 }

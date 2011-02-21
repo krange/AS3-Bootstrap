@@ -27,9 +27,12 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.controller
 		//  Override
 		//----------------------------------
 		
-		override public function execute(notification:INotification):void
+		/**
+		 * @inheritDoc 
+		 */		
+		override public function execute( $notification:INotification ):void
 		{
-			super.execute( notification );
+			super.execute( $notification );
 		}
 		
 		//---------------------------------------------------------------------
@@ -41,12 +44,18 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.controller
 		//----------------------------------
 		//  Override
 		//----------------------------------
-			
+		
+		/**
+		 * @inheritDoc 
+		 */	
 		override protected function getBootstrap():Class
 		{
 			return BootstrapFlex;
 		}
 		
+		/**
+		 * @inheritDoc 
+		 */	
 		override protected function getFlashVarsParams():Object
 		{
 			var flexViewComponent : FlexApplication = viewComponent as FlexApplication;

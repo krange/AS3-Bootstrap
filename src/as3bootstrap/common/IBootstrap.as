@@ -26,7 +26,7 @@ package as3bootstrap.common
 		 * 
 		 * @param $parameters Root level LoaderInfo parameters object
 		 */		
-		function start( $parameters : Object ):void;
+		function start( $parameters:Object ):void;
 		
 		/**
 		 * A convienence method to add a load resource to our data load
@@ -40,9 +40,9 @@ package as3bootstrap.common
 		 * <p>This method can be called at any point before start() is called, 
 		 * though afterwards a runtime Error will be thrown.</p>
 		 * 
-		 * @param externalProgress IProgress instance
+		 * @param $externalProgress IProgress instance
 		 */		
-		function addCustomLoadResource( $externalProgress : IProgress ):void;
+		function addCustomLoadResource( $externalProgress:IProgress ):void;
 		
 		/** 
 		 * Application load progress instance. This is the top level progress

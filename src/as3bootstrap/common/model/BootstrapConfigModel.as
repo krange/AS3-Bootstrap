@@ -32,7 +32,7 @@ package as3bootstrap.common.model
 		 * 
 		 * @param $progress <code>IProgress</code> instance
 		 */		
-		public function BootstrapConfigModel( $progress : IProgress )
+		public function BootstrapConfigModel( $progress:IProgress )
 		{
 			super($progress);
 		}
@@ -42,7 +42,7 @@ package as3bootstrap.common.model
 		 * 
 		 * @param url URL string
 		 */		
-		public function load( $url : String ):void
+		public function load( $url:String ):void
 		{
 			if( $url )
 			{
@@ -82,7 +82,7 @@ package as3bootstrap.common.model
 		 * @private
 		 * Signal callback for when the service has errored 
 		 */		
-		protected function onServiceErrored( event : Event ):void
+		protected function onServiceErrored( event:Event ):void
 		{
 			service.loaded.removeAll();
 			service.errored.removeAll();
@@ -94,7 +94,7 @@ package as3bootstrap.common.model
 		 * @private 
 		 * Signal callback for when the service has loaded
 		 */		
-		protected function onServiceLoaded( service : IXmlService ):void
+		protected function onServiceLoaded( service:IXmlService ):void
 		{
 			service.loaded.removeAll();
 			service.errored.removeAll();
@@ -187,7 +187,7 @@ package as3bootstrap.common.model
 		 * 
 		 * @param $value <code>IXmlService</code> to set 
 		 */		
-		protected function set service($value:IXmlService):void
+		protected function set service( $value:IXmlService ):void
 		{
 			_service = $value;
 		}

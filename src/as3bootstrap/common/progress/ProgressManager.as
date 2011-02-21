@@ -3,11 +3,10 @@ package as3bootstrap.common.progress
 	import flash.utils.Dictionary;
 	
 	/**
-	 * Singleton load manager providing access to current load 
-	 * easily to during all points of load. This is required in some
-	 * cases because being able to track load may not available at 
-	 * all points throughout loading processes. For example, during 
-	 * the Flex Application SWF load.
+	 * Singleton load manager providing access to current load easily to during 
+	 * all points of load. This is required in some cases because being able to 
+	 * track load may not available at all points throughout loading processes. 
+	 * For example, during the Flex Application SWF load.
 	 * 
 	 * @langversion ActionScript 3.0
 	 * @playerversion Flash 9.0.124
@@ -51,7 +50,7 @@ package as3bootstrap.common.progress
 		 * 
 		 * @return LoadManager instance 
 		 */
-		public static function getInstance() : ProgressManager 
+		public static function getInstance():ProgressManager 
 		{
 			if( !instance ) 
 			{
@@ -80,17 +79,18 @@ package as3bootstrap.common.progress
 		/** 
 		 * Disposes all progress items 
 		 */
-		public function dispose() : void {
+		public function dispose():void 
+		{
 		}
 		
 		/**
 		 * Adds a progress item to the dictionary 
 		 * 
-		 * @param progress IProgress instance to add 
+		 * @param $progress IProgress instance to add 
 		 */ 
-		public function addToDictionary( progress : IProgress ) : void 
+		public function addToDictionary( $progress:IProgress ):void 
 		{
-			dict[progress.getId()] = progress;
+			dict[$progress.getId()] = $progress;
 		}
 		
 		//----------------------------------
@@ -101,23 +101,24 @@ package as3bootstrap.common.progress
 		 * Override of Progress class add child loadable method. Any object
 		 * we add as a child in this case, also gets added to the dictionary
 		 * 
-		 * @param progress IProgress instance to add
+		 * @param $progress IProgress instance to add
 		 */ 
-		override public function addChildLoadable( progress : IProgress ) : void 
+		override public function addChildLoadable( $progress:IProgress ):void 
 		{
-			super.addChildLoadable( progress );
-			addToDictionary( progress );
+			super.addChildLoadable( $progress );
+			addToDictionary( $progress );
 		}
 		
 		/**
 		 * Retrieves a loadable child from the dictionary
 		 * 
-		 * @param id String ID used to retrieve
+		 * @param $id String ID used to retrieve
+		 * 
 		 * @return IProgress IProgress instance retrieved
 		 */ 
-		override public function retrieveChildLoadable( id : String ) : IProgress 
+		override public function retrieveChildLoadable( $id:String ):IProgress 
 		{
-			return dict[id] as IProgress;
+			return dict[$id] as IProgress;
 		}
 	}
 }

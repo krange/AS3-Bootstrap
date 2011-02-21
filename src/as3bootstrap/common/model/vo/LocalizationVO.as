@@ -30,11 +30,11 @@ package as3bootstrap.common.model.vo
 		 * 
 		 * @param data	an XML object containing the data nodes
 		 */
-		public function LocalizationVO( data : XML = null )
+		public function LocalizationVO( $data:XML = null )
 		{ 
-			if( data )
+			if( $data )
 			{
-				addLocalizedValues( data );
+				addLocalizedValues( $data );
 			}
 		}
 		
@@ -45,9 +45,9 @@ package as3bootstrap.common.model.vo
 		 * @param data A XML object containing localized elements to add to 
 		 * 			   the VO
 		 */ 
-		public function addLocalizedValues( data : XML ) : void
+		public function addLocalizedValues( $data:XML ) : void
 		{
-			var children : XMLList = data.*;
+			var children : XMLList = $data.*;
 			for each( var child : XML in children )
 			{
 				_dictionary[ child.name().localName ] = child.toString();
@@ -60,9 +60,9 @@ package as3bootstrap.common.model.vo
 		 * @param name 	a name or key to look up a localized value by
 		 * @return 		String Value returned, null if nothing was found
 		 */ 
-		public function getLocalizedValue( name : String ) : String
+		public function getLocalizedValue( $name:String ) : String
 		{
-			return _dictionary[ name ];			
+			return _dictionary[ $name ];			
 		}
 		
 		/**
@@ -74,7 +74,7 @@ package as3bootstrap.common.model.vo
 		 * @return		an <code>IResourceBundle</code>
 		 * @throws		an Error if lang or locale is not defined
 		 */
-		public function getResourceBundle( name : String ) : IResourceBundle
+		public function getResourceBundle( name:String ) : IResourceBundle
 		{
 			//
 			//	:KLUDGE:
@@ -100,12 +100,16 @@ package as3bootstrap.common.model.vo
 			//
 			
 			if( ! lang || ! locale )
+			{
 				throw new Error( "lang and locale need to be assigned to LocalizationVO in order to create a resource bundle" );
+			}
 			
 			if( _resourceBundles[ name ] )
 			{
 				return _resourceBundles[ name ] as IResourceBundle;
-			} else {
+			} 
+			else 
+			{
 				var resourceBundle : IResourceBundle = new ResourceBundle( lang + "_" + locale, name );
 				var resourceBundleContent : Object = resourceBundle.content;
 				

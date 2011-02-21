@@ -13,6 +13,5 @@ package as3bootstrap.common.services.font
 	public interface IFontService 
 		extends IService
 	{
-		
 	}
 }

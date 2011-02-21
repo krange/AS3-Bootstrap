@@ -31,7 +31,7 @@ package as3bootstrap.flex.moxie
 			$dataProgress:IProgress=null, 
 			$viewProgress:IProgress=null )
 		{
-			super($progress, $dataProgress, $viewProgress);
+			super( $progress, $dataProgress, $viewProgress );
 		}
 		
 		//---------------------------------------------------------------------

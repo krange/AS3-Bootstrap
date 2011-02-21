@@ -18,7 +18,7 @@ package as3bootstrap.common.model
 		 * 
 		 * @param url URL request
 		 */		
-		function load( $data : XMLList ):void;
+		function load( $data:XMLList ):void;
 		
 		/**
 		 * Retrieves a singular localization value object from the specified
@@ -27,7 +27,7 @@ package as3bootstrap.common.model
 		 * @param id ID of the XML service node
 		 * @return LocalizationVO
 		 */		
-		function getLocalizationById( $id : String ):LocalizationVO;
+		function getLocalizationById( $id:String ):LocalizationVO;
 		
 		/**
 		 * All localization services data merged into a signular value object.

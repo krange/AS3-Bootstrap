@@ -70,9 +70,9 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		//  Override
 		//----------------------------------
 		
-		override public function execute(notification:INotification):void
+		override public function execute( $notification:INotification ):void
 		{
-			viewComponent = notification.getBody() as DisplayObject;
+			viewComponent = $notification.getBody() as DisplayObject;
 			initialize();
 		}
 		
@@ -95,6 +95,10 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 			startBootstrap();
 		}
 		
+		/**
+		 * @private
+		 * 
+		 */		
 		protected function startBootstrap():void
 		{
 			// Start bootstrap
@@ -179,7 +183,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		 * @private
 		 * Registers the application mediator
 		 */
-		protected function registerApplicationMediator() : void 
+		protected function registerApplicationMediator():void 
 		{
 			var ApplicationMediatorClass : Object = getApplicationMediator();
 			var appMediator : IBootStrapMediator;
@@ -189,7 +193,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 			{
 				appMediator = new ApplicationMediatorClass( ApplicationMediatorClass.NAME, viewComponent, bootstrap.viewProgress );
 			} 
-			catch( e : Error ) 
+			catch( event:Error ) 
 			{
 				throw new Error( ERROR_REGISTER_APP_MEDIATOR );
 			}
@@ -264,7 +268,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		 * @private
 		 * Register the bootstrap proxy
 		 */
-		protected function registerBootstrapProxy() : void 
+		protected function registerBootstrapProxy():void 
 		{
 			var BootstrapProxyClass : Object = getBootstrapProxy();
 			try
@@ -294,7 +298,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		 * @private
 		 * Register the config proxy
 		 */
-		protected function registerConfigProxy() : void 
+		protected function registerConfigProxy():void 
 		{
 			var ConfigProxyClass : Object = getConfigProxy();
 			try

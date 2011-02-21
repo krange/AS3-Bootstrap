@@ -40,20 +40,20 @@ package as3bootstrap.common.events
 		/**
 		 * Constructor
 		 * 
-		 * @param type Event type
-		 * @param amountLoaded Number between 0 and 1 specifying total progress
+		 * @param $type Event type
+		 * @param $amountLoaded Number between 0 and 1 specifying total progress
 		 * 
 		 * @see flash.events.Event
 		 */
 		public function ResourceProgressEvent( 
-			type : String, 
-			amountLoaded : Number, 
-			bubbles : Boolean = false, 
-			cancelable : Boolean = false )
+			$type : String, 
+			$amountLoaded : Number, 
+			$bubbles : Boolean = false, 
+			$cancelable : Boolean = false )
 		{
-			_amountLoaded = amountLoaded;
+			_amountLoaded = $amountLoaded;
 			
-			super( type, bubbles, cancelable );
+			super( $type, $bubbles, $cancelable );
 		}
 		
 		//----------------------------------
@@ -65,7 +65,7 @@ package as3bootstrap.common.events
 		 * 
 		 * @see flash.events.Event
 		 */ 
-		override public function clone() : Event
+		override public function clone():Event
 		{
 			return new ResourceProgressEvent( type, amountLoaded );
 		}
@@ -81,7 +81,7 @@ package as3bootstrap.common.events
 		 * 
 		 * @return Number Total amount loaded between 0-1
 		 */
-		public function get amountLoaded() : Number
+		public function get amountLoaded():Number
 		{
 			return _amountLoaded;
 		}

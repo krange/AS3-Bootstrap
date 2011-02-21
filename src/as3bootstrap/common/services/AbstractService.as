@@ -43,9 +43,9 @@ package as3bootstrap.common.services
 		/**
 		 * Constructor
 		 * 
-		 * @param progress <code>IProgress</code> instance 
+		 * @param $progress <code>IProgress</code> instance 
 		 */		
-		public function AbstractService( $progress : IProgress = null )
+		public function AbstractService( $progress:IProgress = null )
 		{
 			// If no instance was passed in, initialize a new one
 			_progress = $progress || new Progress();
@@ -56,12 +56,12 @@ package as3bootstrap.common.services
 		/**
 		 * Load an XML resource from a <code>String</code> URL
 		 * 
-		 * @param url String representation of the URL
+		 * @param $url String representation of the URL
 		 */
-		public function loadWithUrl( url : String ):void
+		public function loadWithUrl( $url:String ):void
 		{
 			// Create our request and load it!
-			var request : URLRequest = new URLRequest( url );
+			var request : URLRequest = new URLRequest( $url );
 			loadWithUrlRequest( request );
 		}
 		
@@ -70,7 +70,7 @@ package as3bootstrap.common.services
 		 * 
 		 * @param request URLRequest to load 
 		 */		
-		public function loadWithUrlRequest( request : URLRequest ):void
+		public function loadWithUrlRequest( $request:URLRequest ):void
 		{
 			// Override
 		}
@@ -136,7 +136,7 @@ package as3bootstrap.common.services
 		 * 
 		 * @param value <code>IProgress</code> instance to set
 		 */
-		public function set progress( $value : IProgress ):void
+		public function set progress( $value:IProgress ):void
 		{
 			_progress = $value;
 		}

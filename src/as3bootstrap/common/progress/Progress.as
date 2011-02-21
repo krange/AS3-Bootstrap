@@ -68,13 +68,13 @@ package as3bootstrap.common.progress
 		/** 
 		 * Constructor
 		 * 
-		 * @param weight Initial weight to set
-		 * @param id An identifier for the progress instance
+		 * @param $weight Initial weight to set
+		 * @param $id An identifier for the progress instance
 		 */
-		public function Progress( weight : Number = 1, id : String = null )
+		public function Progress( $weight:Number = 1, $id:String = null )
 		{
-			this.weight = weight;
-			this.id = id;
+			weight = $weight;
+			id = $id;
 			
 			_invalidationTimer.addEventListener( TimerEvent.TIMER_COMPLETE, handleTimerComplete, false, 0, true );
 		}
@@ -82,13 +82,14 @@ package as3bootstrap.common.progress
 		/**
 		 * Factory method. Create and add a child IProgress in one operation.
 		 * 
-		 * @param weight Initial weight to set
-		 * @param id An identifier for the progress instance
+		 * @param $weight Initial weight to set
+		 * @param $id An identifier for the progress instance
+		 * 
 		 * @return An initialized IProgress instance
 		 */
-		public function createChildLoadable( weight : Number = 1, id : String = null ) : IProgress
+		public function createChildLoadable( $weight:Number = 1, $id:String = null ):IProgress
 		{
-			var progress : Progress = new Progress( weight, id );
+			var progress : Progress = new Progress( $weight, $id );
 			addChildLoadable( progress );
 			
 			return progress;
@@ -97,21 +98,21 @@ package as3bootstrap.common.progress
 		/**
 		 * Add a child IProgress instance to a child list of this item
 		 * 
-		 * @param progres IProgress to add
+		 * @param $progres IProgress to add
 		 */ 
-		public function addChildLoadable( progress : IProgress ) : void
+		public function addChildLoadable( $progress:IProgress ):void
 		{
-			childLoadableArray[childLoadableArray.length] = progress;
-			progress.addEventListener( ResourceProgressEvent.PROGRESS, handleProgressUpdate, false, 0, true );
-			totalChildWeight += progress.getWeight();
+			childLoadableArray[childLoadableArray.length] = $progress;
+			$progress.addEventListener( ResourceProgressEvent.PROGRESS, handleProgressUpdate, false, 0, true );
+			totalChildWeight += $progress.getWeight();
 		}
 		
 		/**
 		 * Retrieve a child progress instance by it's ID
 		 * 
-		 * @param id ID to search for
+		 * @param $id ID to search for
 		 */ 
-		public function retrieveChildLoadable( id : String ) : IProgress
+		public function retrieveChildLoadable( $id:String ):IProgress
 		{
 			var selectedProgress : IProgress;
 			var i : int = childLoadableArray.length;
@@ -121,7 +122,7 @@ package as3bootstrap.common.progress
 			{
 				curProgress = childLoadableArray[i] as IProgress;
 				
-				if( curProgress.getId() == id ) 
+				if( curProgress.getId() == $id ) 
 				{
 					selectedProgress = curProgress;
 					break;
@@ -135,11 +136,11 @@ package as3bootstrap.common.progress
 		 * Check to see if the provided <code>IProgress</code> instance is a
 		 * direct child or not.
 		 * 
-		 * @param id ID to search for
+		 * @param $instance IProgress to search
 		 * 
 		 * @return Boolean
 		 */ 
-		public function isChildLoadable( instance : IProgress ) : Boolean
+		public function isChildLoadable( $instance:IProgress ):Boolean
 		{
 			var selectedProgress : IProgress;
 			var i : int = childLoadableArray.length;
@@ -149,7 +150,7 @@ package as3bootstrap.common.progress
 			{
 				curProgress = childLoadableArray[i] as IProgress;
 				
-				if( curProgress == instance ) 
+				if( curProgress == $instance ) 
 				{
 					return true;
 				}
@@ -164,7 +165,7 @@ package as3bootstrap.common.progress
 		 * 
 		 * @return Boolean
 		 */ 
-		public function hasChildLoadables() : Boolean
+		public function hasChildLoadables():Boolean
 		{
 			return ( childLoadableArray.length > 0 ) ? true : false;
 		}
@@ -172,11 +173,12 @@ package as3bootstrap.common.progress
 		/**
 		 * Remove a child progress instance by it's ID
 		 * 
-		 * @param id ID to search for
+		 * @param $id ID to search for
+		 * 
 		 * @return <code>true</code> if a child was removed, 
 		 * 		   <code>false</code> otherwise
 		 */ 
-		public function removeChildLoadable( id : String ) : Boolean 
+		public function removeChildLoadable( $id:String ):Boolean 
 		{
 			var i : int = childLoadableArray.length;
 			var curProgress : IProgress;
@@ -185,7 +187,7 @@ package as3bootstrap.common.progress
 			{
 				curProgress = childLoadableArray[i] as IProgress;
 				
-				if( curProgress.getId() == id ) 
+				if( curProgress.getId() == $id ) 
 				{
 					childLoadableArray.splice( i, 1 );
 					return true;
@@ -199,7 +201,7 @@ package as3bootstrap.common.progress
 		 * Forces progress to quit itself. This is useful, for example,
 		 * if an error with high enough severity has occured.
 		 */
-		public function forceQuit() : void 
+		public function forceQuit():void 
 		{
 			// Clear out all the references to any child progress
 			childLoadableArray = new Array();
@@ -212,17 +214,17 @@ package as3bootstrap.common.progress
 		 * Set the item loaded amount, value from 0-1. If there are child
 		 * progress instances attached this to this item, this method is ignored.
 		 * 
-		 * @param amount Amount to set
+		 * @param $amount Amount to set
 		 */ 
-		public function setAmountLoaded( amount : Number ) : void
+		public function setAmountLoaded( $amount:Number ):void
 		{
 			if( childLoadableArray.length == 0 )
 			{
-				if( amount < 0 ) amount = 0;
-				if( amount > 1 ) amount = 1;
+				if( $amount < 0 ) $amount = 0;
+				if( $amount > 1 ) $amount = 1;
 				
 				// Set amount loaded
-				amountLoaded = amount;
+				amountLoaded = $amount;
 				
 				// Dispatch ResourceProgressEvent
 				dispatchEvent( new ResourceProgressEvent( ResourceProgressEvent.PROGRESS, amountLoaded, false, false ) );
@@ -235,7 +237,7 @@ package as3bootstrap.common.progress
 		 * 
 		 * @return Number Total amount loaded 
 		 */
-		public function getAmountLoaded() : Number
+		public function getAmountLoaded():Number
 		{
 			if( childLoadableArray.length == 0 )
 				return amountLoaded;
@@ -246,17 +248,17 @@ package as3bootstrap.common.progress
 		/**
 		 * Set the unique ID for the progress item
 		 * 
-		 * @param id ID to set
+		 * @param $id ID to set
 		 */ 
-		public function setId( id : String ) : void
+		public function setId( $id:String ):void
 		{
-			this.id = id;
+			id = $id;
 		}
 		
 		/** 
 		 * @return String ID of the progress item
 		 */
-		public function getId() : String
+		public function getId():String
 		{
 			return id;	
 		}
@@ -264,7 +266,7 @@ package as3bootstrap.common.progress
 		/** 
 		 * @return Number weight of item 
 		 */
-		public function getWeight() : Number
+		public function getWeight():Number
 		{
 			return weight;
 		}
@@ -283,7 +285,7 @@ package as3bootstrap.common.progress
 		 * 
 		 * @return Number total amount loaded of all child instances 
 		 */ 
-		protected function getChildLoaded() : Number
+		protected function getChildLoaded():Number
 		{
 			var totalAmountLoaded : Number = 0;
 			var i : int = childLoadableArray.length;
@@ -307,7 +309,7 @@ package as3bootstrap.common.progress
 		 * 
 		 * @param event <code>ResourceProgressEvent.PROGRESS</code>
 		 */ 
-		protected function handleProgressUpdate( event : ResourceProgressEvent ) : void
+		protected function handleProgressUpdate( $event:ResourceProgressEvent ):void
 		{
 			if( ! _progressInvalidated )
 			{
@@ -333,7 +335,7 @@ package as3bootstrap.common.progress
 		 * 
 		 * @param event	<code>TimerEvent.TIMER_COMPLETE</code>
 		 */
-		private function handleTimerComplete( event : TimerEvent ) : void
+		private function handleTimerComplete( $event:TimerEvent ):void
 		{
 			_progressInvalidated = false;
 			

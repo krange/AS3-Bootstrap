@@ -30,12 +30,12 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.model
 		/**
 		 * Constructor
 		 * 
-		 * @param proxyName Name of the proxy
-		 * @param bootstrap <code>IBootstrap</code> object
+		 * @param $proxyName Name of the proxy
+		 * @param $bootstrap <code>IBootstrap</code> object
 		 */		
-		public function BootstrapProxy( proxyName:String=null, bootstrap:IBootstrap=null )
+		public function BootstrapProxy( $proxyName:String=null, $bootstrap:IBootstrap=null )
 		{
-			super( proxyName, bootstrap );
+			super( $proxyName, $bootstrap );
 		}
 		
 		//---------------------------------------------------------------------

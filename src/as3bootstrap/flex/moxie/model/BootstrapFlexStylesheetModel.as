@@ -47,17 +47,17 @@ package as3bootstrap.flex.moxie.model
 		/**
 		 * Constructor
 		 */
-		public function BootstrapFlexStylesheetModel($progress:IProgress)
+		public function BootstrapFlexStylesheetModel( $progress:IProgress )
 		{
-			super($progress);
+			super( $progress );
 		}
 		
 		/**
 		 * Load the config data
 		 * 
-		 * @param url URL request
+		 * @param $data XMLList of data to load
 		 */		
-		public function load( $data : XMLList ):void
+		public function load( $data:XMLList ):void
 		{
 			if( $data && $data.length() > 0 )
 			{
@@ -78,10 +78,6 @@ package as3bootstrap.flex.moxie.model
 				}
 			}
 		}
-		
-		//----------------------------------
-		//  Override
-		//----------------------------------
 		
 		//---------------------------------------------------------------------
 		//
@@ -111,9 +107,9 @@ package as3bootstrap.flex.moxie.model
 		 * @private
 		 * Callback when all services have loaded 
 		 *  
-		 * @param event <code>Event.COMPLETE</code>
+		 * @param $event <code>Event.COMPLETE</code>
 		 */		
-		protected function onAllServicesLoaded( event : Event ):void
+		protected function onAllServicesLoaded( $event:Event ):void
 		{
 			// Remove the event listener
 			_dependency.removeEventListener( Event.COMPLETE, onAllServicesLoaded );
@@ -127,16 +123,22 @@ package as3bootstrap.flex.moxie.model
 		 * @private
 		 * Callback when a service has loaded
 		 *  
-		 * @param service <code>IService</code>
+		 * @param $service <code>IService</code>
 		 */		
-		protected function onServiceLoaded( service : IService ):void
+		protected function onServiceLoaded( $service:IService ):void
 		{
-			_dependency.setLoadDependencyMet( service );
+			_dependency.setLoadDependencyMet( $service );
 		}
 		
-		protected function onServiceErrored( event : Event ):void
+		/**
+		 * @private
+		 * Callback when a service has errored
+		 *  
+		 * @param $event Event
+		 */	
+		protected function onServiceErrored( $event:Event ):void
 		{
-			errored.dispatch( event );
+			errored.dispatch( $event );
 		}
 		
 		//---------------------------------------------------------------------
@@ -170,7 +172,7 @@ package as3bootstrap.flex.moxie.model
 		 * 
 		 * @param $value Array 
 		 */		
-		protected function set services($value:Array):void
+		protected function set services( $value:Array ):void
 		{
 			_services = $value;
 		}

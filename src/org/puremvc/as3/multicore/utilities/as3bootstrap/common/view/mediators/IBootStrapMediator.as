@@ -22,7 +22,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.view.mediators
 		 * 
 		 * @param notification INotification being passed
 		 */
-		function respondToBootstrapLoadComplete( notification : INotification ) : void;
+		function respondToBootstrapLoadComplete( $notification:INotification ):void;
 		
 		/** 
 		 * Responds to when the progress data load has completed. This 
@@ -32,7 +32,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.view.mediators
 		 * 
 		 * @param notification INotification being passed
 		 */
-		function respondToDataLoadComplete( notification : INotification ) : void;
+		function respondToDataLoadComplete( $notification:INotification ):void;
 			
 		/** 
 		 * Responds to when the entire progress load has completed. This is
@@ -42,6 +42,6 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.view.mediators
 		 * 
 		 * @param notification INotification being passed
 		 */
-		function respondToApplicationLoadComplete( notification : INotification ) : void;
+		function respondToApplicationLoadComplete( $notification:INotification ):void;
 	}
 }

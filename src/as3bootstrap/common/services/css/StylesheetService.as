@@ -35,7 +35,12 @@ package as3bootstrap.common.services.css
 		//
 		//---------------------------------------------------------------------
 		
-		public function StylesheetService($progress:IProgress=null)
+		/**
+		 * Constructor
+		 * 
+		 * @param $progress <code>IProgress</code> instance 
+		 */	
+		public function StylesheetService( $progress:IProgress=null )
 		{
 			super($progress);
 		}
@@ -47,9 +52,9 @@ package as3bootstrap.common.services.css
 		/**
 		 * Load an XML resource from an <code>URLRequest</code>
 		 * 
-		 * @param request URLRequest to load 
+		 * @param $request URLRequest to load 
 		 */		
-		override public function loadWithUrlRequest( request : URLRequest ):void
+		override public function loadWithUrlRequest( $request:URLRequest ):void
 		{
 			// Since we are starting a new load request, remove any
 			// previous listeners
@@ -62,7 +67,7 @@ package as3bootstrap.common.services.css
 			addListeners();
 			
 			// Load it!
-			_loader.load( request );
+			_loader.load( $request );
 		}
 		
 		/**
@@ -107,9 +112,9 @@ package as3bootstrap.common.services.css
 		
 		/**
 		 * @private 
-		 * @param event <code>Event.COMPLETE</code>
+		 * @param $event <code>Event.COMPLETE</code>
 		 */		
-		protected function onLoadComplete( event : Event ):void
+		protected function onLoadComplete( $event:Event ):void
 		{	
 			// Remove listeners
 			removeListeners();
@@ -126,31 +131,31 @@ package as3bootstrap.common.services.css
 		
 		/**
 		 * @private
-		 * @param event <code>ProgressEvent.PROGRESS</code> 
+		 * @param $event <code>ProgressEvent.PROGRESS</code> 
 		 */		
-		protected function onLoadProgress( event : ProgressEvent ):void
+		protected function onLoadProgress( $event:ProgressEvent ):void
 		{	
-			progress.setAmountLoaded( event.bytesLoaded / event.bytesTotal );
+			progress.setAmountLoaded( $event.bytesLoaded / $event.bytesTotal );
 		}
 		
 		/**
 		 * @private 
-		 * @param event <code>IOErrorEvent.IO_ERROR</code>
+		 * @param $event <code>IOErrorEvent.IO_ERROR</code>
 		 */		
-		protected function onLoadIOError( event : IOErrorEvent ):void
+		protected function onLoadIOError( $event:IOErrorEvent ):void
 		{
 			removeListeners();
-			errored.dispatch( event );
+			errored.dispatch( $event );
 		}
 		
 		/**
 		 * @private 
-		 * @param event <code>SecurityErrorEvent.SECURITY_ERROR</code>
+		 * @param $event <code>SecurityErrorEvent.SECURITY_ERROR</code>
 		 */
-		protected function onLoadSecurityError( event : SecurityErrorEvent ):void
+		protected function onLoadSecurityError( $event:SecurityErrorEvent ):void
 		{
 			removeListeners();
-			errored.dispatch( event );
+			errored.dispatch( $event );
 		}
 		
 		//----------------------------------
@@ -195,9 +200,9 @@ package as3bootstrap.common.services.css
 		 * @private
 		 * Set the loader
 		 * 
-		 * @param value URLLoader instance to set
+		 * @param $value URLLoader instance to set
 		 */
-		protected function set loader($value:URLLoader):void
+		protected function set loader( $value:URLLoader ):void
 		{
 			_loader = $value;
 		}
