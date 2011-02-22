@@ -153,7 +153,6 @@ package as3bootstrap.common
 					
 					// Load the config
 					loadConfig( $parameters.bs_configXmlUrl );
-					return;
 				}
 			}
 			// TODO: Throw an error here that start has already been run
@@ -369,17 +368,11 @@ package as3bootstrap.common
 		 * 
 		 * @param $url String
 		 */		
-		protected function loadConfig( $url:String ):Boolean
+		protected function loadConfig( $url:String ):void
 		{
-			// Make sure that we have a valid URL
-			if( $url && $url.length > 0 )
-			{
-				configModel.errored.add( onConfigErrored );
-				configModel.loaded.add( onConfigLoaded );
-				configModel.load( $url );
-				return true;
-			}
-			return false;
+			configModel.errored.add( onConfigErrored );
+			configModel.loaded.add( onConfigLoaded );
+			configModel.load( $url );
 		}
 		
 		/**

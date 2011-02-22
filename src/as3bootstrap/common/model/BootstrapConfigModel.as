@@ -44,9 +44,14 @@ package as3bootstrap.common.model
 		 */		
 		public function load( $url:String ):void
 		{
-			if( $url )
+			if( $url && $url.length > 0 )
 			{
 				_service.loadWithUrl( $url );
+			}
+			else
+			{
+				progress.setAmountLoaded( 1 );
+				loaded.dispatch();
 			}
 		}
 		
@@ -149,7 +154,11 @@ package as3bootstrap.common.model
 		 */		
 		public function get stylesheets():XMLList
 		{
-			return service.data.bs_stylesheet;
+			if( service.data )
+			{
+				return service.data.bs_stylesheet;
+			}
+			return new XMLList();
 		}
 		
 		/**
@@ -159,7 +168,11 @@ package as3bootstrap.common.model
 		 */		
 		public function get localizations():XMLList
 		{
-			return service.data.bs_localization;
+			if( service.data )
+			{
+				return service.data.bs_localization;
+			}
+			return new XMLList();
 		}
 		
 		/**
@@ -169,7 +182,11 @@ package as3bootstrap.common.model
 		 */		
 		public function get fonts():XMLList
 		{
-			return service.data.bs_font;
+			if( service.data )
+			{
+				return service.data.bs_font;
+			}
+			return new XMLList();
 		}
 		
 		/**
