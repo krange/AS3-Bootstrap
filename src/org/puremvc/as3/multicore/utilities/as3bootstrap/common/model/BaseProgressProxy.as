@@ -46,7 +46,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.model
 		public function BaseProgressProxy( $name:String=null, $data:Object=null, $progress:IProgress=null )
 		{
 			super( $name, $data );
-			_progress = progress;
+			_progress = $progress;
 		}
 		
 		/**
