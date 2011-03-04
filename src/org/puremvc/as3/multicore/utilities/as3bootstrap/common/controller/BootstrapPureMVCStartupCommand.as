@@ -131,6 +131,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		protected function registerProxies():void
 		{
 			registerBootstrapProxy();
+			registerConfigProxy();
 		}
 		
 		/**

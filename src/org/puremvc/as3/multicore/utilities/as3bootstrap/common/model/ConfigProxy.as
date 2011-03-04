@@ -14,7 +14,10 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.model
 	 */
 	public class ConfigProxy 
 		extends FabricationProxy
+		implements IConfigProxy
 	{
+		public static const NAME : String = "ConfigProxy";
+		
 		//---------------------------------------------------------------------
 		//
 		//  Public methods
