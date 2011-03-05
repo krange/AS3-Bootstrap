@@ -1,25 +1,22 @@
-package org.puremvc.as3.multicore.utilities.as3bootstrap.common.model
+package org.robotlegs.utilities.as3bootstrap.common.model
 {
 	import as3bootstrap.common.IBootstrap;
 	
 	import flash.events.Event;
 	
-	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.constants.BootstrapPureMVCConstants;
-	import org.puremvc.as3.multicore.utilities.fabrication.patterns.proxy.FabricationProxy;
+	import org.robotlegs.mvcs.Actor;
+	import org.robotlegs.utilities.as3bootstrap.common.model.events.BootstrapStatusEvent;
 	
 	/**
-	 * BootstrapProxy
-	 *
-	 * @langversion ActionScript 3.0
-	 * @playerversion Flash 9.0.124
+	 * BootstrapRobotlegsModel
 	 * 
-	 * @author krisrange 
+	 * @author krisrange
 	 */
-	public class BootstrapProxy 
-		extends FabricationProxy
-		implements IBootstrapProxy
+	public class BootstrapModel 
+		extends Actor
+		implements IBootstrapModel
 	{
-		public static const NAME : String = "BootstrapProxy";
+		private var _bootstrap : IBootstrap;
 		
 		//---------------------------------------------------------------------
 		//
@@ -30,12 +27,13 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.model
 		/**
 		 * Constructor
 		 * 
-		 * @param $proxyName Name of the proxy
 		 * @param $bootstrap <code>IBootstrap</code> object
-		 */		
-		public function BootstrapProxy( $proxyName:String=null, $bootstrap:IBootstrap=null )
+		 */
+		public function BootstrapModel( $bootstrap:IBootstrap )
 		{
-			super( $proxyName, $bootstrap );
+			super();
+			_bootstrap = $bootstrap;
+			init();
 		}
 		
 		//---------------------------------------------------------------------
@@ -44,24 +42,18 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.model
 		//
 		//---------------------------------------------------------------------
 		
-		//----------------------------------
-		//  Override
-		//----------------------------------
-		
 		/**
-		 * @private 
-		 */
-		override protected function initializeProxyNameCache():void
+		 * Initialize 
+		 */		
+		protected function init():void
 		{
-			super.initializeProxyNameCache();
-			
 			// Add signal listeners
 			bootstrap.appLoaded.add( onAppLoaded );
+			bootstrap.dataLoaded.add( onDataLoaded );
 			bootstrap.bootstrapLoaded.add( onBootstrapLoaded );
 			bootstrap.bootstrapResourceErrored.add( onBootstrapResourceErrored );
 			bootstrap.configErrored.add( onConfigErrored );
 			bootstrap.configLoaded.add( onConfigLoaded );
-			bootstrap.dataLoaded.add( onDataLoaded );
 		}
 		
 		//----------------------------------
@@ -73,7 +65,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.model
 		 */		
 		protected function onAppLoaded():void
 		{
-			sendNotification( BootstrapPureMVCConstants.APPLICATION_LOAD_COMPLETE );
+			eventDispatcher.dispatchEvent( new BootstrapStatusEvent( BootstrapStatusEvent.APPLICATION_LOAD_COMPLETE ) );
 		}
 		
 		/**
@@ -81,7 +73,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.model
 		 */		
 		protected function onDataLoaded():void
 		{
-			sendNotification( BootstrapPureMVCConstants.DATA_LOAD_COMPLETE );
+			eventDispatcher.dispatchEvent( new BootstrapStatusEvent( BootstrapStatusEvent.DATA_LOAD_COMPLETE ) );
 		}
 		
 		/**
@@ -89,7 +81,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.model
 		 */		
 		protected function onBootstrapLoaded():void
 		{
-			sendNotification( BootstrapPureMVCConstants.BOOTSTRAP_LOAD_COMPLETE );
+			eventDispatcher.dispatchEvent( new BootstrapStatusEvent( BootstrapStatusEvent.BOOTSTRAP_LOAD_COMPLETE ) );
 		}
 		
 		/**
@@ -98,27 +90,27 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.model
 		 */		
 		protected function onConfigLoaded():void
 		{
-			sendNotification( BootstrapPureMVCConstants.BOOTSTRAP_CONFIG_LOAD_COMPLETE );
+			eventDispatcher.dispatchEvent( new BootstrapStatusEvent( BootstrapStatusEvent.CONFIG_LOAD_COMPLETE ) );
 		}
 		
 		/**
 		 * Callback for when the bootstrap config load has errored
 		 * 
-		 * @param event <code>Event</code> 
+		 * @param $event <code>Event</code> 
 		 */		
-		protected function onConfigErrored( event : Event ):void
+		protected function onConfigErrored( $event:Event ):void
 		{
-			sendNotification( BootstrapPureMVCConstants.BOOTSTRAP_CONFIG_LOAD_FAIL, event );
+			eventDispatcher.dispatchEvent( new BootstrapStatusEvent( BootstrapStatusEvent.CONFIG_LOAD_ERROR ) );
 		}
 		
 		/**
 		 * Callback for when a bootstrap load resource has errored
 		 *  
-		 * @param event <code>Event</code>
+		 * @param $event <code>Event</code>
 		 */		
-		protected function onBootstrapResourceErrored( event : Event ):void
+		protected function onBootstrapResourceErrored( $event:Event ):void
 		{
-			sendNotification( BootstrapPureMVCConstants.BOOTSTRAP_LOAD_ERROR, event );
+			eventDispatcher.dispatchEvent( new BootstrapStatusEvent( BootstrapStatusEvent.BOOTSTRAP_RESOURCE_ERROR ) );
 		}
 		
 		//---------------------------------------------------------------------
@@ -134,7 +126,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.model
 		 */		
 		public function get bootstrap():IBootstrap
 		{
-			return data as IBootstrap;
+			return _bootstrap;
 		}
 	}
 }

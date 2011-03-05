@@ -3,7 +3,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.common.view.mediat
 	import as3bootstrap.common.progress.IProgress;
 	
 	import org.puremvc.as3.multicore.interfaces.INotification;
-	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.view.mediators.IBootStrapMediator;
+	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.view.mediators.IBootstrapMediator;
 	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;
 	
 	/**
@@ -16,7 +16,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.common.view.mediat
 	 */
 	public class BootstrapFlexMediator 
 		extends FlexMediator 
-		implements IBootStrapMediator
+		implements IBootstrapMediator
 	{
 		private var _progress : IProgress;
 		

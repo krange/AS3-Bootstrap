@@ -1,6 +1,6 @@
 package org.puremvc.as3.multicore.utilities.as3bootstrap.flash.controller
 {
-	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller.BootstrapPureMVCStartupCommand;
+	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller.BootstrapStartupCommand;
 	
 	/**
 	 * BootstrapPureMVCFlashStartupCommand
@@ -11,7 +11,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flash.controller
 	 * @author krisrange
 	 */
 	public class BootstrapPureMVCFlashStartupCommand 
-		extends BootstrapPureMVCStartupCommand
+		extends BootstrapStartupCommand
 	{
 		//---------------------------------------------------------------------
 		//

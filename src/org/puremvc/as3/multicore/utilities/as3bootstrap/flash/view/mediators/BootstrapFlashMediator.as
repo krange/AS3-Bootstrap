@@ -3,7 +3,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flash.view.mediators
 	import as3bootstrap.common.progress.IProgress;
 	
 	import org.puremvc.as3.multicore.interfaces.INotification;
-	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.view.mediators.IBootStrapMediator;
+	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.view.mediators.IBootstrapMediator;
 	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlashMediator;
 	
 	/**
@@ -16,7 +16,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flash.view.mediators
 	 */
 	public class BootstrapFlashMediator 
 		extends FlashMediator 
-		implements IBootStrapMediator
+		implements IBootstrapMediator
 	{
 		private var _progress : IProgress;
 		

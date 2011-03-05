@@ -3,7 +3,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.halo.controller
 	import as3bootstrap.flex.halo.BootstrapFlexHalo;
 	
 	import org.puremvc.as3.multicore.interfaces.INotification;
-	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller.BootstrapPureMVCStartupCommand;
+	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller.BootstrapStartupCommand;
 	import org.puremvc.as3.multicore.utilities.fabrication.components.FlexHaloApplication;
 	
 	/**
@@ -15,7 +15,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.halo.controller
 	 * @author krisrange 
 	 */
 	public class BootstrapPureMVCFlexHaloStartupCommand 
-		extends BootstrapPureMVCStartupCommand
+		extends BootstrapStartupCommand
 	{
 		//---------------------------------------------------------------------
 		//

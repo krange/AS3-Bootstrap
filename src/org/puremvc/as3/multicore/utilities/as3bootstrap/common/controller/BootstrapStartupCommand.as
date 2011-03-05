@@ -13,7 +13,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.model.ConfigProxy;
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.model.IBootstrapProxy;
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.model.IConfigProxy;
-	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.view.mediators.IBootStrapMediator;
+	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.view.mediators.IBootstrapMediator;
 	import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;
 	
 	/**
@@ -24,7 +24,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 	 * 
 	 * @author krisrange 
 	 */
-	public class BootstrapPureMVCStartupCommand 
+	public class BootstrapStartupCommand 
 		extends SimpleFabricationCommand
 	{
 		//----------------------------------
@@ -96,8 +96,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		}
 		
 		/**
-		 * @private
-		 * 
+		 * Startup bootstrap
 		 */		
 		protected function startBootstrap():void
 		{
@@ -106,17 +105,17 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		}
 		
 		/**
-		 * @private
 		 * Instantiate the boostrap class 
 		 */		
 		protected function registerBootstrap():void
 		{
+			_appProgress = getAppProgress();
 			var BootstrapClass : Object = getBootstrap();
 			
 			// Attempt to register bootstrap
 			try
 			{
-				_bootstrap = new BootstrapClass( getAppProgress() );
+				_bootstrap = new BootstrapClass( _appProgress );
 			}
 			catch( e : Error )
 			{
@@ -125,7 +124,6 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		}
 		
 		/**
-		 * @private
 		 * Register the PureMVC proxies 
 		 */		
 		protected function registerProxies():void
@@ -135,7 +133,6 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		}
 		
 		/**
-		 * @private
 		 * Register the PureMVC commands
 		 */		
 		protected function registerCommands():void
@@ -187,7 +184,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		protected function registerApplicationMediator():void 
 		{
 			var ApplicationMediatorClass : Object = getApplicationMediator();
-			var appMediator : IBootStrapMediator;
+			var appMediator : IBootstrapMediator;
 			
 			// Attempt to register the Mediator
 			try 
@@ -229,14 +226,14 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 			var ConfigLoadCompleteClass : Class = getConfigLoadCompleteCommand();
 			if( ConfigLoadCompleteClass )
 			{
-				registerCommand( BootstrapPureMVCConstants.BOOTSTRAP_CONFIG_LOAD_COMPLETE, ConfigLoadCompleteClass );
+				registerCommand( org.puremvc.as3.multicore.utilities.as3bootstrap.common.constants.BootstrapPureMVCConstants.BOOTSTRAP_CONFIG_LOAD_COMPLETE, ConfigLoadCompleteClass );
 			}
 			
 			// Register the fail command
 			var ConfigLoadFailClass : Class = getConfigLoadFailCommand();
 			if( ConfigLoadFailClass )
 			{
-				registerCommand( BootstrapPureMVCConstants.BOOTSTRAP_CONFIG_LOAD_FAIL, ConfigLoadFailClass );
+				registerCommand( org.puremvc.as3.multicore.utilities.as3bootstrap.common.constants.BootstrapPureMVCConstants.BOOTSTRAP_CONFIG_LOAD_FAIL, ConfigLoadFailClass );
 			}
 		}
 		

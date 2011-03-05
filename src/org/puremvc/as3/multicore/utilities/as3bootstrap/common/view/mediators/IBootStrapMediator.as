@@ -3,15 +3,15 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.view.mediators
 	import org.puremvc.as3.multicore.interfaces.INotification;
 	
 	/**
-	 * Interface for Bootstrap mediators
+	 * Interface for PureMVC mediators that incorporate bootstrap
 	 * 
 	 * @langversion ActionScript 3.0
 	 * @playerversion Flash 9.0.124
 	 * 
 	 * @author krisrange
 	 */ 
-	public interface IBootStrapMediator 
-		extends IProgressMediator
+	public interface IBootstrapMediator 
+		extends IBootstrapProgressMediator
 	{
 		/** 
 		 * Responds to when the Bootstrap startup load has completed. This 

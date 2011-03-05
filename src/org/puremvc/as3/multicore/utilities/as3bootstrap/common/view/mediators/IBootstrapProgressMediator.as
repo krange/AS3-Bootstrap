@@ -12,7 +12,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.view.mediators
 	 * 
 	 * @author krisrange
 	 */ 
-	public interface IProgressMediator 
+	public interface IBootstrapProgressMediator 
 		extends IMediator
 	{	
 		/**
