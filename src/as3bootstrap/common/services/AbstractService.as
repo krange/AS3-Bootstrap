@@ -81,6 +81,9 @@ package as3bootstrap.common.services
 		//
 		//---------------------------------------------------------------------
 		
+		/**
+		 * Initialize the service
+		 */		
 		protected function init():void
 		{
 			_loaded = getLoadedSignal();

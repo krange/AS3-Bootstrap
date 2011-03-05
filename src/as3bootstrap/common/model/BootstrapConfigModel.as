@@ -28,9 +28,7 @@ package as3bootstrap.common.model
 		//---------------------------------------------------------------------
 		
 		/**
-		 * Constructor
-		 * 
-		 * @param $progress <code>IProgress</code> instance
+		 * @inheritDoc
 		 */		
 		public function BootstrapConfigModel( $progress:IProgress )
 		{
@@ -44,7 +42,8 @@ package as3bootstrap.common.model
 		 */		
 		public function load( $url:String ):void
 		{
-			if( $url && $url.length > 0 )
+			if( $url && 
+				$url.length > 0 )
 			{
 				_service.loadWithUrl( $url );
 			}
@@ -66,8 +65,7 @@ package as3bootstrap.common.model
 		//----------------------------------
 		
 		/**
-		 * @private 
-		 * Initialize the model
+		 * @inheritDoc
 		 */		
 		override protected function init():void
 		{
@@ -123,16 +121,6 @@ package as3bootstrap.common.model
 		
 		//---------------------------------------------------------------------
 		//
-		//  Private methods
-		//
-		//---------------------------------------------------------------------
-		
-		//----------------------------------
-		//  Handlers
-		//----------------------------------
-		
-		//---------------------------------------------------------------------
-		//
 		//  Getter/Setter methods
 		//
 		//---------------------------------------------------------------------
@@ -156,7 +144,7 @@ package as3bootstrap.common.model
 		{
 			if( service.data )
 			{
-				return service.data.bs_stylesheet;
+				return service.data.stylesheet;
 			}
 			return new XMLList();
 		}
@@ -170,7 +158,7 @@ package as3bootstrap.common.model
 		{
 			if( service.data )
 			{
-				return service.data.bs_localization;
+				return service.data.localization;
 			}
 			return new XMLList();
 		}
@@ -184,7 +172,7 @@ package as3bootstrap.common.model
 		{
 			if( service.data )
 			{
-				return service.data.bs_font;
+				return service.data.font;
 			}
 			return new XMLList();
 		}

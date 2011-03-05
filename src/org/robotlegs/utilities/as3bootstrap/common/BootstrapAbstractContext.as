@@ -15,9 +15,13 @@ package org.robotlegs.utilities.as3bootstrap.common
 	import org.robotlegs.utilities.as3bootstrap.common.model.ConfigModel;
 	import org.robotlegs.utilities.as3bootstrap.common.model.IBootstrapModel;
 	import org.robotlegs.utilities.as3bootstrap.common.model.IConfigModel;
+	import org.robotlegs.utilities.as3bootstrap.common.model.events.BootstrapStatusEvent;
 	
 	/**
 	 * Abstract context for Robotlegs projects
+	 * 
+	 * @langversion ActionScript 3.0
+	 * @playerversion Flash 9.0.124
 	 * 
 	 * @author krisrange
 	 */
@@ -29,7 +33,7 @@ package org.robotlegs.utilities.as3bootstrap.common
 		//----------------------------------
 		
 		private static const ERROR_GET_APP_MEDIATOR				:String = "Mediator for this Application or Module was not set. The getApplicationMediator() method was not overriden."; 
-		private static const ERROR_REGISTER_APP_MEDIATOR		:String = "The mediator provided either did not implement IBootstrapMediator or the Constructor did not take the correct arguments."; 
+		private static const ERROR_REGISTER_APP_MEDIATOR		:String = "The mediator provided did not initialize correctly. Please check that it implements IBootstrapMediator."; 
 		private static const ERROR_REGISTER_BOOTSTRAP_MODEL		:String = "Instantation of the class specified in the getBootstrapModel() method failed.";
 		private static const ERROR_REGISTER_CONFIG_MODEL		:String = "Instantation of the class specified in the getConfigModel() method failed.";
 		private static const ERROR_INSTANTIATE_BOOTSTRAP		:String = "Instantation of the class specified in the getBootstrap() method failed.";
@@ -197,6 +201,47 @@ package org.robotlegs.utilities.as3bootstrap.common
 		//----------------------------------
 		//  Command instantiations
 		//----------------------------------
+		
+		/**
+		 * @private
+		 * Register the config load commands
+		 */		
+		protected function registerConfigLoadCommands():void
+		{
+			// Register the complete command
+			var ConfigLoadCompleteClass : Class = getConfigLoadCompleteCommand();
+			if( ConfigLoadCompleteClass )
+			{
+				commandMap.mapEvent( BootstrapStatusEvent.CONFIG_LOAD_COMPLETE, ConfigLoadCompleteClass );
+			}
+			
+			// Register the fail command
+			var ConfigLoadFailClass : Class = getConfigLoadFailCommand();
+			if( ConfigLoadFailClass )
+			{
+				commandMap.mapEvent( BootstrapStatusEvent.CONFIG_LOAD_ERROR, ConfigLoadFailClass );
+			}
+		}
+	
+		/**
+		 * Returns the class to use for when the config loading completes
+		 * 
+		 * @return Class 
+		 */
+		protected function getConfigLoadCompleteCommand():Class
+		{
+			return null;
+		}
+		
+		/**
+		 * Returns the class to use for when the config loading fails
+		 * 
+		 * @return Class 
+		 */
+		protected function getConfigLoadFailCommand():Class
+		{
+			return null;
+		}
 		
 		//----------------------------------
 		//  Model instantiations

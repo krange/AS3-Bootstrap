@@ -6,14 +6,16 @@ package as3bootstrap.flex.halo.services.css
 	import flash.events.IEventDispatcher;
 	import flash.net.URLRequest;
 	import flash.system.ApplicationDomain;
-	import flash.system.SecurityDomain;
 	
 	import mx.events.StyleEvent;
 	import mx.styles.IStyleManager2;
 	import mx.styles.StyleManager;
 	
 	/**
-	 * FlexStylesheetService
+	 * Flex4 stylesheet service
+	 * 
+	 * @langversion ActionScript 3.0
+	 * @playerversion Flash 10.0.0
 	 * 
 	 * @author krisrange
 	 */
@@ -30,9 +32,7 @@ package as3bootstrap.flex.halo.services.css
 		//---------------------------------------------------------------------
 		
 		/**
-		 * Constructor
-		 * 
-		 * @param $progress IProgress instance to track
+		 * @inheritDoc
 		 */
 		public function FlexHaloStylesheetService( $progress:IProgress = null )
 		{
@@ -104,16 +104,6 @@ package as3bootstrap.flex.halo.services.css
 			
 			errored.dispatch( $event );
 		}
-		
-		//---------------------------------------------------------------------
-		//
-		//  Private methods
-		//
-		//---------------------------------------------------------------------
-		
-		//----------------------------------
-		//  Handlers
-		//----------------------------------
 		
 		//---------------------------------------------------------------------
 		//

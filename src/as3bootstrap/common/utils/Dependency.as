@@ -63,7 +63,7 @@ package as3bootstrap.common.utils
 			var count : Number = _dependencies.length;
 			while( count-- ) 
 			{
-				if ( _dependencies[count] == $key ) 
+				if( _dependencies[count] == $key ) 
 				{
 					return _dependencies[count];
 					break;
@@ -91,7 +91,7 @@ package as3bootstrap.common.utils
 			var count : Number = _dependencies.length;
 			while( count-- ) 
 			{
-				if ( _dependencies[count] == $key ) 
+				if( _dependencies[count] == $key ) 
 				{
 					_dependencies.splice( count, 1 );
 					break;
@@ -112,7 +112,7 @@ package as3bootstrap.common.utils
 			var count : Number = _dependencies.length;
 			while( count-- ) 
 			{
-				if ( _dependencies[count] == $key ) 
+				if( _dependencies[count] == $key ) 
 				{
 					return true;
 				}

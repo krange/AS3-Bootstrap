@@ -5,7 +5,10 @@ package org.robotlegs.utilities.as3bootstrap.common.model
 	import org.robotlegs.mvcs.Actor;
 	
 	/**
-	 * ConfigModel
+	 * Robotlegs model for storing the config object
+	 * 
+	 * @langversion ActionScript 3.0
+	 * @playerversion Flash 9.0.124
 	 * 
 	 * @author krisrange
 	 */

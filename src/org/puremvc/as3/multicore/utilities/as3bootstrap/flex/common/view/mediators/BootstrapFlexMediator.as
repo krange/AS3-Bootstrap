@@ -7,10 +7,10 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.common.view.mediat
 	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;
 	
 	/**
-	 * BootstrapFlexMediator
+	 * Mediator for Flex4 based-classes that require mediation
 	 *
 	 * @langversion ActionScript 3.0
-	 * @playerversion Flash 9.0.124
+	 * @playerversion Flash 10.0.0
 	 * 
 	 * @author krisrange 
 	 */

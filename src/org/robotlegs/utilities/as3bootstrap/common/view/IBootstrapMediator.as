@@ -5,7 +5,10 @@ package org.robotlegs.utilities.as3bootstrap.common.view
 	import org.robotlegs.core.IMediator;
 	
 	/**
-	 * IBootstrapRobotlegsMediator.as
+	 * Interface for bootstrap mediators
+	 * 
+	 * @langversion ActionScript 3.0
+	 * @playerversion Flash 9.0.124
 	 * 
 	 * @author krisrange
 	 */

@@ -1,6 +1,5 @@
 package as3bootstrap.common.model
 {
-
 	/**
 	 * IBootstrapFontModel
 	 *

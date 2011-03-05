@@ -17,7 +17,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 	import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;
 	
 	/**
-	 * Base startup command for PureMVC multicore bootstrapped applications.
+	 * Abstract startup command for PureMVC multicore bootstrapped applications
 	 *
 	 * @langversion ActionScript 3.0
 	 * @playerversion Flash 9.0.124
@@ -70,6 +70,9 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		//  Override
 		//----------------------------------
 		
+		/**
+		 * @inheritDoc 
+		 */		
 		override public function execute( $notification:INotification ):void
 		{
 			viewComponent = $notification.getBody() as DisplayObject;
@@ -226,14 +229,14 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 			var ConfigLoadCompleteClass : Class = getConfigLoadCompleteCommand();
 			if( ConfigLoadCompleteClass )
 			{
-				registerCommand( org.puremvc.as3.multicore.utilities.as3bootstrap.common.constants.BootstrapPureMVCConstants.BOOTSTRAP_CONFIG_LOAD_COMPLETE, ConfigLoadCompleteClass );
+				registerCommand( BootstrapPureMVCConstants.BOOTSTRAP_CONFIG_LOAD_COMPLETE, ConfigLoadCompleteClass );
 			}
 			
 			// Register the fail command
 			var ConfigLoadFailClass : Class = getConfigLoadFailCommand();
 			if( ConfigLoadFailClass )
 			{
-				registerCommand( org.puremvc.as3.multicore.utilities.as3bootstrap.common.constants.BootstrapPureMVCConstants.BOOTSTRAP_CONFIG_LOAD_FAIL, ConfigLoadFailClass );
+				registerCommand( BootstrapPureMVCConstants.BOOTSTRAP_CONFIG_LOAD_FAIL, ConfigLoadFailClass );
 			}
 		}
 		

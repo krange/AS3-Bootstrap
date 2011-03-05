@@ -114,7 +114,7 @@ package as3bootstrap.common.services.xml
 		//----------------------------------
 		
 		/**
-		 * Initialize the service
+		 * @inheritDoc
 		 */
 		override protected function init():void
 		{
@@ -184,8 +184,11 @@ package as3bootstrap.common.services.xml
 		//----------------------------------
 		
 		/**
+		 * Returns the instance of the signal to use for when the service has
+		 * loaded. For this this service, the <code>ISignalOwner</code> 
+		 * disptaches with an <code>IXmlService</code> parameter
 		 * 
-		 * @return <code>ISignalOwner</code> 
+		 * @inheritDoc 
 		 */		
 		override protected function getLoadedSignal():ISignalOwner
 		{
@@ -193,8 +196,11 @@ package as3bootstrap.common.services.xml
 		}
 		
 		/**
+		 * Returns the instance of the signal to use for when the service has
+		 * errored. For this this service, the <code>ISignalOwner</code> 
+		 * disptaches with an <code>Event</code> parameter
 		 * 
-		 * @return <code>ISignalOwner</code> 
+		 * @inheritDoc
 		 */		
 		override protected function getErroredSignal():ISignalOwner
 		{

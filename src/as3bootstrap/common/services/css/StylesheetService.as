@@ -97,7 +97,7 @@ package as3bootstrap.common.services.css
 		//----------------------------------
 		
 		/**
-		 * Initialize the service
+		 * @inheritDoc
 		 */
 		override protected function init():void
 		{
@@ -163,8 +163,7 @@ package as3bootstrap.common.services.css
 		//----------------------------------
 		
 		/**
-		 * 
-		 * @return <code>ISignalOwner</code> 
+		 * @inheritDoc
 		 */		
 		override protected function getLoadedSignal():ISignalOwner
 		{
@@ -172,8 +171,7 @@ package as3bootstrap.common.services.css
 		}
 		
 		/**
-		 * 
-		 * @return <code>ISignalOwner</code> 
+		 * @inheritDoc 
 		 */		
 		override protected function getErroredSignal():ISignalOwner
 		{

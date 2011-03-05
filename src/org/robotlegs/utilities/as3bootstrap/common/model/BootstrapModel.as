@@ -8,7 +8,10 @@ package org.robotlegs.utilities.as3bootstrap.common.model
 	import org.robotlegs.utilities.as3bootstrap.common.model.events.BootstrapStatusEvent;
 	
 	/**
-	 * BootstrapRobotlegsModel
+	 * Robotlegs model for interfacing with the bootstrap object
+	 * 
+	 * @langversion ActionScript 3.0
+	 * @playerversion Flash 9.0.124
 	 * 
 	 * @author krisrange
 	 */
@@ -65,7 +68,7 @@ package org.robotlegs.utilities.as3bootstrap.common.model
 		 */		
 		protected function onAppLoaded():void
 		{
-			eventDispatcher.dispatchEvent( new BootstrapStatusEvent( BootstrapStatusEvent.APPLICATION_LOAD_COMPLETE ) );
+			dispatch( new BootstrapStatusEvent( BootstrapStatusEvent.APPLICATION_LOAD_COMPLETE ) );
 		}
 		
 		/**
@@ -73,7 +76,7 @@ package org.robotlegs.utilities.as3bootstrap.common.model
 		 */		
 		protected function onDataLoaded():void
 		{
-			eventDispatcher.dispatchEvent( new BootstrapStatusEvent( BootstrapStatusEvent.DATA_LOAD_COMPLETE ) );
+			dispatch( new BootstrapStatusEvent( BootstrapStatusEvent.DATA_LOAD_COMPLETE ) );
 		}
 		
 		/**
@@ -81,7 +84,7 @@ package org.robotlegs.utilities.as3bootstrap.common.model
 		 */		
 		protected function onBootstrapLoaded():void
 		{
-			eventDispatcher.dispatchEvent( new BootstrapStatusEvent( BootstrapStatusEvent.BOOTSTRAP_LOAD_COMPLETE ) );
+			dispatch( new BootstrapStatusEvent( BootstrapStatusEvent.BOOTSTRAP_LOAD_COMPLETE ) );
 		}
 		
 		/**
@@ -90,7 +93,7 @@ package org.robotlegs.utilities.as3bootstrap.common.model
 		 */		
 		protected function onConfigLoaded():void
 		{
-			eventDispatcher.dispatchEvent( new BootstrapStatusEvent( BootstrapStatusEvent.CONFIG_LOAD_COMPLETE ) );
+			dispatch( new BootstrapStatusEvent( BootstrapStatusEvent.CONFIG_LOAD_COMPLETE ) );
 		}
 		
 		/**
@@ -100,7 +103,7 @@ package org.robotlegs.utilities.as3bootstrap.common.model
 		 */		
 		protected function onConfigErrored( $event:Event ):void
 		{
-			eventDispatcher.dispatchEvent( new BootstrapStatusEvent( BootstrapStatusEvent.CONFIG_LOAD_ERROR ) );
+			dispatch( new BootstrapStatusEvent( BootstrapStatusEvent.CONFIG_LOAD_ERROR ) );
 		}
 		
 		/**
@@ -110,7 +113,7 @@ package org.robotlegs.utilities.as3bootstrap.common.model
 		 */		
 		protected function onBootstrapResourceErrored( $event:Event ):void
 		{
-			eventDispatcher.dispatchEvent( new BootstrapStatusEvent( BootstrapStatusEvent.BOOTSTRAP_RESOURCE_ERROR ) );
+			dispatch( new BootstrapStatusEvent( BootstrapStatusEvent.BOOTSTRAP_RESOURCE_ERROR ) );
 		}
 		
 		//---------------------------------------------------------------------

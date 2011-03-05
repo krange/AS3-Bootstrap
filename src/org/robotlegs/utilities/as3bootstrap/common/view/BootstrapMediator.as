@@ -6,7 +6,10 @@ package org.robotlegs.utilities.as3bootstrap.common.view
 	import org.robotlegs.utilities.as3bootstrap.common.model.events.BootstrapStatusEvent;
 	
 	/**
-	 * BootstrapRobotlegsApplicationMediator
+	 * Base Robotlegs mediator for bootstrap
+	 * 
+	 * @langversion ActionScript 3.0
+	 * @playerversion Flash 9.0.124
 	 * 
 	 * @author krisrange
 	 */
@@ -14,10 +17,6 @@ package org.robotlegs.utilities.as3bootstrap.common.view
 		extends Mediator
 		implements IBootstrapMediator
 	{
-		//----------------------------------
-		//  Private
-		//----------------------------------
-		
 		private var _progress : IProgress;
 		
 		//---------------------------------------------------------------------
@@ -43,6 +42,8 @@ package org.robotlegs.utilities.as3bootstrap.common.view
 		 */		
 		override public function onRegister():void
 		{
+			super.onRegister();
+			
 			eventDispatcher.addEventListener( BootstrapStatusEvent.BOOTSTRAP_LOAD_COMPLETE, onBootstrapLoadComplete );
 			eventDispatcher.addEventListener( BootstrapStatusEvent.DATA_LOAD_COMPLETE, onDataLoadComplete );
 			eventDispatcher.addEventListener( BootstrapStatusEvent.APPLICATION_LOAD_COMPLETE, onApplicationLoadComplete );
@@ -95,7 +96,7 @@ package org.robotlegs.utilities.as3bootstrap.common.view
 		 * Set the <code>IProgress</code> instance
 		 * 
 		 * @param $progress <code>IProgress</code> instance to set
-		 */		
+		 */
 		public function set progress( $progress:IProgress ):void
 		{
 			_progress = $progress;
@@ -105,7 +106,7 @@ package org.robotlegs.utilities.as3bootstrap.common.view
 		 * Get the <code>IProgress</code> instance
 		 *  
 		 * @return IProgress
-		 */		
+		 */
 		public function get progress():IProgress
 		{
 			return _progress;

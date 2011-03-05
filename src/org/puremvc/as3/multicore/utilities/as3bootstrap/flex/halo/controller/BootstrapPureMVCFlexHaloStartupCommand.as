@@ -10,7 +10,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.halo.controller
 	 * Flex 4 startup command for PureMVC multicore bootstrapped applications.
 	 *
 	 * @langversion ActionScript 3.0
-	 * @playerversion Flash 9.0.124
+	 * @playerversion Flash 10.0.0
 	 * 
 	 * @author krisrange 
 	 */

@@ -146,13 +146,13 @@ package as3bootstrap.common
 				{
 					_started = true;
 					_customExternalLoadAllowed = false;
-					_resourceBaseUrl = $parameters.bs_baseUrl;
+					_resourceBaseUrl = $parameters.baseUrl;
 					
 					// Add event listeners
 					bootstrapProgress.addEventListener( ResourceProgressEvent.PROGRESS, onBootstrapProgressUpdate, false, 0, true );
 					
 					// Load the config
-					loadConfig( $parameters.bs_configXmlUrl );
+					loadConfig( $parameters.configXmlUrl );
 				}
 			}
 			// TODO: Throw an error here that start has already been run

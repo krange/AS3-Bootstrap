@@ -8,7 +8,7 @@ package as3bootstrap.flex.halo
 	 * Bootstrap for Flex 4 applications
 	 *
 	 * @langversion ActionScript 3.0
-	 * @playerversion Flash 9.0.124
+	 * @playerversion Flash 10.0.0
 	 * 
 	 * @author krisrange 
 	 */
@@ -22,9 +22,7 @@ package as3bootstrap.flex.halo
 		//---------------------------------------------------------------------
 		
 		/**
-		 * Constructor
-		 * 
-		 * @see as3bootstrap.common.BootstrapBase
+		 * @inheritDoc
 		 */ 
 		public function BootstrapFlexHalo(
 			$progress:IProgress=null, 
@@ -45,8 +43,7 @@ package as3bootstrap.flex.halo
 		//----------------------------------
 		
 		/**
-		 * @private
-		 * @see as3bootstrap.common.Bootstrap
+		 * @inheritDoc
 		 */
 		override protected function getStylesheetModel():Class
 		{

@@ -53,10 +53,12 @@ package as3bootstrap.common.services.font
 			super( $progress );
 		}
 		
+		//----------------------------------
+		//  Override
+		//----------------------------------
+		
 		/**
-		 * Load an font resource from an <code>URLRequest</code>
-		 * 
-		 * @param $request URLRequest to load 
+		 * @inheritDoc
 		 */		
 		override public function loadWithUrlRequest( $request:URLRequest ):void
 		{
@@ -104,7 +106,7 @@ package as3bootstrap.common.services.font
 					}
 					Font.registerFont( FontLibrary[ className ] );
 				}
-				catch( error : Error )
+				catch( error:Error )
 				{
 					trace( "Font class could not be found! Check that a fully qualified class path was provided." );
 					// TODO: Dispatch errored signal
@@ -139,7 +141,7 @@ package as3bootstrap.common.services.font
 		//----------------------------------
 		
 		/**
-		 * Initialize the service
+		 * @inheritDoc
 		 */
 		override protected function init():void
 		{
@@ -261,7 +263,7 @@ package as3bootstrap.common.services.font
 		 * 
 		 * @param value URLLoader instance to set
 		 */
-		protected function set loader($value:Loader):void
+		protected function set loader( $value:Loader ):void
 		{
 			_loader = $value;
 		}

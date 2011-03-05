@@ -40,7 +40,7 @@ package as3bootstrap.common.model
 		 */	
 		public function BootstrapStylesheetModel( $progress:IProgress )
 		{
-			super($progress);
+			super( $progress );
 		}
 		
 		/**
@@ -50,16 +50,19 @@ package as3bootstrap.common.model
 		 */		
 		public function load( $data:XMLList ):void
 		{
-			if( $data && $data.length() > 0 )
+			if( $data && 
+				$data.length() > 0 )
 			{
 				services = new Array();
 				_dependency = new Dependency();
 				_dependency.addEventListener( Event.COMPLETE, onAllServicesLoaded, false, 0, true );
+				
 				var xml_len : int = $data.length();
 				for( var i : int = 0; i < xml_len; i++ )
 				{
 					var service_progress : IProgress = new Progress();
 					var service : IStylesheetService = new StylesheetService( service_progress );
+					
 					services[services.length] = service;
 					progress.addChildLoadable( service_progress );
 					_dependency.addDependancy( service );
@@ -77,7 +80,7 @@ package as3bootstrap.common.model
 		 * @param id ID of the XML service node
 		 * @return Stylesheet
 		 */		
-		public function getStylesheetById( $id:String ) : StyleSheet
+		public function getStylesheetById( $id:String ):StyleSheet
 		{
 			var serLen : int = services.length;
 			while( serLen-- )
@@ -92,10 +95,6 @@ package as3bootstrap.common.model
 			}
 			return null;
 		}
-		
-		//----------------------------------
-		//  Override
-		//----------------------------------
 		
 		//---------------------------------------------------------------------
 		//

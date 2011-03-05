@@ -31,6 +31,9 @@ package as3bootstrap.common.model
 		//
 		//---------------------------------------------------------------------
 		
+		/**
+		 * @inheritDoc
+		 */		
 		public function BootstrapFontModel( $progress:IProgress )
 		{
 			super($progress);
@@ -43,16 +46,19 @@ package as3bootstrap.common.model
 		 */		
 		public function load( $data:XMLList ):void
 		{
-			if( $data && $data.length() > 0 )
+			if( $data && 
+				$data.length() > 0 )
 			{
 				services = new Array();
 				_dependency = new Dependency();
 				_dependency.addEventListener( Event.COMPLETE, onAllServicesLoaded, false, 0, true );
+				
 				var xml_len : int = $data.length();
 				for( var i : int = 0; i < xml_len; i++ )
 				{
 					var service_progress : IProgress = new Progress();
 					var service : IFontService;
+					
 					var fontName : String = $data[i].@id;
 					if( !checkFont( fontName ) )
 					{
@@ -64,6 +70,7 @@ package as3bootstrap.common.model
 						{
 							service = new FontService( service_progress );
 						}
+						
 						services[services.length] = service;
 						progress.addChildLoadable( service_progress );
 						_dependency.addDependancy( service );
@@ -74,10 +81,6 @@ package as3bootstrap.common.model
 				}
 			}
 		}
-		
-		//----------------------------------
-		//  Override
-		//----------------------------------
 		
 		//---------------------------------------------------------------------
 		//
@@ -151,16 +154,6 @@ package as3bootstrap.common.model
 		{
 			errored.dispatch( $event );
 		}
-		
-		//---------------------------------------------------------------------
-		//
-		//  Private methods
-		//
-		//---------------------------------------------------------------------
-		
-		//----------------------------------
-		//  Handlers
-		//----------------------------------
 		
 		//---------------------------------------------------------------------
 		//

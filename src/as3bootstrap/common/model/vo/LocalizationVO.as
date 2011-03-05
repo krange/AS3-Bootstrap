@@ -45,7 +45,7 @@ package as3bootstrap.common.model.vo
 		 * @param data A XML object containing localized elements to add to 
 		 * 			   the VO
 		 */ 
-		public function addLocalizedValues( $data:XML ) : void
+		public function addLocalizedValues( $data:XML ):void
 		{
 			var children : XMLList = $data.*;
 			for each( var child : XML in children )
@@ -60,7 +60,7 @@ package as3bootstrap.common.model.vo
 		 * @param name 	a name or key to look up a localized value by
 		 * @return 		String Value returned, null if nothing was found
 		 */ 
-		public function getLocalizedValue( $name:String ) : String
+		public function getLocalizedValue( $name:String ):String
 		{
 			return _dictionary[ $name ];			
 		}
@@ -74,7 +74,7 @@ package as3bootstrap.common.model.vo
 		 * @return		an <code>IResourceBundle</code>
 		 * @throws		an Error if lang or locale is not defined
 		 */
-		public function getResourceBundle( name:String ) : IResourceBundle
+		public function getResourceBundle( name:String ):IResourceBundle
 		{
 			//
 			//	:KLUDGE:

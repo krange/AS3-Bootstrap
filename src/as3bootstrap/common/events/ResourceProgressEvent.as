@@ -61,9 +61,7 @@ package as3bootstrap.common.events
 		//----------------------------------
 		
 		/**
-		 * Override the inherited clone() method. 
-		 * 
-		 * @see flash.events.Event
+		 * @inheritDoc
 		 */ 
 		override public function clone():Event
 		{
