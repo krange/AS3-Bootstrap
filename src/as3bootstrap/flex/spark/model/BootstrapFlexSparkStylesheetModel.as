@@ -1,4 +1,4 @@
-package as3bootstrap.flex.halo.model
+package as3bootstrap.flex.spark.model
 {
 	import as3bootstrap.common.model.BootstrapModel;
 	import as3bootstrap.common.model.IBootstrapStylesheetModel;
@@ -6,8 +6,8 @@ package as3bootstrap.flex.halo.model
 	import as3bootstrap.common.progress.Progress;
 	import as3bootstrap.common.services.IService;
 	import as3bootstrap.common.utils.Dependency;
-	import as3bootstrap.flex.halo.services.css.FlexHaloStylesheetService;
-	import as3bootstrap.flex.halo.services.css.IFlexHaloStylesheetService;
+	import as3bootstrap.flex.spark.services.css.FlexSparkStylesheetService;
+	import as3bootstrap.flex.spark.services.css.IFlexSparkStylesheetService;
 	
 	import flash.events.Event;
 	import flash.text.StyleSheet;
@@ -20,7 +20,7 @@ package as3bootstrap.flex.halo.model
 	 * 
 	 * @author krisrange
 	 */
-	public class BootstrapFlexHaloStylesheetModel 
+	public class BootstrapFlexSparkStylesheetModel 
 		extends BootstrapModel
 		implements IBootstrapStylesheetModel
 	{
@@ -36,7 +36,7 @@ package as3bootstrap.flex.halo.model
 		/**
 		 * @inheritDoc
 		 */
-		public function BootstrapFlexHaloStylesheetModel( $progress:IProgress )
+		public function BootstrapFlexSparkStylesheetModel( $progress:IProgress )
 		{
 			super( $progress );
 		}
@@ -59,7 +59,7 @@ package as3bootstrap.flex.halo.model
 				for( var i : int = 0; i < xml_len; i++ )
 				{
 					var service_progress : IProgress = new Progress();
-					var service : IFlexHaloStylesheetService = new FlexHaloStylesheetService( service_progress );
+					var service : IFlexSparkStylesheetService = new FlexSparkStylesheetService( service_progress );
 					
 					services[services.length] = service;
 					progress.addChildLoadable( service_progress );

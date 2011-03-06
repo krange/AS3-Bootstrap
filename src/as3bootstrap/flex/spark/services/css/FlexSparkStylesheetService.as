@@ -1,4 +1,4 @@
-package as3bootstrap.flex.halo.services.css
+package as3bootstrap.flex.spark.services.css
 {
 	import as3bootstrap.common.progress.IProgress;
 	import as3bootstrap.common.services.AbstractService;
@@ -19,9 +19,9 @@ package as3bootstrap.flex.halo.services.css
 	 * 
 	 * @author krisrange
 	 */
-	public class FlexHaloStylesheetService 
+	public class FlexSparkStylesheetService 
 		extends AbstractService
-		implements IFlexHaloStylesheetService
+		implements IFlexSparkStylesheetService
 	{
 		private var _loader : IEventDispatcher;
 		
@@ -34,7 +34,7 @@ package as3bootstrap.flex.halo.services.css
 		/**
 		 * @inheritDoc
 		 */
-		public function FlexHaloStylesheetService( $progress:IProgress = null )
+		public function FlexSparkStylesheetService( $progress:IProgress = null )
 		{
 			super($progress);
 		}

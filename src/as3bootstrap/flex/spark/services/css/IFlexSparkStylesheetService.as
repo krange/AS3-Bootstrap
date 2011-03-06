@@ -1,4 +1,4 @@
-package as3bootstrap.flex.halo.services.css
+package as3bootstrap.flex.spark.services.css
 {
 	import as3bootstrap.common.services.IService;
 	
@@ -10,7 +10,7 @@ package as3bootstrap.flex.halo.services.css
 	 * 
 	 * @author krisrange
 	 */
-	public interface IFlexHaloStylesheetService 
+	public interface IFlexSparkStylesheetService 
 		extends IService
 	{
 	}

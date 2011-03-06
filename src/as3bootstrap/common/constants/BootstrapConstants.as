@@ -86,5 +86,20 @@ package as3bootstrap.common.constants
 		 * Error adding a custom external resource 
 		 */
 		public static const ERROR_ADD_CUSTOM_EXTERNAL_RESOURCE	:String = "Adding external resources at this point is not allowed.";
+	
+		//---------------------------------------------------------------------
+		//
+		//  Preload constants
+		//
+		//---------------------------------------------------------------------
+		
+		
+		/**
+		 * Preload constants. These facilitiate the different instances that may 
+		 * exist during the startup load phase.
+		 */ 
+		public static const PRELOAD_FLEX_APP					:String = "preloadFlexApp";
+		public static const PRELOAD_DATA 						:String = "preloadData";
+		public static const PRELOAD_VIEW 						:String = "preloadView";
 	}
 }

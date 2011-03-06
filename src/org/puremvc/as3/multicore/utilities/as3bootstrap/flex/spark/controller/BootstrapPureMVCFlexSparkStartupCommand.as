@@ -1,6 +1,6 @@
-package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.halo.controller
+package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.spark.controller
 {
-	import as3bootstrap.flex.halo.BootstrapFlexHalo;
+	import as3bootstrap.flex.spark.BootstrapFlexSpark;
 	
 	import org.puremvc.as3.multicore.interfaces.INotification;
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller.BootstrapStartupCommand;
@@ -14,7 +14,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.halo.controller
 	 * 
 	 * @author krisrange 
 	 */
-	public class BootstrapPureMVCFlexHaloStartupCommand 
+	public class BootstrapPureMVCFlexSparkStartupCommand 
 		extends BootstrapStartupCommand
 	{
 		//---------------------------------------------------------------------
@@ -50,7 +50,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.halo.controller
 		 */	
 		override protected function getBootstrap():Class
 		{
-			return BootstrapFlexHalo;
+			return BootstrapFlexSpark;
 		}
 		
 		/**

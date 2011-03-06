@@ -1,8 +1,8 @@
-package as3bootstrap.flex.halo
+package as3bootstrap.flex.spark
 {
 	import as3bootstrap.common.Bootstrap;
 	import as3bootstrap.common.progress.IProgress;
-	import as3bootstrap.flex.halo.model.BootstrapFlexHaloStylesheetModel;
+	import as3bootstrap.flex.spark.model.BootstrapFlexSparkStylesheetModel;
 	
 	/**
 	 * Bootstrap for Flex 4 applications
@@ -12,7 +12,7 @@ package as3bootstrap.flex.halo
 	 * 
 	 * @author krisrange 
 	 */
-	public class BootstrapFlexHalo 
+	public class BootstrapFlexSpark 
 		extends Bootstrap
 	{
 		//---------------------------------------------------------------------
@@ -24,7 +24,7 @@ package as3bootstrap.flex.halo
 		/**
 		 * @inheritDoc
 		 */ 
-		public function BootstrapFlexHalo(
+		public function BootstrapFlexSpark(
 			$progress:IProgress=null, 
 			$dataProgress:IProgress=null, 
 			$viewProgress:IProgress=null )
@@ -47,7 +47,7 @@ package as3bootstrap.flex.halo
 		 */
 		override protected function getStylesheetModel():Class
 		{
-			return BootstrapFlexHaloStylesheetModel;
+			return BootstrapFlexSparkStylesheetModel;
 		}
 	}
 }
