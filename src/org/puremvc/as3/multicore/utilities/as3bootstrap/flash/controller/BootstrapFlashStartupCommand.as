@@ -10,7 +10,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flash.controller
 	 * 
 	 * @author krisrange
 	 */
-	public class BootstrapPureMVCFlashStartupCommand 
+	public class BootstrapFlashStartupCommand 
 		extends BootstrapStartupCommand
 	{
 		//---------------------------------------------------------------------

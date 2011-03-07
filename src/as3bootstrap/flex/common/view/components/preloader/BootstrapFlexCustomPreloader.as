@@ -91,7 +91,7 @@ package as3bootstrap.flex.common.view.components.preloader
 		//----------------------------------
 		
 		/**
-		 * @inheritDocs 
+		 * @inheritDoc
 		 */		
 		override protected function setupLoadProgress():void 
 		{

@@ -1,10 +1,12 @@
 package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.spark.controller
 {
+	import as3bootstrap.common.IBootstrap;
 	import as3bootstrap.flex.spark.BootstrapFlexSpark;
 	
 	import org.puremvc.as3.multicore.interfaces.INotification;
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller.BootstrapStartupCommand;
-	import org.puremvc.as3.multicore.utilities.fabrication.components.FlexHaloApplication;
+	
+	import spark.components.Application;
 	
 	/**
 	 * Flex 4 startup command for PureMVC multicore bootstrapped applications.
@@ -14,7 +16,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.spark.controller
 	 * 
 	 * @author krisrange 
 	 */
-	public class BootstrapPureMVCFlexSparkStartupCommand 
+	public class BootstrapFlexSparkStartupCommand 
 		extends BootstrapStartupCommand
 	{
 		//---------------------------------------------------------------------
@@ -48,9 +50,10 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.spark.controller
 		/**
 		 * @inheritDoc 
 		 */	
-		override protected function getBootstrap():Class
+		override protected function instantiateBootstrap():IBootstrap
 		{
-			return BootstrapFlexSpark;
+			appProgress = getAppProgress();
+			return new BootstrapFlexSpark( appProgress );
 		}
 		
 		/**
@@ -58,10 +61,10 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.spark.controller
 		 */	
 		override protected function getFlashVarsParams():Object
 		{
-			var flexViewComponent : FlexHaloApplication = viewComponent as FlexHaloApplication;
-			if( flexViewComponent )
+			if( viewComponent &&
+				Object( viewComponent ).parameters )
 			{
-				return flexViewComponent.parameters;
+				return Object( viewComponent ).parameters;
 			}
 			else
 			{

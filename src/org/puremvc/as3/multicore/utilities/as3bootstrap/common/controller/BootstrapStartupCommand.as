@@ -112,13 +112,10 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		 */		
 		protected function registerBootstrap():void
 		{
-			_appProgress = getAppProgress();
-			var BootstrapClass : Object = getBootstrap();
-			
-			// Attempt to register bootstrap
+			// Attempt to instantiate bootstrap
 			try
 			{
-				_bootstrap = new BootstrapClass( _appProgress );
+				_bootstrap = instantiateBootstrap();
 			}
 			catch( e : Error )
 			{
@@ -144,13 +141,14 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		}
 		
 		/**
-		 * Returns the bootstrap class to use
+		 * Instantiate the bootstrap instance to use
 		 *  
-		 * @return <code>IBootstrap</code> class reference
+		 * @return <code>IBootstrap</code> reference
 		 */		
-		protected function getBootstrap():Class
+		protected function instantiateBootstrap():IBootstrap
 		{
-			return Bootstrap;
+			_appProgress = getAppProgress();
+			return new Bootstrap( appProgress );
 		}
 		
 		/**
@@ -351,5 +349,15 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 			return _bootstrapProxy;
 		}
 
+		/**
+		 * The appliation level <code>IProgress</code>
+		 *  
+		 * @return IProgress
+		 */		
+		protected function get appProgress():IProgress { return _appProgress; }
+		protected function set appProgress( value:IProgress ):void
+		{
+			_appProgress = value;
+		}
 	}
 }

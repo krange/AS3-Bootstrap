@@ -238,7 +238,7 @@ package as3bootstrap.flex.common.view.components.preloader
 		 * 
 		 * @param event <code>Event.COMPLETE</code> 
 		 */
-		protected function handleComplete( e : Event ): void 
+		protected function handleComplete( event:Event ):void 
 		{
 			// Complete application load
 		}
