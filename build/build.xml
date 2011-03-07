@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project name="AS3-Bootstrap" default="all" basedir="../" >
+	
+	<!-- PROPERTIES -->
+	<property file="${basedir}/build/users/${user.name}.properties"/>
+	<property file="${build.dir}/project.info"/>
+	
+	<echo message="build.properties: ${build.dir}/build/users/${user.name}.properties" />
+	<echo message="project.info: ${build.dir}/project.info" />
+	
+	<!-- FLEX TASKS -->
+	<taskdef resource="flexTasks.tasks" classpath="${build.dir}/flexTasks.jar" />
+	
+	<tstamp>  
+		<format property="CURRENT_TIME" pattern="yyyyMMdd-hhmmss" locale="en,US"/>  
+	</tstamp>
+	
+	<!--
+		********************************************
+		* TARGETS
+		********************************************
+	-->
+	<target name="all" depends="preCompile,compileswcs,postCompile" description="Perform all targets" />
+	<target name="projectinfo" depends="">
+		<buildnumber file="${build.dir}/build.number"/>
+		<tstamp/>
+		
+		<echo message="============================================="/>
+		<echo message="${project.name}-${project.version}-build.${build.number} [${TODAY}]"/>
+		<echo message="OS : ${os.name}" />
+		<echo message="============================================="/>
+	</target>
+	<target name="preCompile" depends="projectinfo,initcleanfiles,copyClasses" />
+	<target name="compileswcs" depends="bootstrap_standalone, bootstrap_puremvc_flex_spark, bootstrap_robotlegs" description="Compile all app swcs" />
+	<target name="postCompile" depends="" />
+	
+	<!--
+		********************************************
+		* BUILD MANAGEMENT
+		********************************************
+	-->
+	<target name="initcleanfiles" description="Initial delete of all pervious build output" >
+    		<echo message="Removing previous build directories" />
+			<delete dir="${temp.outdir}" />
+	</target>
+	
+	<target name="finishcleanfiles" description="Delete all files created for this build output" >
+    		<echo message="Removing this sessions build directories" />
+			<delete dir="${temp.outdir}" />
+	</target>
+	
+	<target name="copyClasses" description="Creates a temporary directory where the code will be copied to build from">
+		<mkdir dir="${temp.outdir}" />
+		<copy todir="${temp.outdir}">
+			<fileset dir="${classes.dir}"/>
+		</copy>
+	</target>
+	
+	<!--
+		********************************************
+		* APPLICATIONS
+		********************************************
+	-->
+	<target name="bootstrap_standalone" depends="">
+		
+		<pathconvert pathsep=" " property="classes_standalone" dirsep=".">
+	        <fileset dir="${temp.outdir}">
+	            <exclude name="org/**/**.*"/>
+	        </fileset>
+	        <chainedmapper>
+	            <globmapper from="${temp.outdir}/" to=""/>
+	            <globmapper from="*.as" to="*"/>
+	        </chainedmapper>
+	    </pathconvert>
+		
+		<echo message="Building the bootstrap_standalone.swc" />
+		<echo message="${classes_standalone}" />		
+		
+		<compc
+			output="${bin.dir}/bootstrap_standalone_v${project.version}.swc"
+			include-classes="${classes_standalone}"
+			debug="${debug}"
+			optimize="${optimize}">
+			
+			<source-path path-element="${temp.outdir}" />
+			
+			<external-library-path file="${lib.dir}/as3-signals-v0.8.swc" append="true" />
+			<external-library-path file="${lib.dir}/fabrication-flex.swc" append="true" />
+			<external-library-path file="${lib.dir}/PureMVC_AS3_MultiCore_1_0_5.swc" append="true" />
+			<external-library-path file="${lib.dir}/robotlegs-framework-v1.4.0.swc" append="true" />
+			<external-library-path file="${lib.dir}/Utility_AS3_MultiCore_Pipes_1_1.swc" append="true" />
+		</compc>
+	</target>
+	
+	<target name="bootstrap_puremvc_flex_spark" depends="">
+		
+		<pathconvert pathsep=" " property="classes_puremvc" dirsep=".">
+	        <fileset dir="${temp.outdir}">
+	            <exclude name="org/robotlegs/**/**.*"/>
+	        </fileset>
+	        <chainedmapper>
+	            <globmapper from="${temp.outdir}/" to=""/>
+	            <globmapper from="*.as" to="*"/>
+	        </chainedmapper>
+	    </pathconvert>
+			
+		<echo message="Building the bootstrap_puremvc.swc" />
+		<echo message="${classes_puremvc}" />
+					
+		<compc
+			output="${bin.dir}/bootstrap_puremvc_v${project.version}.swc"
+			include-classes="${classes_puremvc}"
+			debug="${debug}"
+			optimize="${optimize}">
+			
+			<source-path path-element="${temp.outdir}" />
+			
+			<external-library-path file="${lib.dir}/as3-signals-v0.8.swc" append="true" />
+			<external-library-path file="${lib.dir}/fabrication-flex.swc" append="true" />
+			<external-library-path file="${lib.dir}/PureMVC_AS3_MultiCore_1_0_5.swc" append="true" />
+			<external-library-path file="${lib.dir}/robotlegs-framework-v1.4.0.swc" append="true" />
+			<external-library-path file="${lib.dir}/Utility_AS3_MultiCore_Pipes_1_1.swc" append="true" />
+		</compc>
+	</target>
+	
+	<target name="bootstrap_robotlegs" depends="">
+			
+			<pathconvert pathsep=" " property="classes_robotlegs" dirsep=".">
+		        <fileset dir="${temp.outdir}">
+		            <exclude name="org/puremvc/**/**.*"/>
+		        </fileset>
+		        <chainedmapper>
+		            <globmapper from="${temp.outdir}/" to=""/>
+		            <globmapper from="*.as" to="*"/>
+		        </chainedmapper>
+		    </pathconvert>
+				
+			<echo message="Building the bootstrap_robotlegs.swc" />
+			<echo message="${classes_robotlegs}" />
+						
+			<compc
+				output="${bin.dir}/bootstrap_robotlegs_v${project.version}.swc"
+				include-classes="${classes_robotlegs}"
+				debug="${debug}"
+				optimize="${optimize}">
+				
+				<source-path path-element="${temp.outdir}" />
+				
+				<external-library-path file="${lib.dir}/as3-signals-v0.8.swc" append="true" />
+				<external-library-path file="${lib.dir}/fabrication-flex.swc" append="true" />
+				<external-library-path file="${lib.dir}/PureMVC_AS3_MultiCore_1_0_5.swc" append="true" />
+				<external-library-path file="${lib.dir}/robotlegs-framework-v1.4.0.swc" append="true" />
+				<external-library-path file="${lib.dir}/Utility_AS3_MultiCore_Pipes_1_1.swc" append="true" />
+			</compc>
+		</target>
+	
+</project>

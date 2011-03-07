@@ -1,0 +1,11 @@
+######################################
+## Project information
+## Project.version: major.minor[.revision[.build]]
+######################################
+project.fullname  = AS3 Bootstrap
+project.name      = AS3 Bootstrap
+project.year      = 2011
+project.major	  = 0
+project.minor     = 1
+project.revision  = 0
+project.version   = ${project.major}.${project.minor}.${project.revision}
