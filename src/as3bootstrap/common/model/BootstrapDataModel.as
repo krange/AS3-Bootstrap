@@ -10,14 +10,14 @@ package as3bootstrap.common.model
 	import org.osflash.signals.Signal;
 	
 	/**
-	 * BootstrapModel
+	 * Main model for bootstrap
 	 *
 	 * @langversion ActionScript 3.0
 	 * @playerversion Flash 9.0.124
 	 * 
 	 * @author krisrange 
 	 */
-	public class BootstrapModel 
+	public class BootstrapDataModel 
 		extends EventDispatcher
 	{
 		private var _progress : IProgress;
@@ -40,7 +40,7 @@ package as3bootstrap.common.model
 		 * 
 		 * @param $progress <code>IProgress</code> instance
 		 */
-		public function BootstrapModel( $progress:IProgress )
+		public function BootstrapDataModel( $progress:IProgress )
 		{
 			_progress = $progress;
 			super(null);

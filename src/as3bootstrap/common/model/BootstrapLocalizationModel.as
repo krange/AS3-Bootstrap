@@ -20,7 +20,7 @@ package as3bootstrap.common.model
 	 * @author krisrange 
 	 */
 	public class BootstrapLocalizationModel 
-		extends BootstrapModel
+		extends BootstrapDataModel
 		implements IBootstrapLocalizationModel
 	{
 		private var _services : Array;

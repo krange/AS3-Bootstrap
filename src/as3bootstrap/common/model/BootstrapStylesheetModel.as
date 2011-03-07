@@ -21,7 +21,7 @@ package as3bootstrap.common.model
 	 * @author krisrange 
 	 */
 	public class BootstrapStylesheetModel 
-		extends BootstrapModel
+		extends BootstrapDataModel
 		implements IBootstrapStylesheetModel
 	{	
 		private var _services : Array;

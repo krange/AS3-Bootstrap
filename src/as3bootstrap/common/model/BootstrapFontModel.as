@@ -19,7 +19,7 @@ package as3bootstrap.common.model
 	 * @author krisrange 
 	 */
 	public class BootstrapFontModel 
-		extends BootstrapModel
+		extends BootstrapDataModel
 		implements IBootstrapFontModel
 	{
 		private var _services : Array;

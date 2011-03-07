@@ -1,6 +1,6 @@
 package as3bootstrap.flex.spark.model
 {
-	import as3bootstrap.common.model.BootstrapModel;
+	import as3bootstrap.common.model.BootstrapDataModel;
 	import as3bootstrap.common.model.IBootstrapStylesheetModel;
 	import as3bootstrap.common.progress.IProgress;
 	import as3bootstrap.common.progress.Progress;
@@ -21,7 +21,7 @@ package as3bootstrap.flex.spark.model
 	 * @author krisrange
 	 */
 	public class BootstrapFlexSparkStylesheetModel 
-		extends BootstrapModel
+		extends BootstrapDataModel
 		implements IBootstrapStylesheetModel
 	{
 		private var _services : Array;

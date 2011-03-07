@@ -16,7 +16,7 @@ package as3bootstrap.common.model
 	 * @author krisrange 
 	 */
 	public class BootstrapConfigModel 
-		extends BootstrapModel
+		extends BootstrapDataModel
 		implements IBootstrapConfigModel
 	{
 		private var _service : IXmlService;
