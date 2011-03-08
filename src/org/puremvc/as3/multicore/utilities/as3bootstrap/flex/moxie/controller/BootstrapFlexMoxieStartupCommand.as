@@ -1,20 +1,20 @@
-package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.spark.controller
+package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.moxie.controller
 {
 	import as3bootstrap.common.IBootstrap;
-	import as3bootstrap.flex.spark.BootstrapFlexSpark;
+	import as3bootstrap.flex.moxie.BootstrapFlexMoxie;
 	
 	import org.puremvc.as3.multicore.interfaces.INotification;
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller.BootstrapStartupCommand;
 	
 	/**
-	 * Flex 4 startup command for PureMVC multicore bootstrapped applications.
+	 * Flex3 startup command for PureMVC multicore bootstrapped applications.
 	 *
 	 * @langversion ActionScript 3.0
 	 * @playerversion Flash 10.0.0
 	 * 
 	 * @author krisrange 
 	 */
-	public class BootstrapFlexSparkStartupCommand 
+	public class BootstrapFlexMoxieStartupCommand 
 		extends BootstrapStartupCommand
 	{
 		//---------------------------------------------------------------------
@@ -51,7 +51,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.spark.controller
 		override protected function instantiateBootstrap():IBootstrap
 		{
 			appProgress = getAppProgress();
-			return new BootstrapFlexSpark( appProgress );
+			return new BootstrapFlexMoxie( appProgress );
 		}
 		
 		/**

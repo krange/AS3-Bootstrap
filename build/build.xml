@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project name="AS3-Bootstrap" default="all" basedir="" >
+<project name="as3bootstrap" default="all" basedir="" >
 	
 	<!-- PROPERTIES -->
 	<property file="${basedir}/build/users/${user.name}.properties"/>
@@ -31,7 +31,7 @@
 		<echo message="============================================="/>
 	</target>
 	<target name="preCompile" depends="projectinfo,initcleanfiles,copyClasses" />
-	<target name="compileswcs" depends="bootstrap_standalone, bootstrap_puremvc_flex_spark, bootstrap_robotlegs" description="Compile all app swcs" />
+	<target name="compileswcs" depends="bootstrap_standalone_spark, bootstrap_standalone_moxie, bootstrap_puremvc_flex_spark, bootstrap_puremvc_flex_moxie, bootstrap_robotlegs_spark, bootstrap_robotlegs_moxie" description="Compile all app swcs" />
 	<target name="postCompile" depends="" />
 	
 	<!--
@@ -61,9 +61,10 @@
 		* APPLICATIONS
 		********************************************
 	-->
-	<target name="bootstrap_standalone" depends="">
-		<pathconvert pathsep=" " property="classes_standalone" dirsep=".">
+	<target name="bootstrap_standalone_spark" depends="">
+		<pathconvert pathsep=" " property="classes_standalone_spark" dirsep=".">
 			<fileset dir="${temp.outdir}">
+				<exclude name="**/moxie/**/**.*" />
 				<exclude name="org/**/**.*"/>
 			</fileset>
 			<chainedmapper>
@@ -72,29 +73,75 @@
 			</chainedmapper>
 		</pathconvert>
 		
-		<echo message="Building the bootstrap_standalone.swc" />
-		<echo message="${classes_standalone}" />		
+		<script language="javascript"> 
+		   <![CDATA[
+		   		var newFlexHome = as3bootstrap.getProperty( "FLEX_HOME_SPARK" );
+				as3bootstrap.setProperty( "FLEX_HOME", newFlexHome );
+		   ]]>
+		</script>
+		
+		<echo message="Changed FLEX_HOME to: ${FLEX_HOME}" />
+		<echo message="Building the bootstrap_standalone_spark.swc" />
+		<echo message="${classes_standalone_spark}" />		
 		
 		<compc
-			output="${bin.dir}/bootstrap_standalone_v${project.version}.swc"
-			include-classes="${classes_standalone}"
+			output="${bin.dir}/bootstrap_standalone_spark_v${project.version}.swc"
+			include-classes="${classes_standalone_spark}"
+			target-player="${app.player-version.spark}"
 			debug="${debug}"
 			optimize="${optimize}">
 			
+			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
 			<source-path path-element="${temp.outdir}" />
 			
 			<external-library-path file="${lib.dir}/as3-signals-v0.8.swc" append="true" />
 			<external-library-path file="${lib.dir}/fabrication-flex.swc" append="true" />
-			<external-library-path file="${lib.dir}/PureMVC_AS3_MultiCore_1_0_5.swc" append="true" />
-			<external-library-path file="${lib.dir}/robotlegs-framework-v1.4.0.swc" append="true" />
-			<external-library-path file="${lib.dir}/Utility_AS3_MultiCore_Pipes_1_1.swc" append="true" />
 		</compc>
-		</target>
+	</target>
+	
+	<target name="bootstrap_standalone_moxie" depends="">
+		<pathconvert pathsep=" " property="classes_standalone_moxie" dirsep=".">
+			<fileset dir="${temp.outdir}">
+				<exclude name="**/spark/**/**.*" />
+				<exclude name="org/**/**.*"/>
+			</fileset>
+			<chainedmapper>
+				<globmapper from="${temp.outdir}/" to=""/>
+				<globmapper from="*.as" to="*"/>
+			</chainedmapper>
+		</pathconvert>
+		
+		<script language="javascript"> 
+		   <![CDATA[
+		   		var newFlexHome = as3bootstrap.getProperty( "FLEX_HOME_MOXIE" );
+				as3bootstrap.setProperty( "FLEX_HOME", newFlexHome );
+		   ]]>
+		</script>
+				
+		<echo message="Changed FLEX_HOME to: ${FLEX_HOME}" />
+		<echo message="Building the bootstrap_standalone_moxie.swc" />
+		<echo message="${classes_standalone_moxie}" />		
+		
+		<compc
+			output="${bin.dir}/bootstrap_standalone_moxie_v${project.version}.swc"
+			include-classes="${classes_standalone_moxie}"
+			target-player="${app.player-version.moxie}"
+			debug="${debug}"
+			optimize="${optimize}">
+			
+			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
+			<source-path path-element="${temp.outdir}" />
+			
+			<external-library-path file="${lib.dir}/as3-signals-v0.8.swc" append="true" />
+			<external-library-path file="${lib.dir}/fabrication-flex.swc" append="true" />
+		</compc>
+	</target>
 	
 	<target name="bootstrap_puremvc_flex_spark" depends="">
-		<pathconvert pathsep=" " property="classes_puremvc" dirsep=".">
+		<pathconvert pathsep=" " property="classes_puremvc_spark" dirsep=".">
 			<fileset dir="${temp.outdir}">
-				<exclude name="org/robotlegs/**/**.*"/>
+				<exclude name="**/moxie/**/**.*" />
+				<exclude name="**/robotlegs/**/**.*"/>
 			</fileset>
 			<chainedmapper>
 				<globmapper from="${temp.outdir}/" to=""/>
@@ -102,53 +149,148 @@
 			</chainedmapper>
 		</pathconvert>
 			
-		<echo message="Building the bootstrap_puremvc.swc" />
-		<echo message="${classes_puremvc}" />
+		<script language="javascript"> 
+		   <![CDATA[
+		   		var newFlexHome = as3bootstrap.getProperty( "FLEX_HOME_SPARK" );
+				as3bootstrap.setProperty( "FLEX_HOME", newFlexHome );
+		   ]]>
+		</script>
+				
+		<echo message="Changed FLEX_HOME to: ${FLEX_HOME}" />
+		<echo message="Building the bootstrap_puremvc_spark.swc" />
+		<echo message="${classes_puremvc_spark}" />
 					
 		<compc
-			output="${bin.dir}/bootstrap_puremvc_v${project.version}.swc"
-			include-classes="${classes_puremvc}"
+			output="${bin.dir}/bootstrap_puremvc_spark_v${project.version}.swc"
+			include-classes="${classes_puremvc_spark}"
+			target-player="${app.player-version.spark}"
 			debug="${debug}"
 			optimize="${optimize}">
 			
+			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
 			<source-path path-element="${temp.outdir}" />
 			
 			<external-library-path file="${lib.dir}/as3-signals-v0.8.swc" append="true" />
 			<external-library-path file="${lib.dir}/fabrication-flex.swc" append="true" />
 			<external-library-path file="${lib.dir}/PureMVC_AS3_MultiCore_1_0_5.swc" append="true" />
-			<external-library-path file="${lib.dir}/robotlegs-framework-v1.4.0.swc" append="true" />
 			<external-library-path file="${lib.dir}/Utility_AS3_MultiCore_Pipes_1_1.swc" append="true" />
 		</compc>
 	</target>
 	
-	<target name="bootstrap_robotlegs" depends="">
-			<pathconvert pathsep=" " property="classes_robotlegs" dirsep=".">
-				<fileset dir="${temp.outdir}">
-					<exclude name="org/puremvc/**/**.*"/>
-				</fileset>
-				<chainedmapper>
-					<globmapper from="${temp.outdir}/" to=""/>
-					<globmapper from="*.as" to="*"/>
-				</chainedmapper>
-			</pathconvert>
+	<target name="bootstrap_puremvc_flex_moxie" depends="">
+		<pathconvert pathsep=" " property="classes_puremvc_moxie" dirsep=".">
+			<fileset dir="${temp.outdir}">
+				<exclude name="**/spark/**/**.*" />
+				<exclude name="**/robotlegs/**/**.*"/>
+			</fileset>
+			<chainedmapper>
+				<globmapper from="${temp.outdir}/" to=""/>
+				<globmapper from="*.as" to="*"/>
+			</chainedmapper>
+		</pathconvert>
+			
+		<script language="javascript"> 
+		   <![CDATA[
+		   		var newFlexHome = as3bootstrap.getProperty( "FLEX_HOME_MOXIE" );
+				as3bootstrap.setProperty( "FLEX_HOME", newFlexHome );
+		   ]]>
+		</script>
 				
-			<echo message="Building the bootstrap_robotlegs.swc" />
-			<echo message="${classes_robotlegs}" />
+		<echo message="Changed FLEX_HOME to: ${FLEX_HOME}" />
+		<echo message="Building the bootstrap_puremvc_moxie.swc" />
+		<echo message="${classes_puremvc_moxie}" />
+					
+		<compc
+			output="${bin.dir}/bootstrap_puremvc_moxie_v${project.version}.swc"
+			include-classes="${classes_puremvc_moxie}"
+			target-player="${app.player-version.moxie}"
+			debug="${debug}"
+			optimize="${optimize}">
+			
+			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
+			<source-path path-element="${temp.outdir}" />
+			
+			<external-library-path file="${lib.dir}/as3-signals-v0.8.swc" append="true" />
+			<external-library-path file="${lib.dir}/moxie/fabrication-flex-moxie.swc" append="true" />
+			<external-library-path file="${lib.dir}/PureMVC_AS3_MultiCore_1_0_5.swc" append="true" />
+			<external-library-path file="${lib.dir}/Utility_AS3_MultiCore_Pipes_1_1.swc" append="true" />
+		</compc>
+	</target>
+	
+	<target name="bootstrap_robotlegs_spark" depends="">
+		<pathconvert pathsep=" " property="classes_robotlegs_spark" dirsep=".">
+			<fileset dir="${temp.outdir}">
+				<exclude name="**/puremvc/**/**.*"/>
+				<exclude name="**/moxie/**/**.*" />
+			</fileset>
+			<chainedmapper>
+				<globmapper from="${temp.outdir}/" to=""/>
+				<globmapper from="*.as" to="*"/>
+			</chainedmapper>
+		</pathconvert>
+			
+		<script language="javascript"> 
+		   <![CDATA[
+		   		var newFlexHome = as3bootstrap.getProperty( "FLEX_HOME_SPARK" );
+				as3bootstrap.setProperty( "FLEX_HOME", newFlexHome );
+		   ]]>
+		</script>
 						
-			<compc
-				output="${bin.dir}/bootstrap_robotlegs_v${project.version}.swc"
-				include-classes="${classes_robotlegs}"
-				debug="${debug}"
-				optimize="${optimize}">
-				
-				<source-path path-element="${temp.outdir}" />
-				
-				<external-library-path file="${lib.dir}/as3-signals-v0.8.swc" append="true" />
-				<external-library-path file="${lib.dir}/fabrication-flex.swc" append="true" />
-				<external-library-path file="${lib.dir}/PureMVC_AS3_MultiCore_1_0_5.swc" append="true" />
-				<external-library-path file="${lib.dir}/robotlegs-framework-v1.4.0.swc" append="true" />
-				<external-library-path file="${lib.dir}/Utility_AS3_MultiCore_Pipes_1_1.swc" append="true" />
-			</compc>
-		</target>
+		<echo message="Changed FLEX_HOME to: ${FLEX_HOME}" />
+		<echo message="Building the bootstrap_robotlegs_spark.swc" />
+		<echo message="${classes_robotlegs_spark}" />
+					
+		<compc
+			output="${bin.dir}/bootstrap_robotlegs_spark_v${project.version}.swc"
+			include-classes="${classes_robotlegs_spark}"
+			target-player="${app.player-version.spark}"
+			debug="${debug}"
+			optimize="${optimize}">
+			
+			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
+			<source-path path-element="${temp.outdir}" />
+			
+			<external-library-path file="${lib.dir}/as3-signals-v0.8.swc" append="true" />
+			<external-library-path file="${lib.dir}/robotlegs-framework-v1.4.0.swc" append="true" />
+		</compc>
+	</target>
+	
+	<target name="bootstrap_robotlegs_moxie" depends="">
+		<pathconvert pathsep=" " property="classes_robotlegs_moxie" dirsep=".">
+			<fileset dir="${temp.outdir}">
+				<exclude name="**/puremvc/**/**.*"/>
+				<exclude name="**/spark/**/**.*" />
+			</fileset>
+			<chainedmapper>
+				<globmapper from="${temp.outdir}/" to=""/>
+				<globmapper from="*.as" to="*"/>
+			</chainedmapper>
+		</pathconvert>
+			
+		<script language="javascript"> 
+		   <![CDATA[
+		   		var newFlexHome = as3bootstrap.getProperty( "FLEX_HOME_MOXIE" );
+				as3bootstrap.setProperty( "FLEX_HOME", newFlexHome );
+		   ]]>
+		</script>
+								
+		<echo message="Changed FLEX_HOME to: ${FLEX_HOME}" />
+		<echo message="Building the bootstrap_robotlegs_moxie.swc" />
+		<echo message="${classes_robotlegs_moxie}" />
+					
+		<compc
+			output="${bin.dir}/bootstrap_robotlegs_moxie_v${project.version}.swc"
+			include-classes="${classes_robotlegs_moxie}"
+			target-player="${app.player-version.moxie}"
+			debug="${debug}"
+			optimize="${optimize}">
+			
+			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
+			<source-path path-element="${temp.outdir}" />
+			
+			<external-library-path file="${lib.dir}/as3-signals-v0.8.swc" append="true" />
+			<external-library-path file="${lib.dir}/robotlegs-framework-v1.4.0.swc" append="true" />
+		</compc>
+	</target>
 	
 </project>
