@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project name="AS3-Bootstrap" default="all" basedir="../" >
+<project name="AS3-Bootstrap" default="all" basedir="" >
 	
 	<!-- PROPERTIES -->
 	<property file="${basedir}/build/users/${user.name}.properties"/>
@@ -9,7 +9,7 @@
 	<echo message="project.info: ${build.dir}/project.info" />
 	
 	<!-- FLEX TASKS -->
-	<taskdef resource="flexTasks.tasks" classpath="${build.dir}/flexTasks.jar" />
+	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
 	
 	<tstamp>  
 		<format property="CURRENT_TIME" pattern="yyyyMMdd-hhmmss" locale="en,US"/>  
@@ -62,16 +62,15 @@
 		********************************************
 	-->
 	<target name="bootstrap_standalone" depends="">
-		
 		<pathconvert pathsep=" " property="classes_standalone" dirsep=".">
-	        <fileset dir="${temp.outdir}">
-	            <exclude name="org/**/**.*"/>
-	        </fileset>
-	        <chainedmapper>
-	            <globmapper from="${temp.outdir}/" to=""/>
-	            <globmapper from="*.as" to="*"/>
-	        </chainedmapper>
-	    </pathconvert>
+			<fileset dir="${temp.outdir}">
+				<exclude name="org/**/**.*"/>
+			</fileset>
+			<chainedmapper>
+				<globmapper from="${temp.outdir}/" to=""/>
+				<globmapper from="*.as" to="*"/>
+			</chainedmapper>
+		</pathconvert>
 		
 		<echo message="Building the bootstrap_standalone.swc" />
 		<echo message="${classes_standalone}" />		
@@ -90,19 +89,18 @@
 			<external-library-path file="${lib.dir}/robotlegs-framework-v1.4.0.swc" append="true" />
 			<external-library-path file="${lib.dir}/Utility_AS3_MultiCore_Pipes_1_1.swc" append="true" />
 		</compc>
-	</target>
+		</target>
 	
 	<target name="bootstrap_puremvc_flex_spark" depends="">
-		
 		<pathconvert pathsep=" " property="classes_puremvc" dirsep=".">
-	        <fileset dir="${temp.outdir}">
-	            <exclude name="org/robotlegs/**/**.*"/>
-	        </fileset>
-	        <chainedmapper>
-	            <globmapper from="${temp.outdir}/" to=""/>
-	            <globmapper from="*.as" to="*"/>
-	        </chainedmapper>
-	    </pathconvert>
+			<fileset dir="${temp.outdir}">
+				<exclude name="org/robotlegs/**/**.*"/>
+			</fileset>
+			<chainedmapper>
+				<globmapper from="${temp.outdir}/" to=""/>
+				<globmapper from="*.as" to="*"/>
+			</chainedmapper>
+		</pathconvert>
 			
 		<echo message="Building the bootstrap_puremvc.swc" />
 		<echo message="${classes_puremvc}" />
@@ -124,16 +122,15 @@
 	</target>
 	
 	<target name="bootstrap_robotlegs" depends="">
-			
 			<pathconvert pathsep=" " property="classes_robotlegs" dirsep=".">
-		        <fileset dir="${temp.outdir}">
-		            <exclude name="org/puremvc/**/**.*"/>
-		        </fileset>
-		        <chainedmapper>
-		            <globmapper from="${temp.outdir}/" to=""/>
-		            <globmapper from="*.as" to="*"/>
-		        </chainedmapper>
-		    </pathconvert>
+				<fileset dir="${temp.outdir}">
+					<exclude name="org/puremvc/**/**.*"/>
+				</fileset>
+				<chainedmapper>
+					<globmapper from="${temp.outdir}/" to=""/>
+					<globmapper from="*.as" to="*"/>
+				</chainedmapper>
+			</pathconvert>
 				
 			<echo message="Building the bootstrap_robotlegs.swc" />
 			<echo message="${classes_robotlegs}" />
