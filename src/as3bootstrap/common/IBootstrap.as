@@ -37,12 +37,16 @@ package as3bootstrap.common
 		 * keeping of track of the provided reference and setting its progress 
 		 * amounts.</p>
 		 * 
-		 * <p>This method can be called at any point before start() is called, 
-		 * though afterwards a runtime Error will be thrown.</p>
+		 * <p>This method can be called at any point before start() is called or
+		 * directly after the <code>configLoaded</code> 
+		 * <code>ISignalOwner</code> is dispatched. Anytime afterwards,.</p>
 		 * 
 		 * @param $externalProgress IProgress instance
+		 * 
+		 * @return Boolean Return true if load resource was added. Return
+		 * 				   false if load resource was not added.
 		 */		
-		function addCustomLoadResource( $externalProgress:IProgress ):void;
+		function addCustomLoadResource( $externalProgress:IProgress ):Boolean;
 		
 		/** 
 		 * Application load progress instance. This is the top level progress

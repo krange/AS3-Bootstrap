@@ -167,12 +167,16 @@ package as3bootstrap.common
 		 * keeping of track of the provided reference and setting its progress 
 		 * amounts.</p>
 		 * 
-		 * <p>This method can be called at any point before start() is called, 
-		 * though afterwards a runtime Error will be thrown.</p>
+		 * <p>This method can be called at any point before start() is called or
+		 * directly after the <code>configLoaded</code> 
+		 * <code>ISignalOwner</code> is dispatched. Anytime afterwards,.</p>
 		 * 
 		 * @param $externalProgress IProgress instance
+		 * 
+		 * @return Boolean Return true if load resource was added. Return
+		 * 				   false if load resource was not added.
 		 */		
-		public function addCustomLoadResource( $externalProgress:IProgress ):void
+		public function addCustomLoadResource( $externalProgress:IProgress ):Boolean
 		{
 			// Make sure we can add a custom external load
 			if( _customExternalLoadAllowed )
@@ -187,13 +191,13 @@ package as3bootstrap.common
 					if( !dataProgress.isChildLoadable( customDataProgress ) )
 					{
 						dataProgress.addChildLoadable( customDataProgress );
+						return true;
 					}
-					return;
 				}
 			}
-			// Custom external loads are not allowed, so throw an error so that
-			// the developer is aware
-			throw new Error( BootstrapConstants.ERROR_ADD_CUSTOM_EXTERNAL_RESOURCE );
+			
+			// Custom load resource is not allowed at this point
+			return false;
 		}
 		
 		//---------------------------------------------------------------------
@@ -444,6 +448,8 @@ package as3bootstrap.common
 		 */		
 		protected function onConfigLoaded():void
 		{	
+			_customExternalLoadAllowed = true;
+			
 			// Dispatch that the config file has loaded
 			configLoaded.dispatch();
 			
@@ -464,6 +470,8 @@ package as3bootstrap.common
 				// so complete the load process for any bootstrap loads
 				bootstrapUnknownProgress.setAmountLoaded( 1 );
 			}
+			
+			_customExternalLoadAllowed = false;
 		}
 		
 		/**

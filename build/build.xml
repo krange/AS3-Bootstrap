@@ -87,11 +87,8 @@
 		<compc
 			output="${bin.dir}/bootstrap_standalone_spark_v${project.version}.swc"
 			include-classes="${classes_standalone_spark}"
-			target-player="${app.player-version.spark}"
-			debug="${debug}"
-			optimize="${optimize}">
+			target-player="${app.player-version.spark}">
 			
-			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
 			<source-path path-element="${temp.outdir}" />
 			
 			<external-library-path file="${lib.dir}/as3-signals-v0.8.swc" append="true" />
@@ -125,11 +122,8 @@
 		<compc
 			output="${bin.dir}/bootstrap_standalone_moxie_v${project.version}.swc"
 			include-classes="${classes_standalone_moxie}"
-			target-player="${app.player-version.moxie}"
-			debug="${debug}"
-			optimize="${optimize}">
+			target-player="${app.player-version.moxie}">
 			
-			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
 			<source-path path-element="${temp.outdir}" />
 			
 			<external-library-path file="${lib.dir}/as3-signals-v0.8.swc" append="true" />
@@ -163,11 +157,8 @@
 		<compc
 			output="${bin.dir}/bootstrap_puremvc_spark_v${project.version}.swc"
 			include-classes="${classes_puremvc_spark}"
-			target-player="${app.player-version.spark}"
-			debug="${debug}"
-			optimize="${optimize}">
+			target-player="${app.player-version.spark}">
 			
-			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
 			<source-path path-element="${temp.outdir}" />
 			
 			<external-library-path file="${lib.dir}/as3-signals-v0.8.swc" append="true" />
@@ -203,11 +194,8 @@
 		<compc
 			output="${bin.dir}/bootstrap_puremvc_moxie_v${project.version}.swc"
 			include-classes="${classes_puremvc_moxie}"
-			target-player="${app.player-version.moxie}"
-			debug="${debug}"
-			optimize="${optimize}">
+			target-player="${app.player-version.moxie}">
 			
-			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
 			<source-path path-element="${temp.outdir}" />
 			
 			<external-library-path file="${lib.dir}/as3-signals-v0.8.swc" append="true" />
@@ -243,11 +231,8 @@
 		<compc
 			output="${bin.dir}/bootstrap_robotlegs_spark_v${project.version}.swc"
 			include-classes="${classes_robotlegs_spark}"
-			target-player="${app.player-version.spark}"
-			debug="${debug}"
-			optimize="${optimize}">
+			target-player="${app.player-version.spark}">
 			
-			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
 			<source-path path-element="${temp.outdir}" />
 			
 			<external-library-path file="${lib.dir}/as3-signals-v0.8.swc" append="true" />
@@ -281,11 +266,8 @@
 		<compc
 			output="${bin.dir}/bootstrap_robotlegs_moxie_v${project.version}.swc"
 			include-classes="${classes_robotlegs_moxie}"
-			target-player="${app.player-version.moxie}"
-			debug="${debug}"
-			optimize="${optimize}">
+			target-player="${app.player-version.moxie}">
 			
-			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
 			<source-path path-element="${temp.outdir}" />
 			
 			<external-library-path file="${lib.dir}/as3-signals-v0.8.swc" append="true" />
