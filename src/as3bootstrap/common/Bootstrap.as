@@ -142,18 +142,21 @@ package as3bootstrap.common
 		{
 			if( !_started )
 			{
+				_started = true;
+				_customExternalLoadAllowed = false;
+				var configUrl : String;
+				
+				// Add event listeners
+				bootstrapProgress.addEventListener( ResourceProgressEvent.PROGRESS, onBootstrapProgressUpdate, false, 0, true );
+				
 				if( $parameters )
 				{
-					_started = true;
-					_customExternalLoadAllowed = false;
 					_resourceBaseUrl = $parameters.baseUrl;
-					
-					// Add event listeners
-					bootstrapProgress.addEventListener( ResourceProgressEvent.PROGRESS, onBootstrapProgressUpdate, false, 0, true );
-					
 					// Load the config
-					loadConfig( $parameters.configXmlUrl );
+					configUrl = $parameters.configXmlUrl;
 				}
+				
+				loadConfig( configUrl );
 			}
 			// TODO: Throw an error here that start has already been run
 		}
@@ -453,6 +456,9 @@ package as3bootstrap.common
 			// Dispatch that the config file has loaded
 			configLoaded.dispatch();
 			
+			// Disallow external loads
+			_customExternalLoadAllowed = false;
+			
 			// Add any additional loads
 			// TODO: Add functionality to allow the user to pause the bootstrap
 			// load process after these add steps
@@ -464,14 +470,12 @@ package as3bootstrap.common
 				loadLocalizations();
 				loadFonts();
 			}
+			// We aren't loading anything else in our configuration XML file
+			// so complete the load process for any bootstrap loads
 			else
 			{
-				// We aren't loading anything else in our configuration XML file
-				// so complete the load process for any bootstrap loads
 				bootstrapUnknownProgress.setAmountLoaded( 1 );
 			}
-			
-			_customExternalLoadAllowed = false;
 		}
 		
 		/**
