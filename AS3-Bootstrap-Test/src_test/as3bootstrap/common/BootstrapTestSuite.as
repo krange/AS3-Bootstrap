@@ -1,5 +1,7 @@
 package as3bootstrap.common
 {
+	import as3bootstrap.common.services.FontServiceTest;
+	import as3bootstrap.common.services.StylesheetServiceTest;
 	import as3bootstrap.common.services.XmlServiceTest;
 
 	[Suite]
@@ -18,5 +20,7 @@ package as3bootstrap.common
 		public var test2:BootstrapLoadTest;
 		
 		public var test3:XmlServiceTest;
+		public var test4:StylesheetServiceTest;
+		public var test5:FontServiceTest;
 	}
 }

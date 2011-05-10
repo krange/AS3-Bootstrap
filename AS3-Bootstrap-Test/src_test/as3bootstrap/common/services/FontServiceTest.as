@@ -2,8 +2,8 @@ package as3bootstrap.common.services
 {
 	import as3bootstrap.common.progress.IProgress;
 	import as3bootstrap.common.progress.Progress;
-	import as3bootstrap.common.services.xml.IXmlService;
-	import as3bootstrap.common.services.xml.XmlService;
+	import as3bootstrap.common.services.font.FontService;
+	import as3bootstrap.common.services.font.IFontService;
 	
 	import org.flexunit.asserts.assertEquals;
 	import org.osflash.signals.utils.SignalAsyncEvent;
@@ -11,16 +11,16 @@ package as3bootstrap.common.services
 	import org.osflash.signals.utils.registerFailureSignal;
 
 	/**
-	 * XmlServiceTest
+	 * FontServiceTest
 	 *
 	 * @langversion ActionScript 3.0
 	 * @playerversion Flash 9.0.124
 	 * 
 	 * @author krisrange 
 	 */
-	public class XmlServiceTest
+	public class FontServiceTest
 	{		
-		private var _service : IXmlService;
+		private var _service : IFontService;
 		
 		//---------------------------------------------------------------------
 		//
@@ -49,12 +49,12 @@ package as3bootstrap.common.services
 		 */
 		public function testLoadServiceSuccess():void
 		{
-			_service = new XmlService();
+			_service = new FontService();
 			
 			registerFailureSignal( this, _service.errored );
 			handleSignal( this, _service.loaded, onServiceLoaded );
 			
-			_service.loadWithUrl( "xml/config.xml" );
+			_service.loadWithUrl( "font/Gotham.swf" );
 		}
 		
 		[Test(async)]
@@ -65,12 +65,12 @@ package as3bootstrap.common.services
 		public function testLoadServiceWithProgressSuccess():void
 		{
 			var progress : IProgress = new Progress();
-			_service = new XmlService( progress );
+			_service = new FontService( progress );
 			
 			registerFailureSignal( this, _service.errored );
 			handleSignal( this, _service.loaded, onServiceLoaded );
 			
-			_service.loadWithUrl( "xml/config.xml" );
+			_service.loadWithUrl( "font/Gotham.swf" );
 		}
 		
 		[Test(async)]
@@ -80,12 +80,12 @@ package as3bootstrap.common.services
 		 */		
 		public function testLoadServiceFailure():void
 		{
-			_service = new XmlService();
+			_service = new FontService();
 			
 			registerFailureSignal( this, _service.loaded );
 			handleSignal( this, _service.errored, onServiceErrored );
 			
-			_service.loadWithUrl( "config.xml" );		
+			_service.loadWithUrl( "Gotham.swf" );		
 		}
 		
 		[Test(async)]
@@ -96,12 +96,12 @@ package as3bootstrap.common.services
 		public function testLoadServiceWithProgressFailure():void
 		{
 			var progress : IProgress = new Progress();
-			_service = new XmlService( progress );
+			_service = new FontService( progress );
 			
 			registerFailureSignal( this, _service.loaded );
 			handleSignal( this, _service.errored, onServiceErrored );
 			
-			_service.loadWithUrl( "config.xml" );		
+			_service.loadWithUrl( "Gotham.swf" );		
 		}
 		
 		//---------------------------------------------------------------------
