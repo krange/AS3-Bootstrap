@@ -5,6 +5,9 @@
 
 package
 {
+	import as3bootstrap.common.BootstrapLoadTest;
+	import as3bootstrap.common.BootstrapProgressTest;
+	import as3bootstrap.common.BootstrapTestSuite;
 	import as3bootstrap.common.services.XmlServiceTest;
 	
 	import flash.display.Sprite;
@@ -31,6 +34,9 @@ package
 		
 		
 		private var as3bootstrap_common_services_XmlServiceTest_obj:as3bootstrap.common.services.XmlServiceTest;
+		private var as3bootstrap_common_BootstrapLoadTest_obj:as3bootstrap.common.BootstrapLoadTest;
+		private var as3bootstrap_common_BootstrapProgressTest_obj:as3bootstrap.common.BootstrapProgressTest;
+		private var as3bootstrap_common_BootstrapTestSuite_obj:as3bootstrap.common.BootstrapTestSuite;
 		
 		//----------------------------------
 		//  Override
