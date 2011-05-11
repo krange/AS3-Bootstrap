@@ -5,7 +5,7 @@ Bootstrap
 
 Bootstrap is a Flex and AS3 utility which accelerates development when loading common startup load processes within an application. It is available currently as either integrated into multi-core PureMVC application or as a standalone utility. Robotlegs is intended to be fully supported but is not quite completed as of this writing. 
 
-Bootstrap uses AS3 Signals to dispatch events. The PureMVC version is built upon the PureMVC Fabrication utility which adds many useful features to typical PureMVC programming syntax as well as simpler integration when building modular applications.
+Bootstrap uses AS3 Signals for dispatching of all events. The PureMVC version is also built upon the PureMVC Fabrication utility which adds many useful features to typical PureMVC programming syntax as well as simpler integration when building modular applications.
 
 ## What does Bootstrap provide?
 
