@@ -5,7 +5,7 @@ Bootstrap
 
 Bootstrap is a Flex and AS3 utility which accelerates development when loading common startup load processes within an application. It is available currently as either integrated into multi-core PureMVC application or as a standalone utility. Robotlegs is intended to be fully supported but is not quite completed as of this writing. 
 
-The PureMVC version is built upton the Fabrication utility which adds many useful features to typical PureMVC programming syntax as well as simpler integration when building modular applications.
+Bootstrap uses AS3 Signals to dispatch events. The PureMVC version is built upon the PureMVC Fabrication utility which adds many useful features to typical PureMVC programming syntax as well as simpler integration when building modular applications.
 
 ## What does Bootstrap provide?
 
@@ -58,9 +58,9 @@ You can also reference a externalized Flash IDE SWF with bitmap fonts embedded u
 
 # Getting Started
 
-# Standalone Mode
+Getting the basic setup in standalone is as simple as a few lines of code. PureMVC requires writing two classes. See simple examples below. More robust example projects are coming!
 
-Getting the basic setup in standalone is as simple as a few lines of code.
+# Standalone Mode
 
 ```as3
 var bootstrap:IBootstrap = new Bootstrap(new Progress());
@@ -70,5 +70,73 @@ bootstrap.start( loaderInfo.parameters );
 function onBootstrapLoaded():void
 {
 	// All bootstrap loading has completed
+}
+```
+
+# PureMVC AS3 Mode
+
+### Main Application
+
+```as3
+package org.puremvc.as3.multicore.utilities.as3bootstrap.demos.as3
+{
+	import org.puremvc.as3.multicore.utilities.as3bootstrap.demos.as3.controller.FlStartupCommand;
+	import org.puremvc.as3.multicore.utilities.fabrication.components.FlashApplication;
+	
+	public class Main 
+		extends FlashApplication
+	{
+		override public function getStartupCommand():Class
+		{
+			return FlStartupCommand;
+		}
+	}
+}
+```
+
+### Startup Command
+
+```as3
+package org.puremvc.as3.multicore.utilities.as3bootstrap.demos.as3.controller
+{
+	import org.puremvc.as3.multicore.utilities.as3bootstrap.demos.as3.view.ApplicationMediator;
+	import org.puremvc.as3.multicore.utilities.as3bootstrap.flash.controller.BootstrapFlashStartupCommand;
+	
+	public class FlStartupCommand 
+		extends BootstrapFlashStartupCommand
+	{
+		override protected function getApplicationMediator():Class
+		{
+			return ApplicationMediator;
+		}
+	}
+}
+```
+
+### Application Mediator
+
+```as3
+package org.puremvc.as3.multicore.utilities.as3bootstrap.demos.as3.view
+{
+	import as3bootstrap.common.progress.IProgress;
+	
+	import org.puremvc.as3.multicore.interfaces.INotification;
+	import org.puremvc.as3.multicore.utilities.as3bootstrap.flash.view.mediators.BootstrapFlashMediator;
+	
+	public class ApplicationMediator 
+		extends BootstrapFlashMediator
+	{
+		public static const NAME : String = "ApplicationMediator";
+		
+		public function ApplicationMediator( name:String, viewComponent:Object, progress:IProgress=null )
+		{
+			super( name, viewComponent, progress );
+		}
+		
+		override public function respondToBootstrapLoadComplete(notification:INotification):void
+		{
+			// All bootstrap loading has completed
+		}
+	}
 }
 ```
