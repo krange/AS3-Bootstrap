@@ -7,6 +7,8 @@ Bootstrap is a Flex and AS3 utility which accelerates development when loading c
 
 Bootstrap uses AS3 Signals for dispatching of all events. The PureMVC version is also built upon the PureMVC Fabrication utility which adds many useful features to typical PureMVC programming syntax as well as simpler integration when building modular applications.
 
+In the Downloads section you will find SWCs built currently for the 3.5.0 and 4.1.0 Flex SDKs. I will be adding additional SDK builds once I get a chance to test. If you require a different SDK, you can download the source and add SDKs via the ANT script.
+
 ## What does Bootstrap provide?
 
 The main function of Bootstrap is to simplify the process to load common external resources through an XML file. It also provides the user with a few helpful additional utility classes like integrating preloaders in Flex as well as progress classes integrated with the load.
@@ -78,9 +80,10 @@ function onBootstrapLoaded():void
 ### Main Application
 
 ```as3
-package org.puremvc.as3.multicore.utilities.as3bootstrap.demos.as3
+package as3bootstrap.demo.as3
 {
-	import org.puremvc.as3.multicore.utilities.as3bootstrap.demos.as3.controller.FlStartupCommand;
+	import as3bootstrap.demo.as3.controller.FlStartupCommand;
+	
 	import org.puremvc.as3.multicore.utilities.fabrication.components.FlashApplication;
 	
 	public class Main 
@@ -97,9 +100,10 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.demos.as3
 ### Startup Command
 
 ```as3
-package org.puremvc.as3.multicore.utilities.as3bootstrap.demos.as3.controller
+package as3bootstrap.demo.as3.controller
 {
-	import org.puremvc.as3.multicore.utilities.as3bootstrap.demos.as3.view.ApplicationMediator;
+	import as3bootstrap.demo.as3.view.ApplicationMediator;
+	
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.flash.controller.BootstrapFlashStartupCommand;
 	
 	public class FlStartupCommand 
@@ -116,7 +120,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.demos.as3.controller
 ### Application Mediator
 
 ```as3
-package org.puremvc.as3.multicore.utilities.as3bootstrap.demos.as3.view
+package as3bootstrap.demo.as3.view
 {
 	import as3bootstrap.common.progress.IProgress;
 	
@@ -220,3 +224,38 @@ package as3bootstrap.demo.flex4.view
 }
 ```
 
+# Access is everything
+
+The following are the types of events/signals/notifications that Bootstrap will dispatch:
+
+### Standalone
+
+* **bootstrapLoaded** - This signal is dispatched once all bootstrap related loads have completed. At this point you have access to any css, fonts or localization data that was loaded via the bootstrap files.
+
+* **dataLoaded** - This signal is dispatched once all data is loaded. This happens after bootstrapLoadComplete has been sent. This is only useful if you add additional custom loads via the *IProgress* trackers that are external to what bootstrap is loading.
+
+* **appLoaded** - This signal is dispatched once everything in your application has loaded. This happens after dataLoadComplete has been sent. This is only useful if you add additional custom loads via the *IProgress* trackers that are external to what bootstrap is loading.
+
+* **configLoaded** - This signal is dispatched once the config XML file is loaded. It allows the ability to retrieve and react to this data before any additional information is loaded in Bootstrap.
+
+* **configErrored** - This signal is dispatched once the config XML file has recieved a load error. The error event is passed as a paramter.
+
+* **bootstrapErrored** - This signal is dispatched once one of the bootstrap resources to be loaded has recieved a load error. The error event is passed as a paramter.
+
+### PureMVC
+
+* **bootstrapLoadComplete** - Same as *bootstrapLoaded* in Standalone mode, just sent as a *INotification* instead.
+
+* **dataLoadComplete** - Same as *dataLoaded* in Standalone mode, just sent as a *INotification* instead.
+
+* **applicationLoadComplete** - Same as *appLoaded* in Standalone mode, just sent as a *INotification* instead.
+
+* **bootstrapConfigLoadComplete** - Same as *configLoaded* in Standalone mode, just sent as a *INotification* instead.
+
+* **bootstrapConfigLoadFail** - Same as *configErrored* in Standalone mode, just sent as a *INotification* instead.
+
+* **bootstrapLoadError** - Same as *bootstrapErrored* in Standalone mode, just sent as a *INotification* instead.
+
+So, now that we've covered the notifications are sent out, how do I really access everything?
+
+In both Flash and Flex applications, accessing the information is the same except for in relation to CSS data. In Flex, when a CSS SWF is loaded in, it is automatically applied to the StyleManager so no Bootstrap specific hook is provided. Also, note that Fonts are registered (if not done so already by your font SWF), so using them is as simple as using the stylesheet or creating a TextFormat and specifying the font name/family you would like to use.
