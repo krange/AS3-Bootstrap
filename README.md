@@ -259,3 +259,20 @@ The following are the types of events/signals/notifications that Bootstrap will 
 So, now that we've covered the notifications are sent out, how do I really access everything?
 
 In both Flash and Flex applications, accessing the information is the same except for in relation to CSS data. In Flex, when a CSS SWF is loaded in, it is automatically applied to the StyleManager so no Bootstrap specific hook is provided. Also, note that Fonts are registered (if not done so already by your font SWF), so using them is as simple as using the stylesheet or creating a TextFormat and specifying the font name/family you would like to use.
+
+### Standalone
+
+´´´as3
+var stylesheet : StyleSheet = bootstrap.stylesheetModel.stylesheets;
+var localization : LocalizationVO = bootstrap.localizationModel.localizations;
+´´´
+
+### PureMVC
+
+In PureMVC, you would just do the following as the *IBootstrap* class is wrapped in a *Proxy*.
+
+´´´as3
+var bootstrapProxy : IBootstrapProxy = retrieveProxy( BootstrapProxy.NAME ) as IBootstrapProxy;
+var bootstrap : IBootstrap = bootstrapProxy.bootstrap;
+var localization : LocalizationVO = bootstrap.localizationModel.localizations;
+´´´
