@@ -65,7 +65,7 @@ Getting the basic setup in standalone is as simple as a few lines of code. PureM
 ## Standalone Mode
 
 ```as3
-var bootstrap:IBootstrap = new Bootstrap(new Progress());
+var bootstrap:IBootstrap = new Bootstrap();
 bootstrap.bootstrapLoaded.add( onBootstrapLoaded );
 bootstrap.start( loaderInfo.parameters );
 			
@@ -226,6 +226,8 @@ package as3bootstrap.demo.flex4.view
 
 # Access is everything
 
+## Signals/Notifications
+
 The following are the types of events/signals/notifications that Bootstrap will dispatch:
 
 ### Standalone
@@ -255,6 +257,8 @@ The following are the types of events/signals/notifications that Bootstrap will 
 * **bootstrapConfigLoadFail** - Same as *configErrored* in Standalone mode, just sent as a *INotification* instead.
 
 * **bootstrapLoadError** - Same as *bootstrapErrored* in Standalone mode, just sent as a *INotification* instead.
+
+## Accessing Data
 
 So, now that we've covered the notifications are sent out, how do I really access everything?
 
