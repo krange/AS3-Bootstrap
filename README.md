@@ -232,9 +232,9 @@ The following are the types of events/signals/notifications that Bootstrap will 
 
 * **bootstrapLoaded** - This signal is dispatched once all bootstrap related loads have completed. At this point you have access to any css, fonts or localization data that was loaded via the bootstrap files.
 
-* **dataLoaded** - This signal is dispatched once all data is loaded. This happens after bootstrapLoadComplete has been sent. This is only useful if you add additional custom loads via the *IProgress* trackers that are external to what bootstrap is loading.
+* **dataLoaded** - This signal is dispatched once all data is loaded. This happens after bootstrapLoaded has been sent. This is only useful if you add additional custom loads via the *IProgress* trackers that are external to what bootstrap is loading. More about this coming soon.
 
-* **appLoaded** - This signal is dispatched once everything in your application has loaded. This happens after dataLoadComplete has been sent. This is only useful if you add additional custom loads via the *IProgress* trackers that are external to what bootstrap is loading.
+* **appLoaded** - This signal is dispatched once everything in your application has loaded. This happens after dataLoaded has been sent. This is only useful if you add additional custom loads via the *IProgress* trackers that are external to what bootstrap is loading. More about this coming soon.
 
 * **configLoaded** - This signal is dispatched once the config XML file is loaded. It allows the ability to retrieve and react to this data before any additional information is loaded in Bootstrap.
 
