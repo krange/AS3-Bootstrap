@@ -1,6 +1,6 @@
 package as3bootstrap.common.model
 {
-	import as3bootstrap.common.model.vo.LocalizationVO;
+	import as3bootstrap.common.model.vo.Localization;
 	import as3bootstrap.common.progress.IProgress;
 	import as3bootstrap.common.progress.Progress;
 	import as3bootstrap.common.services.IService;
@@ -25,7 +25,7 @@ package as3bootstrap.common.model
 	{
 		private var _services : Array;
 		private var _dependency : Dependency;
-		private var _localizations : LocalizationVO;
+		private var _localizations : Localization;
 		
 		//---------------------------------------------------------------------
 		//
@@ -80,7 +80,7 @@ package as3bootstrap.common.model
 		 * @param id ID of the XML service node
 		 * @return LocalizationVO
 		 */		
-		public function getLocalizationById( $id:String ):LocalizationVO
+		public function getLocalizationById( $id:String ):Localization
 		{
 			var locLen : int = services.length;
 			while( locLen-- )
@@ -88,7 +88,7 @@ package as3bootstrap.common.model
 				var service : IXmlService = services[locLen] as IXmlService;
 				if( service.data.@id == $id )
 				{
-					return new LocalizationVO( service.data );
+					return new Localization( service.data );
 				}
 			}
 			return null;
@@ -111,7 +111,7 @@ package as3bootstrap.common.model
 		{
 			super.init();
 			services = new Array();
-			_localizations = new LocalizationVO();
+			_localizations = new Localization();
 		}
 		
 		//----------------------------------
@@ -168,7 +168,7 @@ package as3bootstrap.common.model
 		 * 
 		 * @return LocalizationVO 
 		 */		
-		public function get localizations():LocalizationVO
+		public function get localizations():Localization
 		{
 			return _localizations;
 		}

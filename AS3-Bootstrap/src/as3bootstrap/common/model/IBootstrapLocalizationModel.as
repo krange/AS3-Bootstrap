@@ -1,6 +1,6 @@
 package as3bootstrap.common.model
 {
-	import as3bootstrap.common.model.vo.LocalizationVO;
+	import as3bootstrap.common.model.vo.Localization;
 
 	/**
 	 * ILocalizationModel
@@ -27,13 +27,13 @@ package as3bootstrap.common.model
 		 * @param id ID of the XML service node
 		 * @return LocalizationVO
 		 */		
-		function getLocalizationById( $id:String ):LocalizationVO;
+		function getLocalizationById( $id:String ):Localization;
 		
 		/**
 		 * All localization services data merged into a signular value object.
 		 * 
 		 * @return LocalizationVO 
 		 */		
-		function get localizations():LocalizationVO
+		function get localizations():Localization
 	}
 }

@@ -1,6 +1,6 @@
 package as3bootstrap.common
 {
-	import as3bootstrap.common.model.vo.LocalizationVO;
+	import as3bootstrap.common.model.vo.Localization;
 	
 	import flash.text.StyleSheet;
 	
