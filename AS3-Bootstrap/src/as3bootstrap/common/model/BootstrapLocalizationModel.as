@@ -1,9 +1,9 @@
 package as3bootstrap.common.model
 {
+	import as3bootstrap.common.model.vo.ILocalization;
 	import as3bootstrap.common.model.vo.Localization;
 	import as3bootstrap.common.progress.IProgress;
 	import as3bootstrap.common.progress.Progress;
-	import as3bootstrap.common.services.IService;
 	import as3bootstrap.common.services.xml.IXmlService;
 	import as3bootstrap.common.services.xml.XmlService;
 	import as3bootstrap.common.utils.Dependency;
@@ -78,9 +78,9 @@ package as3bootstrap.common.model
 		 * localization service. Returns null if no data is found.
 		 *  
 		 * @param id ID of the XML service node
-		 * @return LocalizationVO
+		 * @return ILocalization
 		 */		
-		public function getLocalizationById( $id:String ):Localization
+		public function getLocalizationById( $id:String ):ILocalization
 		{
 			var locLen : int = services.length;
 			while( locLen-- )
@@ -166,9 +166,9 @@ package as3bootstrap.common.model
 		/**
 		 * All localization service data merged into a signular value object.
 		 * 
-		 * @return LocalizationVO 
+		 * @return ILocalization 
 		 */		
-		public function get localizations():Localization
+		public function get localizations():ILocalization
 		{
 			return _localizations;
 		}
