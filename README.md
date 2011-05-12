@@ -60,7 +60,7 @@ You can also reference a externalized Flash IDE SWF with bitmap fonts embedded u
 
 Getting the basic setup in standalone is as simple as a few lines of code. PureMVC requires writing two classes. See simple examples below. More robust example projects are coming!
 
-# Standalone Mode
+## Standalone Mode
 
 ```as3
 var bootstrap:IBootstrap = new Bootstrap(new Progress());
@@ -73,7 +73,7 @@ function onBootstrapLoaded():void
 }
 ```
 
-# PureMVC AS3 Mode
+## PureMVC AS3 Mode
 
 ### Main Application
 
@@ -140,3 +140,83 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.demos.as3.view
 	}
 }
 ```
+
+## PureMVC Flex4 Mode
+
+### Main Application
+
+```as3
+<?xml version="1.0" encoding="utf-8"?>
+<components:FlexHaloApplication
+	xmlns:components="org.puremvc.as3.multicore.utilities.fabrication.components.*"
+	xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/mx"
+	minWidth="955" minHeight="600">
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import as3bootstrap.demo.flex4.controller.FxStartupCommand;
+			
+			override public function getStartupCommand():Class
+			{
+				return FxStartupCommand;
+			}
+		]]>
+	</fx:Script>
+	
+</components:FlexHaloApplication>
+```
+
+### Startup Command
+
+```as3
+package as3bootstrap.demo.flex4.controller
+{
+	import org.puremvc.as3.multicore.utilities.as3bootstrap.flex.spark.controller.BootstrapFlexSparkStartupCommand;
+	
+	import as3bootstrap.demo.flex4.view.ApplicationMediator;
+	
+	public class FxStartupCommand 
+		extends BootstrapFlexSparkStartupCommand
+	{
+		override protected function getApplicationMediator():Class
+		{
+			return ApplicationMediator;
+		}
+	}
+}
+```
+
+### Application Mediator
+
+```as3
+package as3bootstrap.demo.flex4.view
+{
+	import as3bootstrap.common.progress.IProgress;
+	
+	import org.puremvc.as3.multicore.interfaces.INotification;
+	import org.puremvc.as3.multicore.utilities.as3bootstrap.flex.common.view.mediators.BootstrapFlexMediator;
+	
+	public class ApplicationMediator 
+		extends BootstrapFlexMediator
+	{
+		public static const NAME : String = "ApplicationMediator";
+		
+		public function ApplicationMediator( name:String, viewComponent:Object, progress:IProgress=null )
+		{
+			super( name, viewComponent, progress );
+		}
+		
+		override public function respondToBootstrapLoadComplete( notification:INotification ):void
+		{
+			// All bootstrap loading has completed
+		}
+	}
+}
+```
+

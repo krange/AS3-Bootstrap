@@ -3,32 +3,67 @@
 *Please click on the "Refresh" icon in "FlexUnit Results" view to regenerate this file.
 */
 
+/**
+ * ------------------------------------------------------------
+ * Copyright (c) 2011 Dareville.
+ * This software is the proprietary information of Dareville.
+ * All Right Reserved.
+ * ------------------------------------------------------------
+ *
+ * SVN revision information:
+ * @version $Revision: $:
+ * @author  $Author: $:
+ * @date    $Date: $:
+ */
 package
 {
-	import as3bootstrap.common.BootstrapLoadTest;
-	import as3bootstrap.common.BootstrapProgressTest;
-	import as3bootstrap.common.BootstrapTestSuite;
-	import as3bootstrap.common.services.FontServiceTest;
-	import as3bootstrap.common.services.StylesheetServiceTest;
-	import as3bootstrap.common.services.XmlServiceTest;
-	
 	import flash.display.Sprite;
 	
 	/**
 	 * FlexUnitCompilerApplication
-	 *
-	 * @langversion ActionScript 3.0
-	 * @playerversion Flash 9.0.124
 	 * 
-	 * @author krisrange 
+	 * @author krisrange
 	 */
 	public class FlexUnitCompilerApplication extends Sprite
 	{
-		private var as3bootstrap_common_BootstrapLoadTest_obj:as3bootstrap.common.BootstrapLoadTest;
-		private var as3bootstrap_common_services_FontServiceTest_obj:as3bootstrap.common.services.FontServiceTest;
-		private var as3bootstrap_common_services_XmlServiceTest_obj:as3bootstrap.common.services.XmlServiceTest;
-		private var as3bootstrap_common_BootstrapProgressTest_obj:as3bootstrap.common.BootstrapProgressTest;
-		private var as3bootstrap_common_services_StylesheetServiceTest_obj:as3bootstrap.common.services.StylesheetServiceTest;
-		private var as3bootstrap_common_BootstrapTestSuite_obj:as3bootstrap.common.BootstrapTestSuite;
+		//---------------------------------------------------------------------
+		//
+		//  Public methods
+		//
+		//---------------------------------------------------------------------
+		
+		/**
+		 * Constructor
+		 */
+		
+		//----------------------------------
+		//  Override
+		//----------------------------------
+		
+		//---------------------------------------------------------------------
+		//
+		//  Protected methods
+		//
+		//---------------------------------------------------------------------
+		
+		//----------------------------------
+		//  Override
+		//----------------------------------
+		
+		//---------------------------------------------------------------------
+		//
+		//  Private methods
+		//
+		//---------------------------------------------------------------------
+		
+		//----------------------------------
+		//  Handlers
+		//----------------------------------
+		
+		//---------------------------------------------------------------------
+		//
+		//  Getter/Setter methods
+		//
+		//---------------------------------------------------------------------
 	}
 }
