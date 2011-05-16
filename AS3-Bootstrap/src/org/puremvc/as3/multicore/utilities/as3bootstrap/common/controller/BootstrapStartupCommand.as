@@ -11,8 +11,10 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.constants.BootstrapPureMVCConstants;
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.model.BootstrapProxy;
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.model.ConfigProxy;
+	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.model.FlashVarsProxy;
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.model.IBootstrapProxy;
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.model.IConfigProxy;
+	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.model.IFlashVarsProxy;
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.view.mediators.IBootstrapMediator;
 	import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;
 	
@@ -33,6 +35,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		
 		private static const ERROR_GET_APP_MEDIATOR				:String = "Mediator for this Application or Module was not set. The getApplicationMediator() method was not overriden."; 
 		private static const ERROR_REGISTER_APP_MEDIATOR		:String = "The mediator provided either did not implement IBootstrapMediator or the Constructor did not take the correct arguments."; 
+		private static const ERROR_REGISTER_FLASH_VARS_PROXY	:String = "Instantation of the class specified in the getFlashVarsProxy() method failed.";
 		private static const ERROR_REGISTER_BOOTSTRAP_PROXY		:String = "Instantation of the class specified in the getBootstrapProxy() method failed.";
 		private static const ERROR_REGISTER_CONFIG_PROXY		:String = "Instantation of the class specified in the getConfigProxy() method failed.";
 		private static const ERROR_INSTANTIATE_BOOTSTRAP		:String = "Instantation of the class specified in the getBootstrap() method failed.";
@@ -57,6 +60,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		//  PureMVC variables
 		//----------------------------------
 		
+		private var _flashVarsProxy : IFlashVarsProxy;
 		private var _bootstrapProxy : IBootstrapProxy;
 		private var _configProxy : IConfigProxy;
 		
@@ -128,6 +132,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		 */		
 		protected function registerProxies():void
 		{
+			registerFlashVarsProxy();
 			registerBootstrapProxy();
 			registerConfigProxy();
 		}
@@ -262,6 +267,36 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		//----------------------------------
 		//  Proxy instantiations
 		//----------------------------------
+		
+		/** 
+		 * @private
+		 * Register the bootstrap proxy
+		 */
+		protected function registerFlashVarsProxy():void 
+		{
+			var FlashVarsProxyClass : Object = getFlashVarsProxy();
+			try
+			{
+				_flashVarsProxy = new FlashVarsProxyClass( FlashVarsProxyClass.NAME, getFlashVarsParams() );
+			}
+			catch( e:Error )
+			{
+				throw new Error( ERROR_REGISTER_FLASH_VARS_PROXY );	
+			}
+			
+			// Instantation of the bootstrap proxy was a success, so register it
+			registerProxy( _flashVarsProxy );
+		}
+		
+		/**
+		 * Return the flashvars proxy class to use
+		 * 
+		 * @return <code>IFlashVarsProxy</code> class reference
+		 */
+		protected function getFlashVarsProxy():Class
+		{
+			return FlashVarsProxy;
+		}
 		
 		/** 
 		 * @private

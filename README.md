@@ -269,6 +269,7 @@ In both Flash and Flex applications, accessing the information is the same excep
 ```as3
 var stylesheet : StyleSheet = bootstrap.stylesheetModel.stylesheets;
 var localization : ILocalization = bootstrap.localizationModel.localizations;
+trace( localization.getLocalizedValue( "someValue" ) );
 ```
 
 ### PureMVC
@@ -279,4 +280,5 @@ In PureMVC, you would just do the following as the *IBootstrap* class is wrapped
 var bootstrapProxy : IBootstrapProxy = retrieveProxy( BootstrapProxy.NAME ) as IBootstrapProxy;
 var bootstrap : IBootstrap = bootstrapProxy.bootstrap;
 var localization : ILocalization = bootstrap.localizationModel.localizations;
+trace( localization.getLocalizedValue( "someValue" ) );
 ```

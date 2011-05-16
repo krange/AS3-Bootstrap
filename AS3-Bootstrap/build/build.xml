@@ -91,8 +91,9 @@
 			
 			<source-path path-element="${temp.outdir}" />
 			
-			<external-library-path file="${lib.dir}/as3-signals-v0.8.swc" append="true" />
-			<external-library-path file="${lib.dir}/fabrication-flex.swc" append="true" />
+			<external-library-path dir="${lib.dir}" append="true">
+					<include name="as3-signals-v0.8.swc" />
+			</external-library-path>
 		</compc>
 	</target>
 	
@@ -126,8 +127,9 @@
 			
 			<source-path path-element="${temp.outdir}" />
 			
-			<external-library-path file="${lib.dir}/as3-signals-v0.8.swc" append="true" />
-			<external-library-path file="${lib.dir}/fabrication-flex.swc" append="true" />
+			<external-library-path dir="${lib.dir}" append="true">
+					<include name="as3-signals-v0.8.swc" />
+			</external-library-path>
 		</compc>
 	</target>
 	
