@@ -38,11 +38,11 @@ package as3bootstrap.common.model
 		/**
 		 * Constructor
 		 * 
-		 * @param $progress <code>IProgress</code> instance
+		 * @param progress <code>IProgress</code> instance
 		 */
-		public function BootstrapDataModel( $progress:IProgress )
+		public function BootstrapDataModel( progress:IProgress )
 		{
-			_progress = $progress;
+			_progress = progress;
 			super(null);
 			init();
 		}
@@ -130,9 +130,9 @@ package as3bootstrap.common.model
 		 * 
 		 * @param value <code>IProgress</code> instance to set
 		 */	
-		public function set progress( $value:IProgress ):void
+		public function set progress( value:IProgress ):void
 		{
-			_progress = $value;
+			_progress = value;
 		}
 	}
 }

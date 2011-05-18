@@ -27,12 +27,12 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.model
 		/**
 		 * Constructor
 		 * 
-		 * @param $name IProxy name
-		 * @param $data IBootstrapConfigModel reference
+		 * @param name IProxy name
+		 * @param data IBootstrapConfigModel reference
 		 */
-		public function ConfigProxy( $name:String, $data:IBootstrapConfigModel )
+		public function ConfigProxy( name:String, data:IBootstrapConfigModel )
 		{
-			super( $name, $data );
+			super( name, data );
 		}
 		
 		//---------------------------------------------------------------------

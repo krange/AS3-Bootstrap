@@ -107,25 +107,25 @@ package as3bootstrap.common
 		/**
 		 * Constructor
 		 * 
-		 * @param $progress  	Top level app <code>IProgress</code> instance.
+		 * @param progress  	Top level app <code>IProgress</code> instance.
 		 * 						Optional but required if specifying data or
 		 * 						view <code>IProgress</code> instances. 
-		 * @param $dataProgress Child <code>IProgress</code> instance of 
+		 * @param dataProgress Child <code>IProgress</code> instance of 
 		 * 						<code>appProgress</code> which tracks data
 		 * 					   	loading. Optional.
-		 * @param $viewProgress Child <code>IProgress</code> instance of 
+		 * @param viewProgress Child <code>IProgress</code> instance of 
 		 * 						<code>appProgress</code> which tracks view
 		 * 						loading. Optional.
 		 */		
 		public function Bootstrap(
-			$progress:IProgress = null, 
-			$dataProgress:IProgress = null, 
-			$viewProgress:IProgress = null )
+			progress:IProgress = null, 
+			dataProgress:IProgress = null, 
+			viewProgress:IProgress = null )
 		{
 			// Set our progress instances
-			_progress = $progress;
-			_dataProgress = $dataProgress;
-			_viewProgress = $viewProgress;
+			_progress = progress;
+			_dataProgress = dataProgress;
+			_viewProgress = viewProgress;
 			
 			init();
 		}
@@ -136,9 +136,9 @@ package as3bootstrap.common
 		 * bootstrap. See the <code>addCustomLoadResource</code> method for 
 		 * more information.
 		 * 
-		 * @param $parameters Root level LoaderInfo parameters object
+		 * @param parameters Root level LoaderInfo parameters object
 		 */		
-		public function start( $parameters:Object ):void
+		public function start( parameters:Object ):void
 		{
 			if( !_started )
 			{
@@ -149,11 +149,11 @@ package as3bootstrap.common
 				// Add event listeners
 				bootstrapProgress.addEventListener( ResourceProgressEvent.PROGRESS, onBootstrapProgressUpdate, false, 0, true );
 				
-				if( $parameters )
+				if( parameters )
 				{
-					_resourceBaseUrl = $parameters.baseUrl;
+					_resourceBaseUrl = parameters.baseUrl;
 					// Load the config
-					configUrl = $parameters.configXmlUrl;
+					configUrl = parameters.configXmlUrl;
 				}
 				
 				loadConfig( configUrl );
@@ -174,12 +174,12 @@ package as3bootstrap.common
 		 * directly after the <code>configLoaded</code> 
 		 * <code>ISignalOwner</code> is dispatched. Anytime afterwards,.</p>
 		 * 
-		 * @param $externalProgress IProgress instance
+		 * @param externalProgress IProgress instance
 		 * 
 		 * @return Boolean Return true if load resource was added. Return
 		 * 				   false if load resource was not added.
 		 */		
-		public function addCustomLoadResource( $externalProgress:IProgress ):Boolean
+		public function addCustomLoadResource( externalProgress:IProgress ):Boolean
 		{
 			// Make sure we can add a custom external load
 			if( _customExternalLoadAllowed )
@@ -187,7 +187,7 @@ package as3bootstrap.common
 				if( progress && dataProgress && customDataProgress )
 				{
 					// Add the new external resource to our total load
-					customDataProgress.addChildLoadable( $externalProgress );
+					customDataProgress.addChildLoadable( externalProgress );
 					
 					// If the custom data load progress isnt a child progress 
 					// of the data progress, then add it
@@ -373,13 +373,13 @@ package as3bootstrap.common
 		 * @private
 		 * Load the config file
 		 * 
-		 * @param $url String
+		 * @param url String
 		 */		
-		protected function loadConfig( $url:String ):void
+		protected function loadConfig( url:String ):void
 		{
 			configModel.errored.add( onConfigErrored );
 			configModel.loaded.add( onConfigLoaded );
-			configModel.load( $url );
+			configModel.load( url );
 		}
 		
 		/**
@@ -438,11 +438,11 @@ package as3bootstrap.common
 		 * @private
 		 * Signal callback for when the config file errors
 		 * 
-		 * @param $event Event
+		 * @param event Event
 		 */		
-		protected function onConfigErrored( $event:Event ):void
+		protected function onConfigErrored( event:Event ):void
 		{
-			configErrored.dispatch( $event );
+			configErrored.dispatch( event );
 		}
 		
 		/**
@@ -482,15 +482,15 @@ package as3bootstrap.common
 		 * @private
 		 * Signal callback for when the localization model load errors
 		 * 
-		 * @param $event Event
+		 * @param event Event
 		 */		
-		protected function onLocalizationErrored( $event:Event ):void
+		protected function onLocalizationErrored( event:Event ):void
 		{
 			localizationModel.errored.removeAll();
 			localizationModel.loaded.removeAll();
 			
 			// Forward the event
-			bootstrapResourceErrored.dispatch( $event );
+			bootstrapResourceErrored.dispatch( event );
 		}
 		
 		/**
@@ -507,15 +507,15 @@ package as3bootstrap.common
 		 * @private
 		 * Signal callback for when the stylesheet model load errors
 		 * 
-		 * @param $event Event
+		 * @param event Event
 		 */		
-		protected function onStylesheetErrored( $event:Event ):void
+		protected function onStylesheetErrored( event:Event ):void
 		{
 			stylesheetModel.errored.removeAll();
 			stylesheetModel.loaded.removeAll();
 			
 			// Forward the event
-			bootstrapResourceErrored.dispatch( $event );
+			bootstrapResourceErrored.dispatch( event );
 		}
 		
 		/**
@@ -532,15 +532,15 @@ package as3bootstrap.common
 		 * @private
 		 * Signal callback for when the fonts model load errors
 		 * 
-		 * @param $event Event
+		 * @param event Event
 		 */		
-		protected function onFontsErrored( $event:Event ):void
+		protected function onFontsErrored( event:Event ):void
 		{
 			fontModel.errored.removeAll();
 			fontModel.loaded.removeAll();
 			
 			// Forward the event
-			bootstrapResourceErrored.dispatch( $event );
+			bootstrapResourceErrored.dispatch( event );
 		}
 		
 		/**
@@ -555,11 +555,11 @@ package as3bootstrap.common
 		
 		/**
 		 * @private 
-		 * @param $event <code>ResourceProgressEvent.PROGRESS</code>
+		 * @param event <code>ResourceProgressEvent.PROGRESS</code>
 		 */		
-		protected function onBootstrapProgressUpdate( $event:ResourceProgressEvent ):void
+		protected function onBootstrapProgressUpdate( event:ResourceProgressEvent ):void
 		{
-			if( $event.amountLoaded == 1 )
+			if( event.amountLoaded == 1 )
 			{
 				bootstrapProgress.removeEventListener( ResourceProgressEvent.PROGRESS, onBootstrapProgressUpdate );
 				bootstrapLoaded.dispatch();
@@ -571,11 +571,11 @@ package as3bootstrap.common
 		
 		/**
 		 * @private 
-		 * @param $event <code>ResourceProgressEvent.PROGRESS</code>
+		 * @param event <code>ResourceProgressEvent.PROGRESS</code>
 		 */		
-		protected function onDataProgressUpdate( $event:ResourceProgressEvent ):void
+		protected function onDataProgressUpdate( event:ResourceProgressEvent ):void
 		{
-			if( $event.amountLoaded == 1 )
+			if( event.amountLoaded == 1 )
 			{
 				dataProgress.removeEventListener( ResourceProgressEvent.PROGRESS, onDataProgressUpdate );
 				dataLoaded.dispatch();
@@ -587,11 +587,11 @@ package as3bootstrap.common
 		
 		/**
 		 * @private 
-		 * @param $event <code>ResourceProgressEvent.PROGRESS</code>
+		 * @param event <code>ResourceProgressEvent.PROGRESS</code>
 		 */		
-		protected function onProgressUpdate( $event:ResourceProgressEvent ):void
+		protected function onProgressUpdate( event:ResourceProgressEvent ):void
 		{
-			if( $event.amountLoaded == 1 )
+			if( event.amountLoaded == 1 )
 			{
 				progress.removeEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
 				appLoaded.dispatch();

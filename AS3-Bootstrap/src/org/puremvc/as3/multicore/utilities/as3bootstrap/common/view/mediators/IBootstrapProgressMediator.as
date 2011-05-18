@@ -18,9 +18,9 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.view.mediators
 		/**
 		 * Set the <code>IProgress</code> instance
 		 * 
-		 * @param $progress <code>IProgress</code> instance to set
+		 * @param progress <code>IProgress</code> instance to set
 		 */		
-		function set progress( $progress:IProgress ):void;
+		function set progress( progress:IProgress ):void;
 		
 		/**
 		 * Get the <code>IProgress</code> instance

@@ -27,12 +27,12 @@ package org.robotlegs.utilities.as3bootstrap.common.model
 		/**
 		 * Constructor
 		 * 
-		 * @param $configModel <code>IBootstrapConfigModel</code> instance
+		 * @param configModel <code>IBootstrapConfigModel</code> instance
 		 */
-		public function ConfigModel( $configModel:IBootstrapConfigModel )
+		public function ConfigModel( configModel:IBootstrapConfigModel )
 		{
 			super();
-			_configModel = $configModel;
+			_configModel = configModel;
 		}
 		
 		//---------------------------------------------------------------------

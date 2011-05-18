@@ -16,7 +16,7 @@ package as3bootstrap.common.progress
 		 * 
 		 * @param value <code>IProgress</code> instance to set
 		 */		
-		function set progress( $value:IProgress ):void;
+		function set progress( value:IProgress ):void;
 		
 		/**
 		 * @return IProgress 

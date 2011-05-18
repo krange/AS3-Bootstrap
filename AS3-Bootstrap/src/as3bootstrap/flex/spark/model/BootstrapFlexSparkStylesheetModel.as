@@ -36,26 +36,26 @@ package as3bootstrap.flex.spark.model
 		/**
 		 * @inheritDoc
 		 */
-		public function BootstrapFlexSparkStylesheetModel( $progress:IProgress )
+		public function BootstrapFlexSparkStylesheetModel( progress:IProgress )
 		{
-			super( $progress );
+			super( progress );
 		}
 		
 		/**
 		 * Load the config data
 		 * 
-		 * @param $data XMLList of data to load
+		 * @param data XMLList of data to load
 		 */		
-		public function load( $data:XMLList ):void
+		public function load( data:XMLList ):void
 		{
-			if( $data && 
-				$data.length() > 0 )
+			if( data && 
+				data.length() > 0 )
 			{
 				services = new Array();
 				_dependency = new Dependency();
 				
 				_dependency.addEventListener( Event.COMPLETE, onAllServicesLoaded, false, 0, true );
-				var xml_len : int = $data.length();
+				var xml_len : int = data.length();
 				for( var i : int = 0; i < xml_len; i++ )
 				{
 					var service_progress : IProgress = new Progress();
@@ -66,7 +66,7 @@ package as3bootstrap.flex.spark.model
 					_dependency.addDependancy( service );
 					service.loaded.add( onServiceLoaded );
 					service.errored.add( onServiceErrored );
-					service.loadWithUrl( $data[i].@url );
+					service.loadWithUrl( data[i].@url );
 				}
 			}
 		}
@@ -98,9 +98,9 @@ package as3bootstrap.flex.spark.model
 		 * @private
 		 * Callback when all services have loaded 
 		 *  
-		 * @param $event <code>Event.COMPLETE</code>
+		 * @param event <code>Event.COMPLETE</code>
 		 */		
-		protected function onAllServicesLoaded( $event:Event ):void
+		protected function onAllServicesLoaded( event:Event ):void
 		{
 			// Remove the event listener
 			_dependency.removeEventListener( Event.COMPLETE, onAllServicesLoaded );
@@ -114,22 +114,22 @@ package as3bootstrap.flex.spark.model
 		 * @private
 		 * Callback when a service has loaded
 		 *  
-		 * @param $service <code>IService</code>
+		 * @param service <code>IService</code>
 		 */		
-		protected function onServiceLoaded( $service:IService ):void
+		protected function onServiceLoaded( service:IService ):void
 		{
-			_dependency.setLoadDependencyMet( $service );
+			_dependency.setLoadDependencyMet( service );
 		}
 		
 		/**
 		 * @private
 		 * Callback when a service has errored
 		 *  
-		 * @param $event Event
+		 * @param event Event
 		 */	
-		protected function onServiceErrored( $event:Event ):void
+		protected function onServiceErrored( event:Event ):void
 		{
-			errored.dispatch( $event );
+			errored.dispatch( event );
 		}
 		
 		//---------------------------------------------------------------------
@@ -161,11 +161,11 @@ package as3bootstrap.flex.spark.model
 		/**
 		 * Set the services holder
 		 * 
-		 * @param $value Array 
+		 * @param value Array 
 		 */		
-		protected function set services( $value:Array ):void
+		protected function set services( value:Array ):void
 		{
-			_services = $value;
+			_services = value;
 		}
 	}
 }

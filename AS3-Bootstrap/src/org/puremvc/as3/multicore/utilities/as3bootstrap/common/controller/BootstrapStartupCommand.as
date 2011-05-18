@@ -77,9 +77,9 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.controller
 		/**
 		 * @inheritDoc 
 		 */		
-		override public function execute( $notification:INotification ):void
+		override public function execute( notification:INotification ):void
 		{
-			viewComponent = $notification.getBody() as DisplayObject;
+			viewComponent = notification.getBody() as DisplayObject;
 			initialize();
 		}
 		

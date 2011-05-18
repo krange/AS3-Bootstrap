@@ -29,17 +29,17 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.common.view.mediat
 		/**
 		 * Constructor
 		 * 
-		 * @param $name
-		 * @param $viewComponent
-		 * @param $progress 
+		 * @param name
+		 * @param viewComponent
+		 * @param progress 
 		 */		
 		public function BootstrapFlexMediator(
-			$name:String, 
-			$viewComponent:Object,
-			$progress:IProgress=null )
+			name:String, 
+			viewComponent:Object,
+			progress:IProgress=null )
 		{
-			super( $name, $viewComponent );
-			_progress = $progress;
+			super( name, viewComponent );
+			_progress = progress;
 		}
 		
 		//----------------------------------
@@ -51,7 +51,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.common.view.mediat
 		 * 
 		 * @param notification 
 		 */		
-		public function respondToBootstrapLoadComplete( $notification:INotification ):void
+		public function respondToBootstrapLoadComplete( notification:INotification ):void
 		{
 		}
 		
@@ -60,7 +60,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.common.view.mediat
 		 * 
 		 * @param notification 
 		 */		
-		public function respondToDataLoadComplete( $notification:INotification ):void
+		public function respondToDataLoadComplete( notification:INotification ):void
 		{
 		}
 		
@@ -69,7 +69,7 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.common.view.mediat
 		 * 
 		 * @param notification 
 		 */		
-		public function respondToApplicationLoadComplete( $notification:INotification ):void
+		public function respondToApplicationLoadComplete( notification:INotification ):void
 		{
 		}
 		
@@ -86,9 +86,9 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.common.view.mediat
 		/**
 		 * Set the <code>IProgress</code> instance
 		 * 
-		 * @param $progress <code>IProgress</code> instance to set
+		 * @param progress <code>IProgress</code> instance to set
 		 */		
-		public function set progress( $progress:IProgress ):void
+		public function set progress( progress:IProgress ):void
 		{
 			_progress = progress;
 		}

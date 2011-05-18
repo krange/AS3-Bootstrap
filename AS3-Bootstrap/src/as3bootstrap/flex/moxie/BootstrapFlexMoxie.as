@@ -25,11 +25,11 @@ package as3bootstrap.flex.moxie
 		 * @inheritDoc
 		 */
 		public function BootstrapFlexMoxie(
-			$progress:IProgress=null, 
-			$dataProgress:IProgress=null, 
-			$viewProgress:IProgress=null )
+			progress:IProgress=null, 
+			dataProgress:IProgress=null, 
+			viewProgress:IProgress=null )
 		{
-			super( $progress, $dataProgress, $viewProgress );
+			super( progress, dataProgress, viewProgress );
 		}
 		
 		//---------------------------------------------------------------------

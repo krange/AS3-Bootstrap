@@ -27,14 +27,14 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.model
 		/**
 		 * Constructor
 		 * 
-		 * @param $name IProxy name
-		 * @param $data Data reference
-		 * @param $progress IProgress instance to track
+		 * @param name IProxy name
+		 * @param data Data reference
+		 * @param progress IProgress instance to track
 		 */
-		public function BaseProgressProxy( $name:String=null, $data:Object=null, $progress:IProgress=null )
+		public function BaseProgressProxy( name:String=null, data:Object=null, progress:IProgress=null )
 		{
-			super( $name, $data );
-			_progress = $progress;
+			super( name, data );
+			_progress = progress;
 		}
 		
 		/**
@@ -42,9 +42,9 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.common.model
 		 * 
 		 * @param value IProgress 
 		 */		
-		public function setProgress( $value:IProgress ):void
+		public function setProgress( value:IProgress ):void
 		{
-			_progress = $value;
+			_progress = value;
 		}
 		
 		//---------------------------------------------------------------------

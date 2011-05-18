@@ -22,14 +22,14 @@ package as3bootstrap.common.progress
 		 * @param id An identifier for the progress instance
 		 * @return An initialized IProgress instance
 		 */
-		function createChildLoadable( $weight:Number = 1, $id:String = null ):IProgress;
+		function createChildLoadable( weight:Number = 1, id:String = null ):IProgress;
 		
 		/**
 		 * Add a child IProgress instance to a child list of this item
 		 * 
 		 * @param progress IProgress to add
 		 */ 
-		function addChildLoadable( $progress:IProgress ):void;
+		function addChildLoadable( progress:IProgress ):void;
 		
 		/**
 		 * Retrieve a child progress instance by it's ID
@@ -38,7 +38,7 @@ package as3bootstrap.common.progress
 		 * @return IProgress instance retrieved. undefined if not a valid child 
 		 * 					 instance
 		 */ 
-		function retrieveChildLoadable( $id:String ):IProgress;
+		function retrieveChildLoadable( id:String ):IProgress;
 			
 		/**
 		 * Check to see if the provided <code>IProgress</code> instance is a
@@ -47,7 +47,7 @@ package as3bootstrap.common.progress
 		 * @param id ID to search for
 		 * @return Boolean
 		 */ 
-		function isChildLoadable( $instance:IProgress ):Boolean;
+		function isChildLoadable( instance:IProgress ):Boolean;
 		
 		/**
 		 * Checks to see if this current <code>IProgress</code> instance has 
@@ -63,7 +63,7 @@ package as3bootstrap.common.progress
 		 * @param id ID to search for
 		 * @return Boolean <code>true</code> if removed successfully
 		 */ 
-		function removeChildLoadable( $id:String ):Boolean;
+		function removeChildLoadable( id:String ):Boolean;
 		
 		/**
 		 * Forces progress to complete itself. This is useful, for example,
@@ -78,7 +78,7 @@ package as3bootstrap.common.progress
 		 * 
 		 * @param amount Amount to set
 		 */ 
-		function setAmountLoaded( $amount:Number ):void;
+		function setAmountLoaded( amount:Number ):void;
 		
 		/** 
 		 * Returns the total amount loaded of either this item
@@ -98,7 +98,7 @@ package as3bootstrap.common.progress
 		 * 
 		 * @param id ID to set
 		 */ 
-		function setId( $id:String ):void;
+		function setId( id:String ):void;
 		
 		/** 
 		 * @return String ID of the progress item 

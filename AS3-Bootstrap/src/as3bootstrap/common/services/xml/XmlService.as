@@ -37,11 +37,11 @@ package as3bootstrap.common.services.xml
         /**
          * Constructor
          *
-         * @param $progress <code>IProgress</code> instance
+         * @param progress <code>IProgress</code> instance
          */
-        public function XmlService( $progress:IProgress = null )
+        public function XmlService( progress:IProgress = null )
         {
-            super( $progress );
+            super( progress );
             init();
         }
 
@@ -52,9 +52,9 @@ package as3bootstrap.common.services.xml
 		/**
 		 * Load an XML resource from an <code>URLRequest</code>
 		 * 
-		 * @param $request URLRequest to load 
+		 * @param request URLRequest to load 
 		 */		
-		override public function loadWithUrlRequest( $request:URLRequest ):void
+		override public function loadWithUrlRequest( request:URLRequest ):void
 		{
 			// Since we are starting a new load request, remove any
 			// previous listeners
@@ -67,7 +67,7 @@ package as3bootstrap.common.services.xml
 			addListeners();
 			
 			// Load it!
-			_loader.load( $request );
+			_loader.load( request );
 		}
 		
         //---------------------------------------------------------------------
@@ -79,12 +79,12 @@ package as3bootstrap.common.services.xml
 		/**
 		 * Parse the data result
 		 * 
-		 * @param $xml XML result
+		 * @param xml XML result
 		 */
-		protected function parse( $xml:XML ):void 
+		protected function parse( xml:XML ):void 
 		{
 			// Set the data object
-			_data = $xml;
+			_data = xml;
 		}
 		
 		/**
@@ -128,9 +128,9 @@ package as3bootstrap.common.services.xml
 		
 		/**
 		 * @private 
-		 * @param $event <code>Event.COMPLETE</code>
+		 * @param event <code>Event.COMPLETE</code>
 		 */		
-		protected function onLoadXmlComplete( $event:Event ):void
+		protected function onLoadXmlComplete( event:Event ):void
 		{	
 			// Remove listeners
 			removeListeners();
@@ -147,36 +147,36 @@ package as3bootstrap.common.services.xml
 		
 		/**
 		 * @private
-		 * @param $event <code>ProgressEvent.PROGRESS</code> 
+		 * @param event <code>ProgressEvent.PROGRESS</code> 
 		 */		
-		protected function onLoadXmlProgress( $event:ProgressEvent ):void
+		protected function onLoadXmlProgress( event:ProgressEvent ):void
 		{	
 			// Update our progress amount
-			progress.setAmountLoaded( $event.bytesLoaded / $event.bytesTotal );
+			progress.setAmountLoaded( event.bytesLoaded / event.bytesTotal );
 		}
 		
 		/**
 		 * @private 
-		 * @param $event <code>IOErrorEvent.IO_ERROR</code>
+		 * @param event <code>IOErrorEvent.IO_ERROR</code>
 		 */		
-		protected function onLoadXmlIOError( $event:IOErrorEvent ):void
+		protected function onLoadXmlIOError( event:IOErrorEvent ):void
 		{
 			// Remove listeners
 			removeListeners();
 			
-			errored.dispatch( $event );
+			errored.dispatch( event );
 		}
 		
 		/**
 		 * @private 
-		 * @param $event <code>SecurityErrorEvent.SECURITY_ERROR</code>
+		 * @param event <code>SecurityErrorEvent.SECURITY_ERROR</code>
 		 */
-		protected function onLoadXmlSecurityError( $event:SecurityErrorEvent ):void
+		protected function onLoadXmlSecurityError( event:SecurityErrorEvent ):void
 		{
 			// Remove listeners
 			removeListeners();
 			
-			errored.dispatch( $event );
+			errored.dispatch( event );
 		}
 		
 		//----------------------------------
@@ -227,11 +227,11 @@ package as3bootstrap.common.services.xml
          * @private
          * Set the loader
 		 * 
-		 * @param $value URLLoader instance to set
+		 * @param value URLLoader instance to set
          */
-        protected function set loader( $value:URLLoader ):void
+        protected function set loader( value:URLLoader ):void
         {
-            _loader = $value;
+            _loader = value;
 		}
 		
 		/**

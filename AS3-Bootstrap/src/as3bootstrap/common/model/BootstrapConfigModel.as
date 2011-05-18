@@ -30,9 +30,9 @@ package as3bootstrap.common.model
 		/**
 		 * @inheritDoc
 		 */		
-		public function BootstrapConfigModel( $progress:IProgress )
+		public function BootstrapConfigModel( progress:IProgress )
 		{
-			super($progress);
+			super(progress);
 		}
 		
 		/**
@@ -40,12 +40,12 @@ package as3bootstrap.common.model
 		 * 
 		 * @param url URL string
 		 */		
-		public function load( $url:String ):void
+		public function load( url:String ):void
 		{
-			if( $url && 
-				$url.length > 0 )
+			if( url && 
+				url.length > 0 )
 			{
-				_service.loadWithUrl( $url );
+				_service.loadWithUrl( url );
 			}
 			else
 			{
@@ -190,11 +190,11 @@ package as3bootstrap.common.model
 		/**
 		 * Set the service for the config model
 		 * 
-		 * @param $value <code>IXmlService</code> to set 
+		 * @param value <code>IXmlService</code> to set 
 		 */		
-		protected function set service( $value:IXmlService ):void
+		protected function set service( value:IXmlService ):void
 		{
-			_service = $value;
+			_service = value;
 		}
 	}
 }

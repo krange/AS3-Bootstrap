@@ -16,7 +16,7 @@ package as3bootstrap.common.model
 		 * 
 		 * @param url URL request
 		 */		
-		function load( $url:String ):void;
+		function load( url:String ):void;
 		
 		/**
 		 * The loaded XML data from the service

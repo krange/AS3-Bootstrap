@@ -35,35 +35,35 @@ package as3bootstrap.common.utils
 		/** 
 		 * Constructor
 		 * 
-		 * @param $name Name of the dependency tracker
+		 * @param name Name of the dependency tracker
 		 */ 
-		public function Dependency( $name:String = null )
+		public function Dependency( name:String = null )
 		{
-			_cName = $name;
+			_cName = name;
 			_dependencies = new Array();
 		}
 		
 		/**
 		 * Add a dependency
 		 * 
-		 * @param $key Dependency to be added
+		 * @param key Dependency to be added
 		 */ 
-		public function addDependancy( $key:Object ):void
+		public function addDependancy( key:Object ):void
 		{
-			_dependencies.push( $key );
+			_dependencies.push( key );
 		}
 		
 		/**
 		 * Retrieves a dependency
 		 * 
-		 * @param $key Dependency to be retrieved
+		 * @param key Dependency to be retrieved
 		 */ 
-		public function retrieveDependency( $key:Object ):Object
+		public function retrieveDependency( key:Object ):Object
 		{
 			var count : Number = _dependencies.length;
 			while( count-- ) 
 			{
-				if( _dependencies[count] == $key ) 
+				if( _dependencies[count] == key ) 
 				{
 					return _dependencies[count];
 					break;
@@ -84,14 +84,14 @@ package as3bootstrap.common.utils
 		 * Sets a dependency as loaded and calls checkDependenciesLoaded()
 		 * to check if other dependencies are still loading
 		 * 
-		 * @param $key Dependency to be removed
+		 * @param key Dependency to be removed
 		 */ 
-		public function setLoadDependencyMet( $key:Object ):void
+		public function setLoadDependencyMet( key:Object ):void
 		{
 			var count : Number = _dependencies.length;
 			while( count-- ) 
 			{
-				if( _dependencies[count] == $key ) 
+				if( _dependencies[count] == key ) 
 				{
 					_dependencies.splice( count, 1 );
 					break;
@@ -103,16 +103,16 @@ package as3bootstrap.common.utils
 		/**
 		 * Checks a dependency to see if it has loaded
 		 * 
-		 * @param $key Dependency tracked item to check
+		 * @param key Dependency tracked item to check
 		 * 
 		 * @return Boolean value on whether value exists or not
 		 */ 
-		public function checkDependency( $key:Object ):Boolean
+		public function checkDependency( key:Object ):Boolean
 		{
 			var count : Number = _dependencies.length;
 			while( count-- ) 
 			{
-				if( _dependencies[count] == $key ) 
+				if( _dependencies[count] == key ) 
 				{
 					return true;
 				}

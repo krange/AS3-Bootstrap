@@ -24,9 +24,9 @@ package as3bootstrap.common
 		 * bootstrap. See the <code>addCustomLoadResource</code> method for 
 		 * more information.
 		 * 
-		 * @param $parameters Root level LoaderInfo parameters object
+		 * @param parameters Root level LoaderInfo parameters object
 		 */		
-		function start( $parameters:Object ):void;
+		function start( parameters:Object ):void;
 		
 		/**
 		 * A convienence method to add a load resource to our data load
@@ -41,12 +41,12 @@ package as3bootstrap.common
 		 * directly after the <code>configLoaded</code> 
 		 * <code>ISignalOwner</code> is dispatched. Anytime afterwards,.</p>
 		 * 
-		 * @param $externalProgress IProgress instance
+		 * @param externalProgress IProgress instance
 		 * 
 		 * @return Boolean Return true if load resource was added. Return
 		 * 				   false if load resource was not added.
 		 */		
-		function addCustomLoadResource( $externalProgress:IProgress ):Boolean;
+		function addCustomLoadResource( externalProgress:IProgress ):Boolean;
 		
 		/** 
 		 * Application load progress instance. This is the top level progress

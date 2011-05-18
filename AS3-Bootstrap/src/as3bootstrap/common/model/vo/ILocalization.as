@@ -16,7 +16,7 @@ package as3bootstrap.common.model.vo
 		 * @param data A XML object containing localized elements to add to 
 		 * 			   the VO
 		 */ 
-		function addLocalizedValues( $data:XML ):void;
+		function addLocalizedValues( data:XML ):void;
 		
 		/**
 		 * Lookup a value by its name
@@ -24,7 +24,7 @@ package as3bootstrap.common.model.vo
 		 * @param name 	a name or key to look up a localized value by
 		 * @return 		String Value returned, null if nothing was found
 		 */ 
-		function getLocalizedValue( $name:String ):String;
+		function getLocalizedValue( name:String ):String;
 		
 		/**
 		 * Factory type method for creating named resource bundles on the fly
@@ -35,7 +35,7 @@ package as3bootstrap.common.model.vo
 		 * @return		an <code>IResourceBundle</code>
 		 * @throws		an Error if lang or locale is not defined
 		 */
-		function getResourceBundle( $name:String ):IResourceBundle;
+		function getResourceBundle( name:String ):IResourceBundle;
 		
 		function get lang():String;
 		function set lang( value:String ):void;

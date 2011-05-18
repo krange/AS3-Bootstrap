@@ -30,12 +30,12 @@ package org.robotlegs.utilities.as3bootstrap.common.model
 		/**
 		 * Constructor
 		 * 
-		 * @param $bootstrap <code>IBootstrap</code> object
+		 * @param bootstrap <code>IBootstrap</code> object
 		 */
-		public function BootstrapModel( $bootstrap:IBootstrap )
+		public function BootstrapModel( bootstrap:IBootstrap )
 		{
 			super();
-			_bootstrap = $bootstrap;
+			_bootstrap = bootstrap;
 			init();
 		}
 		
@@ -99,9 +99,9 @@ package org.robotlegs.utilities.as3bootstrap.common.model
 		/**
 		 * Callback for when the bootstrap config load has errored
 		 * 
-		 * @param $event <code>Event</code> 
+		 * @param event <code>Event</code> 
 		 */		
-		protected function onConfigErrored( $event:Event ):void
+		protected function onConfigErrored( event:Event ):void
 		{
 			dispatch( new BootstrapStatusEvent( BootstrapStatusEvent.CONFIG_LOAD_ERROR ) );
 		}
@@ -109,9 +109,9 @@ package org.robotlegs.utilities.as3bootstrap.common.model
 		/**
 		 * Callback for when a bootstrap load resource has errored
 		 *  
-		 * @param $event <code>Event</code>
+		 * @param event <code>Event</code>
 		 */		
-		protected function onBootstrapResourceErrored( $event:Event ):void
+		protected function onBootstrapResourceErrored( event:Event ):void
 		{
 			dispatch( new BootstrapStatusEvent( BootstrapStatusEvent.BOOTSTRAP_RESOURCE_ERROR ) );
 		}

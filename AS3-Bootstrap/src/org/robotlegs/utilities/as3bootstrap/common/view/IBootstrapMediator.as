@@ -18,9 +18,9 @@ package org.robotlegs.utilities.as3bootstrap.common.view
 		/**
 		 * Set the <code>IProgress</code> instance
 		 * 
-		 * @param $progress <code>IProgress</code> instance to set
+		 * @param progress <code>IProgress</code> instance to set
 		 */		
-		function set progress( $progress:IProgress ):void;
+		function set progress( progress:IProgress ):void;
 		
 		/**
 		 * Get the <code>IProgress</code> instance

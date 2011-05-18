@@ -30,9 +30,9 @@ package org.puremvc.as3.multicore.utilities.as3bootstrap.flex.spark.controller
 		/**
 		 * @inheritDoc 
 		 */		
-		override public function execute( $notification:INotification ):void
+		override public function execute( notification:INotification ):void
 		{
-			super.execute( $notification );
+			super.execute( notification );
 		}
 		
 		//---------------------------------------------------------------------

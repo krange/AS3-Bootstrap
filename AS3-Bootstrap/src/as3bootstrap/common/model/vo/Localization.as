@@ -35,11 +35,11 @@ package as3bootstrap.common.model.vo
 		 * 
 		 * @param data	an XML object containing the data nodes
 		 */
-		public function Localization( $data:XML = null )
+		public function Localization( data:XML = null )
 		{ 
-			if( $data )
+			if( data )
 			{
-				addLocalizedValues( $data );
+				addLocalizedValues( data );
 			}
 		}
 		
@@ -50,9 +50,9 @@ package as3bootstrap.common.model.vo
 		 * @param data A XML object containing localized elements to add to 
 		 * 			   the VO
 		 */ 
-		public function addLocalizedValues( $data:XML ):void
+		public function addLocalizedValues( data:XML ):void
 		{
-			var children : XMLList = $data.*;
+			var children : XMLList = data.*;
 			for each( var child : XML in children )
 			{
 				_dictionary[ child.name().localName ] = child.toString();
@@ -65,9 +65,9 @@ package as3bootstrap.common.model.vo
 		 * @param name 	a name or key to look up a localized value by
 		 * @return 		String Value returned, null if nothing was found
 		 */ 
-		public function getLocalizedValue( $name:String ):String
+		public function getLocalizedValue( name:String ):String
 		{
-			return _dictionary[ $name ];			
+			return _dictionary[ name ];			
 		}
 		
 		/**

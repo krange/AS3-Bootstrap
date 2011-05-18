@@ -36,11 +36,11 @@ package as3bootstrap.common.model
 		/**
 		 * Constructor
 		 * 
-		 * @param $progress <code>IProgress</code> instance
+		 * @param progress <code>IProgress</code> instance
 		 */
-		public function BootstrapLocalizationModel( $progress:IProgress )
+		public function BootstrapLocalizationModel( progress:IProgress )
 		{
-			super($progress);
+			super(progress);
 		}
 		
 		/**
@@ -48,16 +48,16 @@ package as3bootstrap.common.model
 		 * 
 		 * @param url URL request
 		 */		
-		public function load( $data:XMLList ):void
+		public function load( data:XMLList ):void
 		{
-			if( $data && 
-				$data.length() > 0 )
+			if( data && 
+				data.length() > 0 )
 			{
 				services = new Array();
 				_dependency = new Dependency();
 				_dependency.addEventListener( Event.COMPLETE, onAllServicesLoaded, false, 0, true );
 				
-				var xml_len : int = $data.length();
+				var xml_len : int = data.length();
 				for( var i : int = 0; i < xml_len; i++ )
 				{
 					var service_progress : IProgress = new Progress();
@@ -68,7 +68,7 @@ package as3bootstrap.common.model
 					_dependency.addDependancy( service );
 					service.loaded.add( onServiceLoaded );
 					service.errored.add( onServiceErrored );
-					service.loadWithUrl( $data[i].@url );
+					service.loadWithUrl( data[i].@url );
 				}
 			}
 		}
@@ -80,13 +80,13 @@ package as3bootstrap.common.model
 		 * @param id ID of the XML service node
 		 * @return ILocalization
 		 */		
-		public function getLocalizationById( $id:String ):ILocalization
+		public function getLocalizationById( id:String ):ILocalization
 		{
 			var locLen : int = services.length;
 			while( locLen-- )
 			{
 				var service : IXmlService = services[locLen] as IXmlService;
-				if( service.data.@id == $id )
+				if( service.data.@id == id )
 				{
 					return new Localization( service.data );
 				}
@@ -124,7 +124,7 @@ package as3bootstrap.common.model
 		 *  
 		 * @param event <code>Event.COMPLETE</code>
 		 */		
-		protected function onAllServicesLoaded( $event:Event ):void
+		protected function onAllServicesLoaded( event:Event ):void
 		{
 			// Remove the event listener
 			_dependency.removeEventListener( Event.COMPLETE, onAllServicesLoaded );
@@ -140,10 +140,10 @@ package as3bootstrap.common.model
 		 *  
 		 * @param service <code>IXmlService</code>
 		 */		
-		protected function onServiceLoaded( $service:IXmlService ):void
+		protected function onServiceLoaded( service:IXmlService ):void
 		{
-			_localizations.addLocalizedValues( $service.data );
-			_dependency.setLoadDependencyMet( $service );
+			_localizations.addLocalizedValues( service.data );
+			_dependency.setLoadDependencyMet( service );
 		}
 		
 		/**
@@ -152,9 +152,9 @@ package as3bootstrap.common.model
 		 *  
 		 * @param event <code>Event</code>
 		 */		
-		protected function onServiceErrored( $event:Event ):void
+		protected function onServiceErrored( event:Event ):void
 		{
-			errored.dispatch( $event );
+			errored.dispatch( event );
 		}
 		
 		//---------------------------------------------------------------------
@@ -186,11 +186,11 @@ package as3bootstrap.common.model
 		/**
 		 * Set the services holder
 		 * 
-		 * @param $value Array 
+		 * @param value Array 
 		 */		
-		protected function set services( $value:Array ):void
+		protected function set services( value:Array ):void
 		{
-			_services = $value;
+			_services = value;
 		}
 	}
 }

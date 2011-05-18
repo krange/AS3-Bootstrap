@@ -20,16 +20,16 @@ package as3bootstrap.common.services
 		/**
 		 * Load an XML resource from a <code>String</code> URL
 		 * 
-		 * @param $url String representation of the URL
+		 * @param url String representation of the URL
 		 */
-		function loadWithUrl( $url:String ):void;
+		function loadWithUrl( url:String ):void;
 		
 		/**
 		 * Load an XML resource from an <code>URLRequest</code>
 		 * 
-		 * @param $request URLRequest to load 
+		 * @param request URLRequest to load 
 		 */		
-		function loadWithUrlRequest( $request:URLRequest ):void;
+		function loadWithUrlRequest( request:URLRequest ):void;
 		
 		/**
 		 * Signal which is dispatched when the service has loaded 

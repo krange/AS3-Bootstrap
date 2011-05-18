@@ -34,9 +34,9 @@ package as3bootstrap.flex.spark.services.css
 		/**
 		 * @inheritDoc
 		 */
-		public function FlexSparkStylesheetService( $progress:IProgress = null )
+		public function FlexSparkStylesheetService( progress:IProgress = null )
 		{
-			super($progress);
+			super(progress);
 		}
 		
 		//----------------------------------
@@ -46,10 +46,10 @@ package as3bootstrap.flex.spark.services.css
 		/**
 		 * @inheritDoc
 		 */		
-		override public function loadWithUrlRequest( $request:URLRequest ):void
+		override public function loadWithUrlRequest( request:URLRequest ):void
 		{
 			var styleManager : IStyleManager2 = StyleManager.getStyleManager( null );
-			loader = styleManager.loadStyleDeclarations2( $request.url, true, ApplicationDomain.currentDomain );
+			loader = styleManager.loadStyleDeclarations2( request.url, true, ApplicationDomain.currentDomain );
 			loader.addEventListener( StyleEvent.ERROR, handleCSSLoadError );
 			loader.addEventListener( StyleEvent.PROGRESS, handleCSSLoadProgress );
 			loader.addEventListener( StyleEvent.COMPLETE, handleCSSLoadComplete );
@@ -68,19 +68,19 @@ package as3bootstrap.flex.spark.services.css
 		/**
 		 * Called when the external css file has loaded
 		 * 
-		 * @param $event StyleEvent.PROGRESS
+		 * @param event StyleEvent.PROGRESS
 		 */
-		protected function handleCSSLoadProgress( $event:StyleEvent ):void
+		protected function handleCSSLoadProgress( event:StyleEvent ):void
 		{
-			progress.setAmountLoaded( $event.bytesLoaded / $event.bytesTotal );
+			progress.setAmountLoaded( event.bytesLoaded / event.bytesTotal );
 		}
 		
 		/**
 		 * Called when the external css file has loaded
 		 * 
-		 * @param $event Event.COMPLETE
+		 * @param event Event.COMPLETE
 		 */
-		protected function handleCSSLoadComplete( $event:StyleEvent ):void
+		protected function handleCSSLoadComplete( event:StyleEvent ):void
 		{
 			loader.removeEventListener( StyleEvent.ERROR, handleCSSLoadError );
 			loader.removeEventListener( StyleEvent.PROGRESS, handleCSSLoadProgress );
@@ -94,15 +94,15 @@ package as3bootstrap.flex.spark.services.css
 		/**
 		 * Called when the external css file has errored during load
 		 * 
-		 * @param $event Event.ERROR
+		 * @param event Event.ERROR
 		 */
-		protected function handleCSSLoadError( $event:StyleEvent ) : void
+		protected function handleCSSLoadError( event:StyleEvent ) : void
 		{
 			loader.removeEventListener( StyleEvent.ERROR, handleCSSLoadError );
 			loader.removeEventListener( StyleEvent.PROGRESS, handleCSSLoadProgress );
 			loader.removeEventListener( StyleEvent.COMPLETE, handleCSSLoadComplete );
 			
-			errored.dispatch( $event );
+			errored.dispatch( event );
 		}
 		
 		//---------------------------------------------------------------------
@@ -125,11 +125,11 @@ package as3bootstrap.flex.spark.services.css
 		 * @private
 		 * Set the loader
 		 * 
-		 * @param $value IEventDispatcher instance to set
+		 * @param value IEventDispatcher instance to set
 		 */
-		protected function set loader( $value:IEventDispatcher ):void
+		protected function set loader( value:IEventDispatcher ):void
 		{
-			_loader = $value;
+			_loader = value;
 		}
 	}
 }

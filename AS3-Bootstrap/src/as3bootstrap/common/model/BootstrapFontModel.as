@@ -34,9 +34,9 @@ package as3bootstrap.common.model
 		/**
 		 * @inheritDoc
 		 */		
-		public function BootstrapFontModel( $progress:IProgress )
+		public function BootstrapFontModel( progress:IProgress )
 		{
-			super($progress);
+			super(progress);
 		}
 		
 		/**
@@ -44,22 +44,22 @@ package as3bootstrap.common.model
 		 * 
 		 * @param url URL request
 		 */		
-		public function load( $data:XMLList ):void
+		public function load( data:XMLList ):void
 		{
-			if( $data && 
-				$data.length() > 0 )
+			if( data && 
+				data.length() > 0 )
 			{
 				services = new Array();
 				_dependency = new Dependency();
 				_dependency.addEventListener( Event.COMPLETE, onAllServicesLoaded, false, 0, true );
 				
-				var xml_len : int = $data.length();
+				var xml_len : int = data.length();
 				for( var i : int = 0; i < xml_len; i++ )
 				{
 					var service_progress : IProgress = new Progress();
 					var service : IFontService;
 					
-					var fontName : String = $data[i].@id;
+					var fontName : String = data[i].@id;
 					if( !checkFont( fontName ) )
 					{
 						if( fontName.length > 0 )
@@ -76,7 +76,7 @@ package as3bootstrap.common.model
 						_dependency.addDependancy( service );
 						service.loaded.add( onServiceLoaded );
 						service.errored.add( onServiceErrored );
-						service.loadWithUrl( $data[i].@url );
+						service.loadWithUrl( data[i].@url );
 					}
 				}
 			}
@@ -95,7 +95,7 @@ package as3bootstrap.common.model
 		 * @param name Name of font
 		 * @return Boolean False if not already loaded, true if yes
 		 */ 
-		protected function checkFont( $name:String ):Boolean
+		protected function checkFont( name:String ):Boolean
 		{
 			// Get all embedded fonts
 			var fonts : Array = Font.enumerateFonts();
@@ -103,7 +103,7 @@ package as3bootstrap.common.model
 			{
 				// Check to see if the Font name matches the one
 				// that is trying to be loaded, if so return true
-				if( fonts[i].fontName == $name ) 
+				if( fonts[i].fontName == name ) 
 				{
 					return true;
 				}
@@ -123,7 +123,7 @@ package as3bootstrap.common.model
 		 *  
 		 * @param event <code>Event.COMPLETE</code>
 		 */		
-		protected function onAllServicesLoaded( $event:Event ):void
+		protected function onAllServicesLoaded( event:Event ):void
 		{
 			// Remove the event listener
 			_dependency.removeEventListener( Event.COMPLETE, onAllServicesLoaded );
@@ -139,9 +139,9 @@ package as3bootstrap.common.model
 		 *  
 		 * @param service <code>IService</code>
 		 */		
-		protected function onServiceLoaded( $service:IService ):void
+		protected function onServiceLoaded( service:IService ):void
 		{
-			_dependency.setLoadDependencyMet( $service );
+			_dependency.setLoadDependencyMet( service );
 		}
 		
 		/**
@@ -150,9 +150,9 @@ package as3bootstrap.common.model
 		 *  
 		 * @param event <code>Event</code>
 		 */		
-		protected function onServiceErrored( $event:Event ):void
+		protected function onServiceErrored( event:Event ):void
 		{
-			errored.dispatch( $event );
+			errored.dispatch( event );
 		}
 		
 		//---------------------------------------------------------------------
@@ -174,11 +174,11 @@ package as3bootstrap.common.model
 		/**
 		 * Set the services holder
 		 * 
-		 * @param $value Array 
+		 * @param value Array 
 		 */		
-		protected function set services( $value:Array ):void
+		protected function set services( value:Array ):void
 		{
-			_services = $value;
+			_services = value;
 		}
 	}
 }

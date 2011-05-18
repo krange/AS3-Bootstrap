@@ -62,27 +62,27 @@ package org.robotlegs.utilities.as3bootstrap.common.view
 		/**
 		 * Callback for when bootstrap has loaded complete
 		 * 
-		 * @param $event <code>BootstrapStatusEvent</code>
+		 * @param event <code>BootstrapStatusEvent</code>
 		 */		
-		protected function onBootstrapLoadComplete( $event:BootstrapStatusEvent ):void
+		protected function onBootstrapLoadComplete( event:BootstrapStatusEvent ):void
 		{
 		}
 		
 		/**
 		 * Callback for when the application data has loaded complete
 		 * 
-		 * @param $event <code>BootstrapStatusEvent</code>
+		 * @param event <code>BootstrapStatusEvent</code>
 		 */	
-		protected function onDataLoadComplete( $event:BootstrapStatusEvent ):void
+		protected function onDataLoadComplete( event:BootstrapStatusEvent ):void
 		{
 		}
 		
 		/**
 		 * Callback for when the application has loaded complete
 		 * 
-		 * @param $event <code>BootstrapStatusEvent</code>
+		 * @param event <code>BootstrapStatusEvent</code>
 		 */	
-		protected function onApplicationLoadComplete( $event:BootstrapStatusEvent ):void
+		protected function onApplicationLoadComplete( event:BootstrapStatusEvent ):void
 		{
 		}
 		
@@ -95,11 +95,11 @@ package org.robotlegs.utilities.as3bootstrap.common.view
 		/**
 		 * Set the <code>IProgress</code> instance
 		 * 
-		 * @param $progress <code>IProgress</code> instance to set
+		 * @param progress <code>IProgress</code> instance to set
 		 */
-		public function set progress( $progress:IProgress ):void
+		public function set progress( progress:IProgress ):void
 		{
-			_progress = $progress;
+			_progress = progress;
 		}
 		
 		/**
