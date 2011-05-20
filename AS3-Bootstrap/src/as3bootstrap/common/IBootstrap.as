@@ -61,6 +61,12 @@ package as3bootstrap.common
 		function get dataProgress():IProgress;
 		
 		/**
+		 * <code>IProgress</code> instance for tracking the bootstrap portion of 
+		 * loading. Must be a direct child of <code>_dataProgress</code>
+		 */
+		function get bootstrapProgress():IProgress;
+		
+		/**
 		 * <code>IProgress</code> instance for tracking the view portion of 
 		 * loading. Must be a direct child of <code>_appProgress</code>
 		 */		

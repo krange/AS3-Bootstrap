@@ -802,6 +802,15 @@ package as3bootstrap.common
 		}
 		
 		/**
+		 * <code>IProgress</code> instance for tracking the bootstrap portion of 
+		 * loading. Must be a direct child of <code>_dataProgress</code>
+		 */
+		public function get bootstrapProgress():IProgress
+		{
+			return _bootstrapProgress;
+		}
+		
+		/**
 		 * <code>IProgress</code> instance for tracking the view portion of 
 		 * loading. Must be a direct child of <code>_appProgress</code>
 		 */		
@@ -909,16 +918,6 @@ package as3bootstrap.common
 		//----------------------------------
 		//  Protected
 		//----------------------------------
-		
-		/**
-		 * @private
-		 * <code>IProgress</code> instance for tracking the bootstrap portion of 
-		 * loading. Must be a direct child of <code>_dataProgress</code>
-		 */
-		protected function get bootstrapProgress():IProgress
-		{
-			return _bootstrapProgress;
-		}
 		
 		/**
 		 * @private
