@@ -11,7 +11,9 @@ In the Downloads section you will find SWCs built currently for the 3.6.0 and 4.
 
 ## Dependencies
 
-The following dependencies are required:
+The following dependencies are required and not directly built into the release SWCs to provide the user the ability to use different versions if needed.
+
+All versions:
 
 * [AS3 Signals](https://github.com/robertpenner/as3-signals/) -  version 0.8 or higher
 
