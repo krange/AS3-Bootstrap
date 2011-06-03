@@ -9,6 +9,16 @@ Bootstrap uses AS3 Signals for dispatching of all events. The PureMVC version is
 
 In the Downloads section you will find SWCs built currently for the 3.6.0 and 4.1.0 Flex SDKs. I will be adding additional SDK builds once I get a chance to test. If you require a different SDK, you can download the source and add SDKs via the ANT script.
 
+## Dependencies
+
+The following dependencies are required. 
+* [AS3 Signals](https://github.com/robertpenner/as3-signals/) -  version 0.8 or higher
+
+For PureMVC applications, the following are required:
+* [PureMVC](http://trac.puremvc.org/PureMVC_AS3_MultiCore)
+* [Fabrication](http://code.google.com/p/fabrication/)
+* [Pipes](http://trac.puremvc.org/Utility_AS3_MultiCore_Pipes)
+
 ## What does Bootstrap provide?
 
 The main function of Bootstrap is to simplify the process to load common external resources through an XML file. It also provides the user with a few helpful additional utility classes like integrating preloaders in Flex as well as progress classes integrated with the load.
