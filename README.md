@@ -11,10 +11,12 @@ In the Downloads section you will find SWCs built currently for the 3.6.0 and 4.
 
 ## Dependencies
 
-The following dependencies are required. 
+The following dependencies are required:
+
 * [AS3 Signals](https://github.com/robertpenner/as3-signals/) -  version 0.8 or higher
 
 For PureMVC applications, the following are required:
+
 * [PureMVC](http://trac.puremvc.org/PureMVC_AS3_MultiCore)
 * [Fabrication](http://code.google.com/p/fabrication/)
 * [Pipes](http://trac.puremvc.org/Utility_AS3_MultiCore_Pipes)
