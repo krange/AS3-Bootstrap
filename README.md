@@ -17,7 +17,7 @@ The following dependencies are required:
 
 For PureMVC applications, the following are required:
 
-* [PureMVC](http://trac.puremvc.org/PureMVC_AS3_MultiCore)
+* [PureMVC](http://trac.puremvc.org/PureMVC_AS3_MultiCore) - Multi-Core
 * [Fabrication](http://code.google.com/p/fabrication/)
 * [Pipes](http://trac.puremvc.org/Utility_AS3_MultiCore_Pipes)
 
