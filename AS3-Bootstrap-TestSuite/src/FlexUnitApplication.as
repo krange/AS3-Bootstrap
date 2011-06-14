@@ -1,3 +1,15 @@
+/**
+ * ------------------------------------------------------------
+ * Copyright (c) 2011 Dareville.
+ * This software is the proprietary information of Dareville.
+ * All Right Reserved.
+ * ------------------------------------------------------------
+ *
+ * SVN revision information:
+ * @version $Revision: $:
+ * @author  $Author: $:
+ * @date    $Date: $:
+ */
 package
 {
 	import Array;
@@ -10,24 +22,20 @@ package
 	
 	/**
 	 * FlexUnitApplication
-	 *
-	 * @langversion ActionScript 3.0
-	 * @playerversion Flash 9.0.124
 	 * 
-	 * @author krisrange 
+	 * @author krisrange
 	 */
 	public class FlexUnitApplication extends Sprite
 	{
-		//----------------------------------
-		//  UI components
-		//----------------------------------
-		
 		//---------------------------------------------------------------------
 		//
 		//  Public methods
 		//
 		//---------------------------------------------------------------------
 		
+		/**
+		 * Constructor
+		 */
 		public function FlexUnitApplication()
 		{
 			onCreationComplete();
@@ -37,7 +45,7 @@ package
 		{
 			var testRunner:FlexUnitTestRunnerUIAS=new FlexUnitTestRunnerUIAS();
 			this.addChild(testRunner); 
-			testRunner.runWithFlexUnit4Runner(currentRunTestSuite(), "AS3-Bootstrap-Test-Suite");
+			testRunner.runWithFlexUnit4Runner(currentRunTestSuite(), "AS3-Bootstrap-TestSuite");
 		}
 		
 		public function currentRunTestSuite():Array

@@ -5,7 +5,7 @@
 	<property file="${basedir}/build/users/${user.name}.properties"/>
 	<property file="${build.dir}/project.info"/>
 	
-	<echo message="build.properties: ${build.dir}/build/users/${user.name}.properties" />
+	<echo message="build.properties: ${build.dir}/users/${user.name}.properties" />
 	<echo message="project.info: ${build.dir}/project.info" />
 	
 	<!-- FLEX TASKS -->

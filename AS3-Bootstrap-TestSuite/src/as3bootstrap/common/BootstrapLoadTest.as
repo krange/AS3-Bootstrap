@@ -45,11 +45,12 @@ package as3bootstrap.common
 		
 		[Test(async)]
 		/**
-		 * Test the bootstrap load process with a blank parameters provided. 
+		 * Test that bootstrap load complete fires during the load process 
+		 * with a blank parameters provided.
 		 * Result should be that the <code>bootstrapLoaded</code> and 
 		 * <code>dataLoaded</code> are dispatched.
 		 */		
-		public function testLoadWithBlankParameters():void
+		public function testLoadWithBlankParametersThatBootstrapLoadComplete():void
 		{
 			var parameters : Object = {};
 			_bootstrap = new Bootstrap();
@@ -57,7 +58,6 @@ package as3bootstrap.common
 			registerFailureSignal( this, _bootstrap.bootstrapResourceErrored );
 			registerFailureSignal( this, _bootstrap.configErrored );
 			handleSignal( this, _bootstrap.bootstrapLoaded, onBootstrapLoadComplete );
-			handleSignal( this, _bootstrap.dataLoaded, onDataLoadComplete );
 			
 			_bootstrap.start( parameters );
 			
@@ -65,6 +65,25 @@ package as3bootstrap.common
 			{
 				assert();
 			}
+		}
+		
+		[Test(async)]
+		/**
+		 * Test that data load complete fires during the load process 
+		 * with a blank parameters provided. 
+		 * Result should be that the <code>bootstrapLoaded</code> and 
+		 * <code>dataLoaded</code> are dispatched.
+		 */		
+		public function testLoadWithBlankParametersThatDataLoadComplete():void
+		{
+			var parameters : Object = {};
+			_bootstrap = new Bootstrap();
+			
+			registerFailureSignal( this, _bootstrap.bootstrapResourceErrored );
+			registerFailureSignal( this, _bootstrap.configErrored );
+			handleSignal( this, _bootstrap.dataLoaded, onDataLoadComplete );
+			
+			_bootstrap.start( parameters );
 			
 			function onDataLoadComplete( event:SignalAsyncEvent, data:Object ):void
 			{
@@ -74,11 +93,12 @@ package as3bootstrap.common
 		
 		[Test(async)]
 		/**
-		 * Test the bootstrap load process with a null parameters provided. 
+		 * Test that bootstrap load complete fires during the load process with 
+		 * a null parameters provided. 
 		 * Result should be that the <code>bootstrapLoaded</code> and 
 		 * <code>dataLoaded</code> are dispatched.
 		 */		
-		public function testLoadWithNullParameters():void
+		public function testLoadWithNullParametersThatBootstrapLoadComplete():void
 		{
 			var parameters : Object;
 			_bootstrap = new Bootstrap();
@@ -86,7 +106,6 @@ package as3bootstrap.common
 			registerFailureSignal( this, _bootstrap.bootstrapResourceErrored );
 			registerFailureSignal( this, _bootstrap.configErrored );
 			handleSignal( this, _bootstrap.bootstrapLoaded, onBootstrapLoadComplete );
-			handleSignal( this, _bootstrap.dataLoaded, onDataLoadComplete );
 			
 			_bootstrap.start( parameters );
 			
@@ -94,6 +113,25 @@ package as3bootstrap.common
 			{
 				assert();
 			}
+		}
+		
+		[Test(async)]
+		/**
+		 * Test that data load complete fires during the load process with a 
+		 * null parameters provided. 
+		 * Result should be that the <code>bootstrapLoaded</code> and 
+		 * <code>dataLoaded</code> are dispatched.
+		 */		
+		public function testLoadWithNullParametersThatDataLoadComplete():void
+		{
+			var parameters : Object;
+			_bootstrap = new Bootstrap();
+			
+			registerFailureSignal( this, _bootstrap.bootstrapResourceErrored );
+			registerFailureSignal( this, _bootstrap.configErrored );
+			handleSignal( this, _bootstrap.dataLoaded, onDataLoadComplete );
+			
+			_bootstrap.start( parameters );
 			
 			function onDataLoadComplete( event:SignalAsyncEvent, data:Object ):void
 			{
@@ -126,10 +164,10 @@ package as3bootstrap.common
 		
 		[Test(async)]
 		/**
-		 * Test the bootstrap load process with an incorrect URL provided. 
-		 * Result should be that the <code>configErrored</code> is dispatched.
+		 * Test that data load complete fires during the load process with a 
+		 * correct URL provided.
 		 */		
-		public function testLoadWithConfigUrl():void
+		public function testLoadWithConfigUrlWithBootstrapLoadComplete():void
 		{
 			var parameters : Object = {};
 			parameters.baseUrl = "";
@@ -139,7 +177,6 @@ package as3bootstrap.common
 			registerFailureSignal( this, _bootstrap.bootstrapResourceErrored );
 			registerFailureSignal( this, _bootstrap.configErrored );
 			handleSignal( this, _bootstrap.bootstrapLoaded, onBootstrapLoadComplete );
-			handleSignal( this, _bootstrap.dataLoaded, onDataLoadComplete );
 			
 			_bootstrap.start( parameters );
 			
@@ -147,10 +184,77 @@ package as3bootstrap.common
 			{
 				assert();
 			}
+		}
+		
+		[Test(async)]
+		/**
+		 * Test that data load complete fires during the load process with a 
+		 * correct URL provided.
+		 */		
+		public function testLoadWithConfigUrlWithDataLoadComplete():void
+		{
+			var parameters : Object = {};
+			parameters.baseUrl = "";
+			parameters.configXmlUrl = "xml/config-nodata.xml";
+			_bootstrap = new Bootstrap();
+			
+			registerFailureSignal( this, _bootstrap.bootstrapResourceErrored );
+			registerFailureSignal( this, _bootstrap.configErrored );
+			handleSignal( this, _bootstrap.dataLoaded, onDataLoadComplete );
+			
+			_bootstrap.start( parameters );
 			
 			function onDataLoadComplete( event:SignalAsyncEvent, data:Object ):void
 			{
 				assert();
+			}
+		}
+		
+		[Test(async)]
+		/**
+		 * Test that that even though no localization files are loaded, the 
+		 * localization object is not null
+		 */		
+		public function testLoadWithConfigUrlWithNoLocalization():void
+		{
+			var parameters : Object = {};
+			parameters.baseUrl = "";
+			parameters.configXmlUrl = "xml/config-nodata.xml";
+			_bootstrap = new Bootstrap();
+			
+			registerFailureSignal( this, _bootstrap.bootstrapResourceErrored );
+			registerFailureSignal( this, _bootstrap.configErrored );
+			handleSignal( this, _bootstrap.dataLoaded, onDataLoadComplete );
+			
+			_bootstrap.start( parameters );
+			
+			function onDataLoadComplete( event:SignalAsyncEvent, data:Object ):void
+			{
+				assertNotNull( _bootstrap.localizationModel.localizations );
+			}
+		}
+		
+		[Test(async)]
+		/**
+		 * Test that that even though no styles files are loaded, the styles
+		 * object is not null
+		 */		
+		public function testLoadWithConfigUrlWithNoStyles():void
+		{
+			var parameters : Object = {};
+			parameters.baseUrl = "";
+			parameters.configXmlUrl = "xml/config-nodata.xml";
+			_bootstrap = new Bootstrap();
+			
+			registerFailureSignal( this, _bootstrap.bootstrapResourceErrored );
+			registerFailureSignal( this, _bootstrap.configErrored );
+			handleSignal( this, _bootstrap.dataLoaded, onDataLoadComplete );
+			
+			_bootstrap.start( parameters );
+			
+			function onDataLoadComplete( event:SignalAsyncEvent, data:Object ):void
+			{
+				assertNotNull( _bootstrap.stylesheetModel.stylesheets );
 			}
 		}
 		
