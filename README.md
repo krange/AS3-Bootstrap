@@ -56,7 +56,7 @@ Please note that if you pass in a *baseUrl* flashVar parameter, Bootstrap will a
 <stylesheet url="swf/css/styles.swf" />
 ```
 
-   - **font** – Reference to your externalized SWF compiled font file. The *name* property here completely **optional** and is the fully-qualified path of the font class (ex. as3bootstrap.fonts._Arial ).
+   - **font** – Reference to your externalized SWF compiled font file. The *name* property here **optional** if you are registering the font in your font SWF. If you want Bootstrap to register the font for you, the *name* property is the fully-qualified path of the font class (ex. as3bootstrap.fonts._Arial ).
 
 You can also reference a externalized Flash IDE SWF with bitmap fonts embedded using the same method as currently it's impossible to compile bitmap fonts from outside the Flash IDE. 
 
