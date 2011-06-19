@@ -38,7 +38,7 @@
 		<echo message="============================================="/>
 	</target>
 	<target name="precompile" depends="compiletests,projectinfo,initcleanfiles,copyClasses" />
-	<target name="compiletests" depends="initcleantests,runtests,finishcleantests" />
+	<target name="compiletests" depends="runtests" />
 	<target name="compileswcs" depends="bootstrap_standalone_spark, bootstrap_standalone_moxie, bootstrap_puremvc_flex_spark, bootstrap_puremvc_flex_moxie, bootstrap_robotlegs_spark, bootstrap_robotlegs_moxie" description="Compile all app swcs" />
 	<target name="postcompile" depends="finishcleanfiles" />
 	
@@ -70,15 +70,8 @@
 		********************************************
 	-->
 	
-	<target name="initcleantests">
-		<delete dir="${dir.test.report}" />
-	</target>
-	
-	<target name="finishcleantests">
-		<delete dir="${dir.test.report}" />
-	</target>
-	
 	<target name="runtests">
+		<delete dir="${dir.test.report}" />
 		<mkdir dir="${dir.test.report}" />
 		<mxmlc 
 			file="${dir.test.classes}/TestRunner.mxml" 
