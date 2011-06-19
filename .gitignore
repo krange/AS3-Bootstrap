@@ -7,11 +7,6 @@ AS3-Bootstrap/.settings
 AS3-Bootstrap/asdoc
 AS3-Bootstrap/bin
 AS3-Bootstrap/build/users/krisrange.properties
-AS3-Bootstrap-TestSuite/.actionScriptProperties
-AS3-Bootstrap-TestSuite/.FlexUnitSettings
-AS3-Bootstrap-TestSuite/.project
-AS3-Bootstrap-TestSuite/.settings
-AS3-Bootstrap-TestSuite/bin-debug
-AS3-Bootstrap-TestSuite/bin-debug/FlexUnitApplication.swf
-AS3-Bootstrap-TestSuite/bin-debug/FlexUnitCompilerApplication.swf
+AS3-Bootstrap/test/bin-debug/*.swf
+AS3-Bootstrap/test/report
 .DS_Store

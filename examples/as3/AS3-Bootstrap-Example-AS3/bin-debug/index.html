@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AS3 Bootstrap - Example - AS3 Standalone</title>
+	<style type="text/css">
+		#swfcontainer{
+			width:500px;
+			height:500px;
+		}
+	</style>
+</head>
+<body>
+	
+	<div id="swfcontainer">
+	</div>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/swfobject/2.1/swfobject.js"></script>
+	<script type="text/javascript">
+		
+		swfobject.embedSWF( 
+			"Bootstrap_Example_as3.swf", 
+			"swfcontainer", 
+			"500", "500", 
+			"10.1.0", false, 
+			{
+				configXmlUrl : "static/xml/config.xml"
+			},
+			{
+				allowscriptaccess : "always"
+			},
+			{
+				id : "swfcontainer",
+				name : "swfcontainer"
+			});
+	</script>
+</body>
+</html>
