@@ -1,0 +1,8 @@
+<data>
+	
+	<!-- Bootstrap properties -->
+	<stylesheet url="static/css/styles.css" />
+	<localization url="static/xml/loc.xml" />
+	<font url="static/font/fonts.swf" />
+	
+</data>

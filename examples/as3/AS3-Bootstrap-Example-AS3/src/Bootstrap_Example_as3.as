@@ -66,6 +66,9 @@ package
 			txt.selectable = false;
 			addChild( txt );
 			
+			txt.x = 50;
+			txt.y = 50;
+			
 			var txtFmt : TextFormat = ss.transform( ss.getStyle( ".some_style" ) );
 			txt.text = loc.getLocalizedValue( "value1" );
 			txt.setTextFormat( txtFmt );
