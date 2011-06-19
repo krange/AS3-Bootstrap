@@ -2,9 +2,9 @@ package
 {
 	import as3bootstrap.examples.as3.puremvc.controller.BsStartupCommand;
 	
-	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
+	import flash.utils.getDefinitionByName;
 	
 	import org.puremvc.as3.multicore.utilities.fabrication.components.FlashApplication;
 	
@@ -40,6 +40,11 @@ package
 		override public function getStartupCommand():Class
 		{
 			return BsStartupCommand;
+		}
+		
+		override public function getClassByName( path:String ):Class 
+		{
+			return getDefinitionByName( path ) as Class;      
 		}
 	}
 }

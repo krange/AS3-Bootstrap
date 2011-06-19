@@ -1,10 +1,8 @@
-package as3bootstrap.examples.as3.puremvc.view.mediators
+package as3bootstrap.examples.flex.puremvc.view.mediators
 {
 	import as3bootstrap.common.progress.IProgress;
-	import as3bootstrap.examples.as3.puremvc.view.components.TextViewComponent;
 	
-	import org.puremvc.as3.multicore.interfaces.INotification;
-	import org.puremvc.as3.multicore.utilities.as3bootstrap.flash.view.mediators.BootstrapFlashMediator;
+	import org.puremvc.as3.multicore.utilities.as3bootstrap.flex.common.view.mediators.BootstrapFlexMediator;
 	
 	/**
 	 * ApplicationMediator
@@ -15,7 +13,7 @@ package as3bootstrap.examples.as3.puremvc.view.mediators
 	 * @author krisrange 
 	 */
 	public class ApplicationMediator 
-		extends BootstrapFlashMediator
+		extends BootstrapFlexMediator
 	{
 		public static const NAME : String = "ApplicationMediator";
 		
@@ -30,13 +28,15 @@ package as3bootstrap.examples.as3.puremvc.view.mediators
 			super( name, viewComponent, progress );
 		}
 		
+		//----------------------------------
+		//  Override
+		//----------------------------------
+		
 		override public function onRegister():void
 		{
 			super.onRegister();
 			
-			var textView : TextViewComponent = new TextViewComponent();
-			registerMediator( new TextViewMediator( TextViewMediator.NAME, textView ) );
-			view.addChild( textView );
+			registerMediator( new TextViewMediator( TextViewMediator.NAME, view.textView ) );
 		}
 		
 		//---------------------------------------------------------------------
@@ -45,9 +45,9 @@ package as3bootstrap.examples.as3.puremvc.view.mediators
 		//
 		//---------------------------------------------------------------------
 		
-		private function get view():Bootstrap_Example_PureMVC
+		private function get view():Bootstrap_Example_Flex_PureMVC
 		{
-			return viewComponent as Bootstrap_Example_PureMVC;
+			return viewComponent as Bootstrap_Example_Flex_PureMVC;
 		}
 	}
 }

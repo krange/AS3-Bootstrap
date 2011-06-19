@@ -1,0 +1,14 @@
+/* CSS file */
+@namespace "library://ns.adobe.com/flex/spark";
+
+Button {
+	fontFamily: "Myriad Pro";
+	fontSize: 12px;
+}
+
+@font-face
+{
+	src: url( ../assets/fonts/MyriadPro-Regular.otf ); 
+	fontFamily: "Myriad Pro"; 
+	embedAsCFF: true; 
+}

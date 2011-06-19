@@ -1,13 +1,13 @@
-package as3bootstrap.examples.as3.puremvc.view.mediators
+package as3bootstrap.examples.flex.puremvc.view.mediators
 {
 	import as3bootstrap.common.IBootstrap;
 	import as3bootstrap.common.progress.IProgress;
-	import as3bootstrap.examples.as3.puremvc.view.components.TextViewComponent;
+	import as3bootstrap.examples.flex.puremvc.view.components.TextViewComponent;
 	
 	import org.puremvc.as3.multicore.interfaces.INotification;
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.model.BootstrapProxy;
 	import org.puremvc.as3.multicore.utilities.as3bootstrap.common.model.IBootstrapProxy;
-	import org.puremvc.as3.multicore.utilities.as3bootstrap.flash.view.mediators.BootstrapFlashMediator;
+	import org.puremvc.as3.multicore.utilities.as3bootstrap.flex.common.view.mediators.BootstrapFlexMediator;
 	
 	/**
 	 * TextViewMediator
@@ -18,7 +18,7 @@ package as3bootstrap.examples.as3.puremvc.view.mediators
 	 * @author krisrange 
 	 */
 	public class TextViewMediator 
-		extends BootstrapFlashMediator
+		extends BootstrapFlexMediator
 	{
 		public static const NAME : String = "TextViewMediator";
 		
@@ -30,7 +30,7 @@ package as3bootstrap.examples.as3.puremvc.view.mediators
 		
 		public function TextViewMediator( name:String, viewComponent:Object, progress:IProgress=null )
 		{
-			super(name, viewComponent, progress);
+			super( name, viewComponent, progress );
 		}
 		
 		//----------------------------------
@@ -42,9 +42,7 @@ package as3bootstrap.examples.as3.puremvc.view.mediators
 			var bootstrapProxy : IBootstrapProxy = retrieveProxy( BootstrapProxy.NAME ) as IBootstrapProxy;
 			var bootstrap : IBootstrap = bootstrapProxy.bootstrap;
 			
-			view.setupView( 
-				bootstrap.localizationModel.localizations, 
-				bootstrap.stylesheetModel.stylesheets );
+			view.setupView( bootstrap.localizationModel.localizations );
 		}
 		
 		//---------------------------------------------------------------------

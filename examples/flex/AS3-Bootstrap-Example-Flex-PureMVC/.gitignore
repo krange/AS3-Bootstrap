@@ -1,0 +1,8 @@
+.actionScriptProperties
+.flexProperties
+.flexLibProperties
+.metadata
+.project
+.settings
+bin-debug/*.swf
+.DS_Store

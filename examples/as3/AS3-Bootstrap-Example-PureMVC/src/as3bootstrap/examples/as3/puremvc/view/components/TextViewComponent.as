@@ -28,6 +28,12 @@ package as3bootstrap.examples.as3.puremvc.view.components
 		{
 		}
 		
+		/**
+		 * Setup the view 
+		 *  
+		 * @param loc
+		 * @param styles
+		 */		
 		public function setupView( loc:ILocalization, styles:StyleSheet ):void
 		{
 			var txt : TextField = new TextField();
