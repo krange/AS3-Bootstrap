@@ -75,6 +75,7 @@
 		<mkdir dir="${dir.test.report}" />
 		<mxmlc 
 			file="${dir.test.classes}/TestRunner.mxml" 
+			static-rsls="true"
 			output="${dir.test.bin}/TestRunner.swf">
 			
 			<source-path path-element="${dir.classes}" />
