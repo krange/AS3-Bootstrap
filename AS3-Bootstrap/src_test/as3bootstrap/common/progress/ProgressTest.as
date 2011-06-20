@@ -1,5 +1,7 @@
 package as3bootstrap.common.progress
 {
+	import as3bootstrap.common.events.ResourceProgressEvent;
+	
 	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertFalse;
 	import org.flexunit.asserts.assertNull;
@@ -131,6 +133,70 @@ package as3bootstrap.common.progress
 			var childProgress : IProgress = new Progress( 1, "SOME_ID" );
 			
 			assertNull( progress.retrieveChildLoadable( "SOME_ID" ) );
+		}
+		
+		[Test]
+		/**
+		 * Test setting the amount loaded on a progress instance that also has
+		 * child progress instances
+		 */		
+		public function testSetAmountLoadOnProgressThatHasChildProgress():void
+		{
+			var progress : IProgress = new Progress();
+			var childProgress : IProgress = new Progress();
+			
+			progress.addChildLoadable( childProgress );
+			progress.setAmountLoaded( 1 );
+			
+			assertEquals( 0, progress.getAmountLoaded() );
+		}
+		
+		[Test(async)]
+		/**
+		 * Test setting the amount loaded on a child progress instance that has 
+		 * a parent progress instances
+		 */		
+		public function testSetAmountLoadOnChildProgressThatHasParentProgress():void
+		{
+			var progress : IProgress = new Progress();
+			var childProgress : IProgress = new Progress();
+			
+			progress.addEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
+			progress.addChildLoadable( childProgress );
+			childProgress.setAmountLoaded( 1 );
+			
+			function onProgressUpdate( event:ResourceProgressEvent ):void
+			{
+				progress.removeEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
+				
+				assertEquals( 1, progress.getAmountLoaded() );
+			}
+		}
+		
+		[Test(async)]
+		/**
+		 * Test setting the amount loaded on multiple child progress instance 
+		 * that have parent progress instances
+		 */		
+		public function testSetAmountLoadOnMultipleChildProgressThatHasParentProgress():void
+		{
+			var progress : IProgress = new Progress();
+			var child : IProgress = new Progress();
+			var child1 : IProgress = new Progress();
+			
+			progress.addEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
+			progress.addChildLoadable( child );
+			progress.addChildLoadable( child1 );
+			
+			child.setAmountLoaded( 1 );
+			child1.setAmountLoaded( 1 );
+			
+			function onProgressUpdate( event:ResourceProgressEvent ):void
+			{
+				progress.removeEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
+				
+				assertEquals( 1, progress.getAmountLoaded() );
+			}
 		}
 		
 		[Test]
