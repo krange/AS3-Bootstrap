@@ -73,8 +73,8 @@ package as3bootstrap.common.progress
 		 */
 		public function Progress( weight:Number = 1, id:String = null )
 		{
-			weight = weight;
-			id = id;
+			this.weight = weight;
+			this.id = id;
 			
 			_invalidationTimer.addEventListener( TimerEvent.TIMER_COMPLETE, handleTimerComplete, false, 0, true );
 		}
@@ -178,7 +178,7 @@ package as3bootstrap.common.progress
 		 * @return <code>true</code> if a child was removed, 
 		 * 		   <code>false</code> otherwise
 		 */ 
-		public function removeChildLoadable( id:String ):Boolean 
+		public function removeChildLoadableById( id:String ):Boolean 
 		{
 			var i : int = childLoadableArray.length;
 			var curProgress : IProgress;
@@ -186,14 +186,35 @@ package as3bootstrap.common.progress
 			while( i-- )
 			{
 				curProgress = childLoadableArray[i] as IProgress;
-				
 				if( curProgress.getId() == id ) 
 				{
 					childLoadableArray.splice( i, 1 );
 					return true;
 				}
 			}
+			return false;
+		}
+		
+		/**
+		 * Remove a child progress instance
+		 * 
+		 * @param progress IProgress to search for
+		 * @return Boolean <code>true</code> if removed successfully
+		 */ 
+		public function removeChildLoadable( progress:IProgress ):Boolean 
+		{
+			var i : int = childLoadableArray.length;
+			var curProgress : IProgress;
 			
+			while( i-- )
+			{
+				curProgress = childLoadableArray[i] as IProgress;
+				if( curProgress == progress ) 
+				{
+					childLoadableArray.splice( i, 1 );
+					return true;
+				}
+			}
 			return false;
 		}
 		

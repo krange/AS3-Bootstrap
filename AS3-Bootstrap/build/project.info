@@ -7,5 +7,5 @@ project.name      = AS3 Bootstrap
 project.year      = 2011
 project.major	  = 0
 project.minor     = 2
-project.revision  = 0
+project.revision  = 1
 project.version   = ${project.major}.${project.minor}.${project.revision}

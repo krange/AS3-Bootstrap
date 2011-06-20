@@ -63,7 +63,15 @@ package as3bootstrap.common.progress
 		 * @param id ID to search for
 		 * @return Boolean <code>true</code> if removed successfully
 		 */ 
-		function removeChildLoadable( id:String ):Boolean;
+		function removeChildLoadableById( id:String ):Boolean;
+		
+		/**
+		 * Remove a child progress instance
+		 * 
+		 * @param progress IProgress to search for
+		 * @return Boolean <code>true</code> if removed successfully
+		 */ 
+		function removeChildLoadable( progress:IProgress ):Boolean;
 		
 		/**
 		 * Forces progress to complete itself. This is useful, for example,

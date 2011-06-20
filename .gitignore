@@ -8,5 +8,6 @@ AS3-Bootstrap/asdoc
 AS3-Bootstrap/bin
 AS3-Bootstrap/build/users/krisrange.properties
 AS3-Bootstrap/test/bin-debug/*.swf
+AS3-Bootstrap/test/bin-debug/generated
 AS3-Bootstrap/test/report
 .DS_Store
