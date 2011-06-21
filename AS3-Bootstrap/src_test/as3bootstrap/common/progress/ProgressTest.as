@@ -2,6 +2,8 @@ package as3bootstrap.common.progress
 {
 	import as3bootstrap.common.events.ResourceProgressEvent;
 	
+	import flashx.textLayout.debug.assert;
+	
 	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertFalse;
 	import org.flexunit.asserts.assertNull;
@@ -41,7 +43,6 @@ package as3bootstrap.common.progress
 		public function testCreateProgressWithWeight():void
 		{
 			var progress : IProgress = new Progress( 5 );
-			
 			assertEquals( progress.getWeight(), 5 );
 		}
 		
@@ -52,7 +53,6 @@ package as3bootstrap.common.progress
 		public function testCreateProgressWithId():void
 		{
 			var progress : IProgress = new Progress( 1, "SOME_ID" );
-			
 			assertEquals( progress.getId(), "SOME_ID" );
 		}
 		
@@ -104,7 +104,6 @@ package as3bootstrap.common.progress
 			var childProgress : IProgress = new Progress();
 			
 			progress.addChildLoadable( childProgress );
-			
 			assertTrue( progress.isChildLoadable( childProgress ) );
 		}
 		
@@ -118,7 +117,6 @@ package as3bootstrap.common.progress
 			var childProgress : IProgress = new Progress( 1, "SOME_ID" );
 			
 			progress.addChildLoadable( childProgress );
-			
 			assertEquals( childProgress, progress.retrieveChildLoadable( "SOME_ID" ) );
 		}
 		
@@ -145,10 +143,15 @@ package as3bootstrap.common.progress
 			var progress : IProgress = new Progress();
 			var childProgress : IProgress = new Progress();
 			
+			progress.addEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
 			progress.addChildLoadable( childProgress );
 			progress.setAmountLoaded( 1 );
 			
-			assertEquals( 0, progress.getAmountLoaded() );
+			function onProgressUpdate( event:ResourceProgressEvent ):void
+			{
+				progress.removeEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
+				assertEquals( 0, progress.getAmountLoaded() );
+			}
 		}
 		
 		[Test(async)]
@@ -168,7 +171,6 @@ package as3bootstrap.common.progress
 			function onProgressUpdate( event:ResourceProgressEvent ):void
 			{
 				progress.removeEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
-				
 				assertEquals( 1, progress.getAmountLoaded() );
 			}
 		}
@@ -194,8 +196,46 @@ package as3bootstrap.common.progress
 			function onProgressUpdate( event:ResourceProgressEvent ):void
 			{
 				progress.removeEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
-				
 				assertEquals( 1, progress.getAmountLoaded() );
+			}
+		}
+		
+		[Test(async)]
+		/**
+		 * Test setting the amount loaded on a complex progress structure and 
+		 * validate that the correct values are dispatched out
+		 */		
+		public function testSetAmountLoadOnComplexProgressSetup():void
+		{
+			var progress : IProgress = new Progress();
+			var child : IProgress = new Progress();
+			var child1 : IProgress = new Progress();
+			var child2 : IProgress = new Progress();
+			var child3 : IProgress = new Progress();
+			
+			progress.addEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
+			progress.addChildLoadable( child );
+			progress.addChildLoadable( child1 );
+			
+			child.addChildLoadable( child2 );
+			child.addChildLoadable( child3 );
+			
+			child2.addEventListener( ResourceProgressEvent.PROGRESS, onChildProgressUpdate );
+			child2.setAmountLoaded( 1 );
+			
+			function onProgressUpdate( event:ResourceProgressEvent ):void
+			{
+				if( event.amountLoaded == 0.5 )
+				{
+					progress.removeEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
+					assert();
+				}
+			}
+			
+			function onChildProgressUpdate( event:ResourceProgressEvent ):void
+			{
+				child2.removeEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
+				child3.setAmountLoaded( 1 );
 			}
 		}
 		

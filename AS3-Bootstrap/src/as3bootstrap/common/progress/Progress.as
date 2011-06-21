@@ -71,9 +71,9 @@ package as3bootstrap.common.progress
 		 * @param weight Initial weight to set
 		 * @param id An identifier for the progress instance
 		 */
-		public function Progress( weight:Number = 1, id:String = null )
+		public function Progress( weight:uint = 1, id:String = null )
 		{
-			this.weight = weight;
+			setWeight( weight );
 			this.id = id;
 			
 			_invalidationTimer.addEventListener( TimerEvent.TIMER_COMPLETE, handleTimerComplete, false, 0, true );
@@ -241,8 +241,15 @@ package as3bootstrap.common.progress
 		{
 			if( childLoadableArray.length == 0 )
 			{
-				if( amount < 0 ) amount = 0;
-				if( amount > 1 ) amount = 1;
+				if( amount < 0 ) 
+				{
+					amount = 0;
+				}
+				
+				if( amount > 1 ) 
+				{
+					amount = 1;
+				}
 				
 				// Set amount loaded
 				amountLoaded = amount;
@@ -261,7 +268,9 @@ package as3bootstrap.common.progress
 		public function getAmountLoaded():Number
 		{
 			if( childLoadableArray.length == 0 )
+			{
 				return amountLoaded;
+			}
 			
 			return getChildLoaded();
 		}
@@ -298,6 +307,23 @@ package as3bootstrap.common.progress
 		//
 		//---------------------------------------------------------------------
 		
+		/**
+		 * Validate that the weight being set. It should be a value greater 
+		 * than zero. If value is less than or equal to zero, set the value to
+		 * the default 1.
+		 *  
+		 * @param value Number
+		 */		
+		protected function setWeight( value:Number ):void
+		{
+			if( value <= 0 )
+			{
+				value = 1;
+			}
+			
+			this.weight = value;
+		}
+		
 		/** 
 		 * Returns the total progress of all children associated with this 
 		 * progress instance. The returned value also uses the default AS3 
@@ -318,7 +344,7 @@ package as3bootstrap.common.progress
 				totalAmountLoaded += progress.getAmountLoaded() * ( progress.getWeight() / totalChildWeight );
 			}
 			
-			return Number( totalAmountLoaded.toPrecision(3) );
+			return Number( totalAmountLoaded.toPrecision( 3 ) );
 		}
 		
 		//----------------------------------
