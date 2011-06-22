@@ -15,7 +15,7 @@ package as3bootstrap.flex.common.view.components.preloader
 	 * 
 	 * In order to use this class, you must override the 
 	 * <code>getPreloaderAssetClass()</code> method in the child and return the 
-	 * class asset needed. Then in your Flex Application MXML class:
+	 * class asset needed.
 	 * 
 	 * @langversion ActionScript 3.0
 	 * @playerversion Flash 9.0.124

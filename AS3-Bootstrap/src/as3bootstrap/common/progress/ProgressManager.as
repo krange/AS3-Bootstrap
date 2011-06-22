@@ -3,10 +3,10 @@ package as3bootstrap.common.progress
 	import flash.utils.Dictionary;
 	
 	/**
-	 * Singleton load manager providing access to current load easily to during 
-	 * all points of load. This is required in some cases because being able to 
-	 * track load may not available at all points throughout loading processes. 
-	 * For example, during the Flex Application SWF load.
+	 * Singleton progress manager providing access to current load easily to 
+	 * during all points of load. This is required in some cases because being 
+	 * able to track load may not available at all points throughout loading 
+	 * processes. For example, during the Flex Application SWF load.
 	 * 
 	 * @langversion ActionScript 3.0
 	 * @playerversion Flash 9.0.124
@@ -20,7 +20,7 @@ package as3bootstrap.common.progress
 		/**
 		 * ERROR CONSTANTS
 		 */ 
-		private static const ERROR_INCORRECT_INITIALIZATION : String = "LoadManager must be initialized through the static method getInstance()";
+		private static const ERROR_INCORRECT_INITIALIZATION : String = "ProgressManager must be initialized through the static method getInstance()";
 		
 		/**
 		 * Singleton instance 
@@ -83,16 +83,6 @@ package as3bootstrap.common.progress
 		{
 		}
 		
-		/**
-		 * Adds a progress item to the dictionary 
-		 * 
-		 * @param progress IProgress instance to add 
-		 */ 
-		public function addToDictionary( progress:IProgress ):void 
-		{
-			dict[progress.getId()] = progress;
-		}
-		
 		//----------------------------------
 		//  Override
 		//----------------------------------
@@ -119,6 +109,23 @@ package as3bootstrap.common.progress
 		override public function retrieveChildLoadable( id:String ):IProgress 
 		{
 			return dict[id] as IProgress;
+		}
+		
+		//---------------------------------------------------------------------
+		//
+		//  Private methods
+		//
+		//---------------------------------------------------------------------
+		
+		/**
+		 * @private
+		 * Adds a progress item to the dictionary 
+		 * 
+		 * @param progress IProgress instance to add 
+		 */ 
+		private function addToDictionary( progress:IProgress ):void 
+		{
+			dict[progress.getId()] = progress;
 		}
 	}
 }

@@ -8,7 +8,7 @@ package as3bootstrap.examples.flex.puremvc.controller
 	 * BsStartupCommand
 	 *
 	 * @langversion ActionScript 3.0
-	 * @playerversion Flash 9.0.124
+	 * @playerversion Flash 10.0.0
 	 * 
 	 * @author krisrange 
 	 */

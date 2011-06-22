@@ -13,7 +13,7 @@ package as3bootstrap.examples.flex.puremvc.view.mediators
 	 * TextViewMediator
 	 *
 	 * @langversion ActionScript 3.0
-	 * @playerversion Flash 9.0.124
+	 * @playerversion Flash 10.0.0
 	 * 
 	 * @author krisrange 
 	 */

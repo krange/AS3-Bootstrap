@@ -36,7 +36,7 @@ package as3bootstrap.common.model
 		 */		
 		public function BootstrapFontModel( progress:IProgress )
 		{
-			super(progress);
+			super( progress );
 		}
 		
 		/**

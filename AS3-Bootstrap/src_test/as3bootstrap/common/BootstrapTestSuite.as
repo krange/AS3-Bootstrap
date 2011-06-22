@@ -1,5 +1,6 @@
 package as3bootstrap.common
 {
+	import as3bootstrap.common.progress.ProgressManagerTest;
 	import as3bootstrap.common.progress.ProgressTest;
 	import as3bootstrap.common.services.FontServiceTest;
 	import as3bootstrap.common.services.StylesheetServiceTest;
@@ -25,5 +26,6 @@ package as3bootstrap.common
 		public var test5:FontServiceTest;
 		
 		public var test6:ProgressTest;
+		public var test7:ProgressManagerTest;
 	}
 }

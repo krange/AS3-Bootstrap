@@ -282,7 +282,7 @@ package as3bootstrap.common.progress
 		 */ 
 		public function setId( id:String ):void
 		{
-			id = id;
+			this.id = id;
 		}
 		
 		/** 
@@ -314,14 +314,14 @@ package as3bootstrap.common.progress
 		 *  
 		 * @param value Number
 		 */		
-		protected function setWeight( value:Number ):void
+		protected function setWeight( weight:Number ):void
 		{
-			if( value <= 0 )
+			if( weight <= 0 )
 			{
-				value = 1;
+				weight = 1;
 			}
 			
-			this.weight = value;
+			this.weight = weight;
 		}
 		
 		/** 

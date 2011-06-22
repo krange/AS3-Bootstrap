@@ -12,6 +12,9 @@ package as3bootstrap.common.progress
 	/**
 	 * ProgressTest
 	 * 
+	 * @langversion ActionScript 3.0
+	 * @playerversion Flash 9.0.124
+	 * 
 	 * @author krisrange
 	 */
 	public class ProgressTest
@@ -53,6 +56,17 @@ package as3bootstrap.common.progress
 		public function testCreateProgressWithId():void
 		{
 			var progress : IProgress = new Progress( 1, "SOME_ID" );
+			assertEquals( progress.getId(), "SOME_ID" );
+		}
+		
+		[Test]
+		/**
+		 * Test creating a progress with a specified weight
+		 */		
+		public function testCreateProgressWithIdAfterInstantiation():void
+		{
+			var progress : IProgress = new Progress();
+			progress.setId( "SOME_ID" );
 			assertEquals( progress.getId(), "SOME_ID" );
 		}
 		
@@ -236,6 +250,108 @@ package as3bootstrap.common.progress
 			{
 				child2.removeEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
 				child3.setAmountLoaded( 1 );
+			}
+		}
+		
+		[Test(async)]
+		/**
+		 * Test setting the amount loaded on a complex progress structure and 
+		 * validate that the correct values are dispatched out when assigning 
+		 * weights to the progress instances
+		 */		
+		public function testSetAmountLoadOnComplexProgressSetupWithWeight():void
+		{
+			var progress : IProgress = new Progress();
+			var child : IProgress = new Progress( 8 );
+			var child1 : IProgress = new Progress( 2 );
+			var child2 : IProgress = new Progress();
+			var child3 : IProgress = new Progress();
+			
+			progress.addEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
+			progress.addChildLoadable( child );
+			progress.addChildLoadable( child1 );
+			
+			child.addChildLoadable( child2 );
+			child.addChildLoadable( child3 );
+			
+			child2.addEventListener( ResourceProgressEvent.PROGRESS, onChildProgressUpdate );
+			child2.setAmountLoaded( 1 );
+			
+			function onProgressUpdate( event:ResourceProgressEvent ):void
+			{
+				if( event.amountLoaded == 0.8 )
+				{
+					progress.removeEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
+					assert();
+				}
+			}
+			
+			function onChildProgressUpdate( event:ResourceProgressEvent ):void
+			{
+				child2.removeEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
+				child3.setAmountLoaded( 1 );
+			}
+		}
+		
+		[Test(async)]
+		/**
+		 * Test that on a complex setup of instances that the progress update 
+		 * progress event total equals the same total that is reported from the 
+		 * progress instance
+		 */		
+		public function testComplexOnProgressUpdateThatProgressEventEqualsSameTotalAsProgressInstance():void
+		{
+			var progress : IProgress = new Progress();
+			var child : IProgress = new Progress();
+			var child1 : IProgress = new Progress();
+			var child2 : IProgress = new Progress();
+			var child3 : IProgress = new Progress();
+			
+			progress.addEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
+			progress.addChildLoadable( child );
+			progress.addChildLoadable( child1 );
+			
+			child.addChildLoadable( child2 );
+			child.addChildLoadable( child3 );
+			
+			child2.addEventListener( ResourceProgressEvent.PROGRESS, onChildProgressUpdate );
+			child2.setAmountLoaded( 1 );
+			
+			function onProgressUpdate( event:ResourceProgressEvent ):void
+			{
+				if( event.amountLoaded == 0.5 )
+				{
+					progress.removeEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
+					assertEquals( event.amountLoaded, progress.getAmountLoaded() );
+				}
+			}
+			
+			function onChildProgressUpdate( event:ResourceProgressEvent ):void
+			{
+				child2.removeEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
+				child3.setAmountLoaded( 1 );
+			}
+		}
+		
+		[Test(async)]
+		/**
+		 * Test that on a simple setup of instances that the progress update 
+		 * progress event total equals the same total that is reported from the 
+		 * progress instance
+		 */		
+		public function testSimpleOnProgressUpdateThatProgressEventEqualsSameTotalAsProgressInstance():void
+		{
+			var progress : IProgress = new Progress();
+			progress.addEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
+			progress.setAmountLoaded( 0.5 );
+			
+			function onProgressUpdate( event:ResourceProgressEvent ):void
+			{
+				if( event.amountLoaded == 0.5 )
+				{
+					progress.removeEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
+					assertEquals( event.amountLoaded, progress.getAmountLoaded() );
+				}
 			}
 		}
 		

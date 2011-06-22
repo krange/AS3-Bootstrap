@@ -40,7 +40,7 @@ package as3bootstrap.common.model
 		 */
 		public function BootstrapLocalizationModel( progress:IProgress )
 		{
-			super(progress);
+			super( progress );
 		}
 		
 		/**

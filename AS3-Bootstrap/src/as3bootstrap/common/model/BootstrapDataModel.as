@@ -43,7 +43,7 @@ package as3bootstrap.common.model
 		public function BootstrapDataModel( progress:IProgress )
 		{
 			_progress = progress;
-			super(null);
+			super( null );
 			init();
 		}
 		

@@ -32,7 +32,7 @@ package as3bootstrap.common.model
 		 */		
 		public function BootstrapConfigModel( progress:IProgress )
 		{
-			super(progress);
+			super( progress );
 		}
 		
 		/**
