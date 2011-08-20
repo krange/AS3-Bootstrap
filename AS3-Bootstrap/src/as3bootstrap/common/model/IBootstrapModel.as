@@ -24,5 +24,21 @@ package as3bootstrap.common.model
 		 * Signal which is dispatched when the model has errored
 		 */
 		function get errored():ISignalOwner;
+		
+		/**
+		 * The flashvars locale, if available, of the application
+		 *  
+		 * @return String
+		 */		
+		function get locale():String;
+		function set locale( value:String ):void;
+		
+		/**
+		 * The flashvars lang, if available, of the application
+		 *  
+		 * @return String
+		 */	
+		function get lang():String;
+		function set lang( value:String ):void;
 	}
 }

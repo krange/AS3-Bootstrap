@@ -7,6 +7,7 @@ package
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
+	import flash.events.Event;
 	import flash.text.StyleSheet;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
@@ -48,6 +49,8 @@ package
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
 			_bootstrap = new Bootstrap();
+			_bootstrap.configErrored.add( onConfigErrored );
+			_bootstrap.bootstrapResourceErrored.add( onBootstrapResourceErrored );
 			_bootstrap.bootstrapLoaded.add( onBootstrapLoaded );
 			_bootstrap.start( loaderInfo.parameters );
 		}
@@ -72,6 +75,16 @@ package
 			var txtFmt : TextFormat = ss.transform( ss.getStyle( ".some_style" ) );
 			txt.text = loc.getLocalizedValue( "value1" );
 			txt.setTextFormat( txtFmt );
+		}
+		
+		private function onConfigErrored( event:Event ):void
+		{
+			
+		}
+		
+		private function onBootstrapResourceErrored( event:Event ):void
+		{
+			trace( event );
 		}
 	}
 }

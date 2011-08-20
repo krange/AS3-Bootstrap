@@ -19,8 +19,12 @@ package as3bootstrap.common.model
 	 */
 	public class BootstrapDataModel 
 		extends EventDispatcher
+		implements IBootstrapModel
 	{
 		private var _progress : IProgress;
+		
+		private var _locale : String;
+		private var _lang : String;
 		
 		//----------------------------------
 		//  Signals
@@ -67,6 +71,35 @@ package as3bootstrap.common.model
 			_errored = getErroredSignal();
 		}
 		
+		/**
+		 * Sugar method to replace any set lang and locale values in a specified
+		 * string value. Does not modify the original String parameter.
+		 *  
+		 * @param stringToChange A String to search through
+		 * 
+		 * @return A new modified String
+		 */		
+		protected function searchAndReplaceLangAndLocale( stringToChange:String ):String
+		{
+			var newString : String = stringToChange;
+			
+			// Search and replace the lang value if it exists
+			if( lang &&
+				lang.length > 0 )
+			{
+				newString = newString.replace( /{lang}/g, lang );
+			}
+			
+			// Search and replace the locale value if it exists
+			if( locale &&
+				locale.length > 0 )
+			{
+				newString = newString.replace( /{locale}/g, locale );
+			}
+			
+			return newString;
+		}
+		
 		//----------------------------------
 		//  Instantations
 		//----------------------------------
@@ -109,6 +142,34 @@ package as3bootstrap.common.model
 		public function get errored():ISignalOwner
 		{
 			return _errored;
+		}
+		
+		/**
+		 * The flashvars locale, if available, of the application
+		 *  
+		 * @return String
+		 */		
+		public function get locale():String
+		{
+			return _locale;
+		}
+		public function set locale( value:String ):void
+		{
+			_locale = value;
+		}
+		
+		/**
+		 * The flashvars lang, if available, of the application
+		 *  
+		 * @return String
+		 */	
+		public function get lang():String
+		{
+			return _lang;
+		}
+		public function set lang( value:String ):void
+		{
+			_lang = value;
 		}
 		
 		//----------------------------------

@@ -68,7 +68,7 @@ package as3bootstrap.common.model
 					_dependency.addDependancy( service );
 					service.loaded.add( onServiceLoaded );
 					service.errored.add( onServiceErrored );
-					service.loadWithUrl( data[i].@url );
+					service.loadWithUrl( searchAndReplaceLangAndLocale( data[i].@url ) );
 				}
 			}
 		}

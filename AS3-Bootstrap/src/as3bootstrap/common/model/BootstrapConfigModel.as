@@ -45,7 +45,7 @@ package as3bootstrap.common.model
 			if( url && 
 				url.length > 0 )
 			{
-				_service.loadWithUrl( url );
+				_service.loadWithUrl( searchAndReplaceLangAndLocale( url ) );
 			}
 			else
 			{

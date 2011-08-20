@@ -63,6 +63,11 @@ package as3bootstrap.common
 		 */		
 		private var _resourceBaseUrl : String = "";
 		
+		/**
+		 * Stored flashvar parameters referernce 
+		 */		
+		private var _parameters : Object;
+		
 		//----------------------------------
 		//  Model declarations
 		//----------------------------------
@@ -144,6 +149,7 @@ package as3bootstrap.common
 			{
 				_started = true;
 				_customExternalLoadAllowed = false;
+				_parameters = parameters;
 				var configUrl : String;
 				
 				// Add event listeners
@@ -152,10 +158,10 @@ package as3bootstrap.common
 				if( parameters )
 				{
 					_resourceBaseUrl = parameters.baseUrl;
-					// Load the config
 					configUrl = parameters.configXmlUrl;
 				}
 				
+				// Load the config
 				loadConfig( configUrl );
 			}
 			// TODO: Throw an error here that start has already been run
@@ -184,7 +190,9 @@ package as3bootstrap.common
 			// Make sure we can add a custom external load
 			if( _customExternalLoadAllowed )
 			{
-				if( progress && dataProgress && customDataProgress )
+				if( progress && 
+					dataProgress && 
+					customDataProgress )
 				{
 					// Add the new external resource to our total load
 					customDataProgress.addChildLoadable( externalProgress );
@@ -359,14 +367,16 @@ package as3bootstrap.common
 		 * @private
 		 * Add fonts to the progress load structure, if available 
 		 */		
-		protected function addFonts():void
+		protected function addFonts():Boolean
 		{
 			// Add fonts to the bootstrap load if any exist
 			if( configModel.fonts && 
 				configModel.fonts.length() > 0 )
 			{
 				bootstrapUnknownProgress.addChildLoadable( fontProgress );
+				return true;
 			}
+			return false;
 		}
 		
 		/**
@@ -377,6 +387,12 @@ package as3bootstrap.common
 		 */		
 		protected function loadConfig( url:String ):void
 		{
+			if( parameters )
+			{
+				configModel.lang = parameters.lang;
+				configModel.locale = parameters.locale;
+			}
+			
 			configModel.errored.add( onConfigErrored );
 			configModel.loaded.add( onConfigLoaded );
 			configModel.load( url );
@@ -392,6 +408,12 @@ package as3bootstrap.common
 			if( locXml && 
 				locXml.length() > 0 )
 			{
+				if( parameters )
+				{
+					localizationModel.lang = parameters.lang;
+					localizationModel.locale = parameters.locale;
+				}
+				
 				localizationModel.loaded.add( onLocalizationLoaded );
 				localizationModel.errored.add( onLocalizationErrored );
 				localizationModel.load( locXml );
@@ -408,6 +430,12 @@ package as3bootstrap.common
 			if( ssXml && 
 				ssXml.length() > 0 )
 			{
+				if( parameters )
+				{
+					stylesheetModel.lang = parameters.lang;
+					stylesheetModel.locale = parameters.locale;
+				}
+				
 				stylesheetModel.loaded.add( onStylesheetLoaded );
 				stylesheetModel.errored.add( onStylesheetErrored );
 				stylesheetModel.load( ssXml );
@@ -424,6 +452,12 @@ package as3bootstrap.common
 			if( configModel.fonts && 
 				configModel.fonts.length() > 0 )
 			{
+				if( parameters )
+				{
+					fontModel.lang = parameters.lang;
+					fontModel.locale = parameters.locale;
+				}
+				
 				fontModel.errored.add( onFontsErrored );
 				fontModel.loaded.add( onFontsLoaded );
 				fontModel.load( configModel.fonts );
@@ -462,17 +496,28 @@ package as3bootstrap.common
 			// Add any additional loads
 			// TODO: Add functionality to allow the user to pause the bootstrap
 			// load process after these add steps
-			if( addStylesheets() || 
-				addLocalizations() || 
-				addFonts() )
+			var additionalLoadsAdded : Boolean;
+			if( addStylesheets() )
 			{
+				additionalLoadsAdded = true;
 				loadStylesheets();
+			}
+			
+			if( addLocalizations() )
+			{
+				additionalLoadsAdded = true;
 				loadLocalizations();
+			}
+			
+			if( addFonts() )
+			{
+				additionalLoadsAdded = true;
 				loadFonts();
 			}
+			
 			// We aren't loading anything else in our configuration XML file
 			// so complete the load process for any bootstrap loads
-			else
+			if( !additionalLoadsAdded )
 			{
 				bootstrapUnknownProgress.setAmountLoaded( 1 );
 			}
@@ -559,7 +604,7 @@ package as3bootstrap.common
 		 */		
 		protected function onBootstrapProgressUpdate( event:ResourceProgressEvent ):void
 		{
-			if( event.amountLoaded == 1 )
+			if( bootstrapProgress.getAmountLoaded() == 1 )
 			{
 				bootstrapProgress.removeEventListener( ResourceProgressEvent.PROGRESS, onBootstrapProgressUpdate );
 				bootstrapLoaded.dispatch();
@@ -575,7 +620,7 @@ package as3bootstrap.common
 		 */		
 		protected function onDataProgressUpdate( event:ResourceProgressEvent ):void
 		{
-			if( event.amountLoaded == 1 )
+			if( dataProgress.getAmountLoaded() == 1 )
 			{
 				dataProgress.removeEventListener( ResourceProgressEvent.PROGRESS, onDataProgressUpdate );
 				dataLoaded.dispatch();
@@ -591,7 +636,7 @@ package as3bootstrap.common
 		 */		
 		protected function onProgressUpdate( event:ResourceProgressEvent ):void
 		{
-			if( event.amountLoaded == 1 )
+			if( progress.getAmountLoaded() == 1 )
 			{
 				progress.removeEventListener( ResourceProgressEvent.PROGRESS, onProgressUpdate );
 				appLoaded.dispatch();
@@ -918,6 +963,18 @@ package as3bootstrap.common
 		//----------------------------------
 		//  Protected
 		//----------------------------------
+		
+		/**
+		 * @private 
+		 * The root level LoaderInfo parameters object reference storing the 
+		 * values of all flashvars variables
+		 * 
+		 * @return Object
+		 */		
+		protected function get parameters():Object
+		{
+			return _parameters;
+		}
 		
 		/**
 		 * @private

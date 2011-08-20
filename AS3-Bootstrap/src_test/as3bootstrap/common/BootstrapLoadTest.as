@@ -4,7 +4,10 @@ package as3bootstrap.common
 	
 	import flashx.textLayout.debug.assert;
 	
+	import org.flexunit.asserts.assertEquals;
+	import org.flexunit.asserts.assertFalse;
 	import org.flexunit.asserts.assertNotNull;
+	import org.flexunit.asserts.assertTrue;
 	import org.osflash.signals.utils.SignalAsyncEvent;
 	import org.osflash.signals.utils.handleSignal;
 	import org.osflash.signals.utils.registerFailureSignal;
@@ -156,7 +159,31 @@ package as3bootstrap.common
 			
 			function onConfigLoadErrored( event:SignalAsyncEvent, data:Object ):void
 			{
-				assert();
+				assertFalse( _bootstrap.configModel.progress.getAmountLoaded() > 0 );
+			}
+		}
+		
+		[Test(async)]
+		/**
+		 * Test the bootstrap load process with an incorrect resource load
+		 *  URL provided. 
+		 * Result should be that the <code>bootstrapResourceErrored</code> is 
+		 * dispatched.
+		 */		
+		public function testLoadResourceLoadError():void
+		{
+			var parameters : Object = {};
+			parameters.configXmlUrl = "xml/config-incorrect-resource-url.xml";
+			_bootstrap = new Bootstrap();
+			
+			handleSignal( this, _bootstrap.bootstrapResourceErrored, onResourceLoadErrored );
+			registerFailureSignal( this, _bootstrap.bootstrapLoaded );
+			
+			_bootstrap.start( parameters );
+			
+			function onResourceLoadErrored( event:SignalAsyncEvent, data:Object ):void
+			{
+				assertFalse( _bootstrap.localizationModel.progress.getAmountLoaded() > 0 );
 			}
 		}
 		

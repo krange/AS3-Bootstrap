@@ -150,8 +150,7 @@ package as3bootstrap.common.services.xml
 		 * @param event <code>ProgressEvent.PROGRESS</code> 
 		 */		
 		protected function onLoadXmlProgress( event:ProgressEvent ):void
-		{	
-			// Update our progress amount
+		{
 			progress.setAmountLoaded( event.bytesLoaded / event.bytesTotal );
 		}
 		
