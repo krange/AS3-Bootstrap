@@ -42,8 +42,8 @@ The following Flashvars variables are available for use with Bootstrap:
    - **baseUrl** – The base URL to load all Bootstrap resources from. This allows you to load correctly when moving throughout the lifecycle of your project from development,staging and production environments. If you provide no baseUrl, Bootstrap will load based on whatever URL you provide in the XML.
    - **configXmlBaseUrl** – The base URL to your configuration XML file. Sometimes this might be on a different location entirely than the rest of your assets. If you provide no configXmlBaseUrl then Bootstrap will load based on the URL you provide as the configXmlUrl.
    - **configXmlUrl** – The URL to where your configuration XML file lives. This property also supports localized URLs through the flashvars *lang* and *locale* properties.
-   - **lang** - The language specified for the application for localization purposes through specifying a {lang} parameter.
-   - **locale** - The locale specified for the application for localization purposes through specifying a {locale} parameter.
+   - **lang** - The language specified for the application for localization purposes through specifying a **{lang}** parameter.
+   - **locale** - The locale specified for the application for localization purposes through specifying a **{locale}** parameter.
    
 ## XML Setup
 
