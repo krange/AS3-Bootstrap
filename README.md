@@ -41,35 +41,39 @@ The following Flashvars variables are available for use with Bootstrap:
 
    - **baseUrl** – The base URL to load all Bootstrap resources from. This allows you to load correctly when moving throughout the lifecycle of your project from development,staging and production environments. If you provide no baseUrl, Bootstrap will load based on whatever URL you provide in the XML.
    - **configXmlBaseUrl** – The base URL to your configuration XML file. Sometimes this might be on a different location entirely than the rest of your assets. If you provide no configXmlBaseUrl then Bootstrap will load based on the URL you provide as the configXmlUrl.
-   - **configXmlUrl** – The URL to where your configuration XML file lives.
-
+   - **configXmlUrl** – The URL to where your configuration XML file lives. This property also supports localized URLs through the flashvars *lang* and *locale* properties.
+   - **lang** - The language specified for the application for localization purposes.
+   - **locale** - The locale specified for the application for localization purposes.
+   
 ## XML Setup
 
 The Bootstrap utility loads up a configuration external XML file. This file defines all the values that this utility will require to load. The XML can have as many as little of each item as you need. This XML can include other data as well, but the only values that this utility looks for inside the root node are below.
 
 Please note that if you pass in a *baseUrl* flashVar parameter, Bootstrap will apply it as the base of the URLs for the below resources.
 
-   - **stylesheet** – Reference to your externalized CSS file or SWF-Compiled CSS (Flex) file.
+   - **stylesheet** – Reference to your externalized CSS file or SWF-Compiled CSS (Flex) file. This property also supports localized URLs through the flashvars *lang* and *locale* properties.
 
 ```
 <stylesheet url="css/styles.css" />
 <stylesheet url="swf/css/styles.swf" />
+<stylesheet url="css/styles_{lang}-{locale}.css" />
 ```
 
-   - **font** – Reference to your externalized SWF compiled font file. The *name* property here **optional** if you are registering the font in your font SWF. If you want Bootstrap to register the font for you, the *name* property is the fully-qualified path of the font class (ex. as3bootstrap.fonts._Arial ).
+   - **font** – Reference to your externalized SWF compiled font file. The *name* property here **optional** if you are registering the font in your font SWF. If you want Bootstrap to register the font for you, the *name* property is the fully-qualified path of the font class (ex. as3bootstrap.fonts._Arial ). This property also supports localized URLs through the flashvars *lang* and *locale* properties.
 
 You can also reference a externalized Flash IDE SWF with bitmap fonts embedded using the same method as currently it's impossible to compile bitmap fonts from outside the Flash IDE. 
 
 ```
-<font url="_AFFuturaBook_en.swf" />
+<font url="_AFFuturaBook_{lang}.swf" />
 <font url="SomeFont.swf" name="as3bootstrap.fonts.SomeFontName" />
 <font url="_ArialBitmap.swf" />
 ```
 
-   - **localization** – In most cases, projects are updated via the clients. Because of this, localization must be updatable via external resources. Bootstrap can load in external XML files to which the content through a value object in name/value pairs.
+   - **localization** – In most cases, projects are updated via the clients. Because of this, localization must be updatable via external resources. Bootstrap can load in external XML files to which the content through a value object in name/value pairs. This property also supports localized URLs through the flashvars *lang* and *locale* properties.
 
 ```
 <localization url="xml/bootstrap/locale.xml" />
+<localization url="xml/bootstrap/locale-{locale}.xml" />
 ```
 
 # Getting Started
