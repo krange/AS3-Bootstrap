@@ -4,10 +4,8 @@ package as3bootstrap.common
 	
 	import flashx.textLayout.debug.assert;
 	
-	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertFalse;
 	import org.flexunit.asserts.assertNotNull;
-	import org.flexunit.asserts.assertTrue;
 	import org.osflash.signals.utils.SignalAsyncEvent;
 	import org.osflash.signals.utils.handleSignal;
 	import org.osflash.signals.utils.registerFailureSignal;
