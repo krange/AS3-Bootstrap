@@ -61,7 +61,10 @@ package as3bootstrap.common.services.xml
 			removeListeners();
 			
 			// Reset the progress
-			progress.setAmountLoaded( 0 );
+			if( progress )
+			{
+				progress.setAmountLoaded( 0 );
+			}
 			
 			// Add our listeners
 			addListeners();
@@ -139,7 +142,10 @@ package as3bootstrap.common.services.xml
 			parse( new XML( loader.data ) );
 			
 			// Set the progress to be completed
-			progress.setAmountLoaded( 1 );
+			if( progress )
+			{
+				progress.setAmountLoaded( 1 );
+			}
 			
 			// Dispatch that the xml has loaded
 			loaded.dispatch( this );
@@ -151,7 +157,10 @@ package as3bootstrap.common.services.xml
 		 */		
 		protected function onLoadXmlProgress( event:ProgressEvent ):void
 		{
-			progress.setAmountLoaded( event.bytesLoaded / event.bytesTotal );
+			if( progress )
+			{
+				progress.setAmountLoaded( event.bytesLoaded / event.bytesTotal );
+			}
 		}
 		
 		/**
@@ -162,6 +171,11 @@ package as3bootstrap.common.services.xml
 		{
 			// Remove listeners
 			removeListeners();
+			
+			if( progress )
+			{
+				progress.setAmountLoaded( 0 );
+			}
 			
 			errored.dispatch( event );
 		}
@@ -174,6 +188,11 @@ package as3bootstrap.common.services.xml
 		{
 			// Remove listeners
 			removeListeners();
+			
+			if( progress )
+			{
+				progress.setAmountLoaded( 0 );
+			}
 			
 			errored.dispatch( event );
 		}

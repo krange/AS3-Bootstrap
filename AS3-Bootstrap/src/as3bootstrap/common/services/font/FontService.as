@@ -67,7 +67,10 @@ package as3bootstrap.common.services.font
 			removeListeners();
 			
 			// Reset the progress
-			progress.setAmountLoaded( 0 );
+			if( progress )
+			{
+				progress.setAmountLoaded( 0 );
+			}
 			
 			// Add our listeners
 			addListeners();
@@ -166,7 +169,10 @@ package as3bootstrap.common.services.font
 			registerFont();
 			
 			// Set the progress to be completed
-			progress.setAmountLoaded( 1 );
+			if( progress )
+			{
+				progress.setAmountLoaded( 1 );
+			}
 			
 			// Dispatch that the service has loaded
 			loaded.dispatch( this );
@@ -179,7 +185,10 @@ package as3bootstrap.common.services.font
 		protected function onLoadProgress( event:ProgressEvent ):void
 		{	
 			// Update our progress amount
-			progress.setAmountLoaded( event.bytesLoaded / event.bytesTotal );
+			if( progress )
+			{
+				progress.setAmountLoaded( event.bytesLoaded / event.bytesTotal );
+			}
 		}
 		
 		/**
@@ -190,6 +199,11 @@ package as3bootstrap.common.services.font
 		{
 			// Remove listeners
 			removeListeners();
+			
+			if( progress )
+			{
+				progress.setAmountLoaded( 0 );
+			}
 			
 			errored.dispatch( event );
 		}
@@ -202,6 +216,11 @@ package as3bootstrap.common.services.font
 		{
 			// Remove listeners
 			removeListeners();
+			
+			if( progress )
+			{
+				progress.setAmountLoaded( 0 );
+			}
 			
 			errored.dispatch( event );
 		}

@@ -61,7 +61,10 @@ package as3bootstrap.common.services.css
 			removeListeners();
 			
 			// Reset the progress
-			progress.setAmountLoaded( 0 );
+			if( progress )
+			{
+				progress.setAmountLoaded( 0 );
+			}
 			
 			// Add our listeners
 			addListeners();
@@ -123,7 +126,10 @@ package as3bootstrap.common.services.css
 			data.parseCSS( loader.data );
 			
 			// Set the progress to be completed
-			progress.setAmountLoaded( 1 );
+			if( progress )
+			{
+				progress.setAmountLoaded( 1 );
+			}
 			
 			// Dispatch that the service has loaded
 			loaded.dispatch( this );
@@ -135,7 +141,10 @@ package as3bootstrap.common.services.css
 		 */		
 		protected function onLoadProgress( event:ProgressEvent ):void
 		{	
-			progress.setAmountLoaded( event.bytesLoaded / event.bytesTotal );
+			if( progress )
+			{
+				progress.setAmountLoaded( event.bytesLoaded / event.bytesTotal );
+			}
 		}
 		
 		/**
@@ -145,6 +154,12 @@ package as3bootstrap.common.services.css
 		protected function onLoadIOError( event:IOErrorEvent ):void
 		{
 			removeListeners();
+			
+			if( progress )
+			{
+				progress.setAmountLoaded( 0 );
+			}
+			
 			errored.dispatch( event );
 		}
 		
@@ -155,6 +170,12 @@ package as3bootstrap.common.services.css
 		protected function onLoadSecurityError( event:SecurityErrorEvent ):void
 		{
 			removeListeners();
+			
+			if( progress )
+			{
+				progress.setAmountLoaded( 0 );
+			}
+			
 			errored.dispatch( event );
 		}
 		
