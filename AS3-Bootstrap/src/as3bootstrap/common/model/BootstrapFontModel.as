@@ -59,7 +59,7 @@ package as3bootstrap.common.model
 					var service_progress : IProgress = new Progress();
 					var service : IFontService;
 					
-					var fontName : String = data[i].@id;
+					var fontName : String = data[i].@name;
 					if( !checkFont( fontName ) )
 					{
 						if( fontName.length > 0 )
