@@ -29,7 +29,6 @@ package as3bootstrap.common.services.font
 		implements IFontService
 	{
 		private var _loader : Loader;
-		
 		private var _fontName : String;
 		
 		//---------------------------------------------------------------------
@@ -79,6 +78,21 @@ package as3bootstrap.common.services.font
 			_loader.load( request );
 		}
 		
+		/**
+		 * @inheritDocs
+		 */		
+		override public function destroy():void
+		{
+			super.destroy();
+			
+			removeListeners();
+			if( _loader )
+			{
+				_loader.close();
+				_loader = null;
+			}
+		}
+		
 		//---------------------------------------------------------------------
 		//
 		//  Protected methods
@@ -122,10 +136,13 @@ package as3bootstrap.common.services.font
 		 */		
 		protected function addListeners():void
 		{
-			_loader.contentLoaderInfo.addEventListener( Event.COMPLETE, onLoadComplete, false, 0, true );
-			_loader.contentLoaderInfo.addEventListener( ProgressEvent.PROGRESS, onLoadProgress, false, 0, true );
-			_loader.contentLoaderInfo.addEventListener( IOErrorEvent.IO_ERROR, onLoadIOError, false, 0, true );
-			_loader.contentLoaderInfo.addEventListener( SecurityErrorEvent.SECURITY_ERROR, onLoadSecurityError, false, 0, true );
+			if( _loader )
+			{
+				_loader.contentLoaderInfo.addEventListener( Event.COMPLETE, onLoadComplete, false, 0, true );
+				_loader.contentLoaderInfo.addEventListener( ProgressEvent.PROGRESS, onLoadProgress, false, 0, true );
+				_loader.contentLoaderInfo.addEventListener( IOErrorEvent.IO_ERROR, onLoadIOError, false, 0, true );
+				_loader.contentLoaderInfo.addEventListener( SecurityErrorEvent.SECURITY_ERROR, onLoadSecurityError, false, 0, true );
+			}
 		}
 		
 		/**
@@ -133,10 +150,13 @@ package as3bootstrap.common.services.font
 		 */		
 		protected function removeListeners():void
 		{	
-			_loader.contentLoaderInfo.removeEventListener( Event.COMPLETE, onLoadComplete );
-			_loader.contentLoaderInfo.removeEventListener( ProgressEvent.PROGRESS, onLoadProgress );
-			_loader.contentLoaderInfo.removeEventListener( IOErrorEvent.IO_ERROR, onLoadIOError );
-			_loader.contentLoaderInfo.removeEventListener( SecurityErrorEvent.SECURITY_ERROR, onLoadSecurityError );
+			if( _loader )
+			{
+				_loader.contentLoaderInfo.removeEventListener( Event.COMPLETE, onLoadComplete );
+				_loader.contentLoaderInfo.removeEventListener( ProgressEvent.PROGRESS, onLoadProgress );
+				_loader.contentLoaderInfo.removeEventListener( IOErrorEvent.IO_ERROR, onLoadIOError );
+				_loader.contentLoaderInfo.removeEventListener( SecurityErrorEvent.SECURITY_ERROR, onLoadSecurityError );
+			}
 		}
 		
 		//----------------------------------

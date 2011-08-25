@@ -211,6 +211,40 @@ package as3bootstrap.common
 			return false;
 		}
 		
+		/**
+		 * Destroy the bootstrap instance and all related children
+		 */		
+		public function destroy():void
+		{
+			_parameters = null;
+			
+			// Remove signals
+			appLoaded.removeAll();
+			dataLoaded.removeAll();
+			bootstrapLoaded.removeAll();
+			configLoaded.removeAll();
+			configErrored.removeAll();
+			bootstrapResourceErrored.removeAll();
+			
+			// Remove models
+			configModel.destroy();
+			localizationModel.destroy();
+			stylesheetModel.destroy();
+			fontModel.destroy();
+			
+			// Remove progress
+			progress.destroy();
+			dataProgress.destroy();
+			viewProgress.destroy();
+			bootstrapProgress.destroy();
+			bootstrapUnknownProgress.destroy();
+			customDataProgress.destroy();
+			configProgress.destroy();
+			fontProgress.destroy();
+			localizationProgress.destroy();
+			stylesheetProgress.destroy();
+		}
+		
 		//---------------------------------------------------------------------
 		//
 		//  Protcected methods

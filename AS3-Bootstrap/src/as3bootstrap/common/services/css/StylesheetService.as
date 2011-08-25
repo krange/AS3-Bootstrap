@@ -50,9 +50,7 @@ package as3bootstrap.common.services.css
 		//----------------------------------
 		
 		/**
-		 * Load an XML resource from an <code>URLRequest</code>
-		 * 
-		 * @param request URLRequest to load 
+		 * @inhertiDocs
 		 */		
 		override public function loadWithUrlRequest( request:URLRequest ):void
 		{
@@ -74,14 +72,44 @@ package as3bootstrap.common.services.css
 		}
 		
 		/**
+		 * @inheritDocs
+		 */		
+		override public function destroy():void
+		{
+			super.destroy();
+			
+			removeListeners();
+			if( _loader )
+			{
+				_loader.close();
+				_loader = null;
+			}
+			
+			if( _data )
+			{
+				_data.clear();
+				_data = null;
+			}
+		}
+		
+		//---------------------------------------------------------------------
+		//
+		//  Protected methods
+		//
+		//---------------------------------------------------------------------
+		
+		/**
 		 * Add any listeners for this service 
 		 */		
 		protected function addListeners():void
 		{
-			_loader.addEventListener( Event.COMPLETE, onLoadComplete, false, 0, true );
-			_loader.addEventListener( ProgressEvent.PROGRESS, onLoadProgress, false, 0, true );
-			_loader.addEventListener( IOErrorEvent.IO_ERROR, onLoadIOError, false, 0, true );
-			_loader.addEventListener( SecurityErrorEvent.SECURITY_ERROR, onLoadSecurityError, false, 0, true );
+			if( _loader )
+			{
+				_loader.addEventListener( Event.COMPLETE, onLoadComplete, false, 0, true );
+				_loader.addEventListener( ProgressEvent.PROGRESS, onLoadProgress, false, 0, true );
+				_loader.addEventListener( IOErrorEvent.IO_ERROR, onLoadIOError, false, 0, true );
+				_loader.addEventListener( SecurityErrorEvent.SECURITY_ERROR, onLoadSecurityError, false, 0, true );
+			}
 		}
 		
 		/**
@@ -89,10 +117,13 @@ package as3bootstrap.common.services.css
 		 */		
 		protected function removeListeners():void
 		{	
-			_loader.removeEventListener( Event.COMPLETE, onLoadComplete );
-			_loader.removeEventListener( ProgressEvent.PROGRESS, onLoadProgress );
-			_loader.removeEventListener( IOErrorEvent.IO_ERROR, onLoadIOError );
-			_loader.removeEventListener( SecurityErrorEvent.SECURITY_ERROR, onLoadSecurityError );
+			if( _loader )
+			{
+				_loader.removeEventListener( Event.COMPLETE, onLoadComplete );
+				_loader.removeEventListener( ProgressEvent.PROGRESS, onLoadProgress );
+				_loader.removeEventListener( IOErrorEvent.IO_ERROR, onLoadIOError );
+				_loader.removeEventListener( SecurityErrorEvent.SECURITY_ERROR, onLoadSecurityError );
+			}
 		}
 		
 		//----------------------------------

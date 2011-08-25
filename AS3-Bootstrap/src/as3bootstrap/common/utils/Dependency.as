@@ -120,6 +120,14 @@ package as3bootstrap.common.utils
 			return false;
 		}
 		
+		/**
+		 * Destroy
+		 */		
+		public function destroy():void
+		{
+			_dependencies = null;
+		}
+		
 		//---------------------------------------------------------------------
 		//
 		//  Protected methods

@@ -48,6 +48,11 @@ package as3bootstrap.common
 		 */		
 		function addCustomLoadResource( externalProgress:IProgress ):Boolean;
 		
+		/**
+		 * Destroy the bootstrap instance and all related children
+		 */		
+		function destroy():void;
+		
 		/** 
 		 * Application load progress instance. This is the top level progress
 		 * instance.

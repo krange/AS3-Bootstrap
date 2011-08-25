@@ -16,6 +16,11 @@ package as3bootstrap.common.model
 		extends ITrackableResource
 	{
 		/**
+		 * Destroy the model
+		 */		
+		function destroy():void;
+			
+		/**
 		 * Signal which is dispatched when the model has loaded 
 		 */
 		function get loaded():ISignalOwner;

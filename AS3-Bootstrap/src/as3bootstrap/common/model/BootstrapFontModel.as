@@ -82,6 +82,40 @@ package as3bootstrap.common.model
 			}
 		}
 		
+		//----------------------------------
+		//  Override
+		//----------------------------------
+		
+		/**
+		 * @inheritDocs
+		 */		
+		override public function destroy():void
+		{
+			super.destroy();
+			
+			// Remove dependency
+			if( _dependency )
+			{
+				_dependency.removeEventListener( Event.COMPLETE, onAllServicesLoaded );
+				_dependency.destroy();
+				_dependency = null;
+			}
+			
+			// Remove services
+			if( services )
+			{
+				var servicesLen : int = services.length;
+				while( servicesLen-- )
+				{
+					var service : IService = services[servicesLen] as IService;
+					if( service )
+					{
+						service.destroy();
+					}
+				}
+			}
+		}
+		
 		//---------------------------------------------------------------------
 		//
 		//  Protected methods

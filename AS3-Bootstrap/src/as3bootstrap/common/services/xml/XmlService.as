@@ -73,6 +73,23 @@ package as3bootstrap.common.services.xml
 			_loader.load( request );
 		}
 		
+		/**
+		 * @inheritDocs
+		 */		
+		override public function destroy():void
+		{
+			super.destroy();
+			
+			removeListeners();
+			if( _loader )
+			{
+				_loader.close();
+				_loader = null;
+			}
+			
+			_data = null;
+		}
+		
         //---------------------------------------------------------------------
         //
         //  Protected methods
