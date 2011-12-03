@@ -45,5 +45,13 @@ package as3bootstrap.common.model
 		 */	
 		function get lang():String;
 		function set lang( value:String ):void;
+		
+		/**
+		 * The resouce base URL, if available, of the application
+		 *  
+		 * @return String
+		 */	
+		function get resourceBaseUrl():String;
+		function set resourceBaseUrl( value:String ):void;
 	}
 }

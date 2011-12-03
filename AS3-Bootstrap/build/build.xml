@@ -114,15 +114,22 @@
 		********************************************
 	-->
 	<target name="bootstrap_standalone_spark" depends="">
-		<pathconvert pathsep=" " property="classes_standalone_spark" dirsep=".">
-			<fileset dir="${dir.temp}">
-				<exclude name="**/moxie/**/**.*" />
-				<exclude name="org/**/**.*"/>
-			</fileset>
-			<chainedmapper>
-				<globmapper from="${dir.temp}/" to=""/>
-				<globmapper from="*.as" to="*"/>
-			</chainedmapper>
+		<fileset id="classes.bs.sa.spark" dir="${dir.temp}">
+			<exclude name="**/moxie/**/**.*" />
+			<exclude name="org/**/**.*"/>
+		</fileset>
+		<property name="classes.bs.sa.spark" refid="classes.bs.sa.spark" />
+		<pathconvert property="classes_standalone_spark" pathsep=" " refid="classes.bs.sa.spark">
+			<compositemapper>
+				<chainedmapper>
+					<globmapper from="${dir.temp}/*" to="*" handledirsep="true" />
+					<mapper type="package" from="*.as" to="*" />
+				</chainedmapper>
+				<chainedmapper>
+					<globmapper from="${dir.temp}/*" to="*" handledirsep="true" />
+					<mapper type="package" from="*.mxml" to="*" />
+				</chainedmapper>
+			</compositemapper>
 		</pathconvert>
 		
 		<script language="javascript"> 
@@ -150,15 +157,22 @@
 	</target>
 	
 	<target name="bootstrap_standalone_moxie" depends="">
-		<pathconvert pathsep=" " property="classes_standalone_moxie" dirsep=".">
-			<fileset dir="${dir.temp}">
-				<exclude name="**/spark/**/**.*" />
-				<exclude name="org/**/**.*"/>
-			</fileset>
-			<chainedmapper>
-				<globmapper from="${dir.temp}/" to=""/>
-				<globmapper from="*.as" to="*"/>
-			</chainedmapper>
+		<fileset id="classes.bs.sa.moxie" dir="${dir.temp}">
+			<exclude name="**/spark/**/**.*" />
+			<exclude name="org/**/**.*"/>
+		</fileset>
+		<property name="classes.bs.sa.moxie" refid="classes.bs.sa.moxie" />
+		<pathconvert property="classes_standalone_moxie" pathsep=" " refid="classes.bs.sa.moxie">
+			<compositemapper>
+				<chainedmapper>
+					<globmapper from="${dir.temp}/*" to="*" handledirsep="true" />
+					<mapper type="package" from="*.as" to="*" />
+				</chainedmapper>
+				<chainedmapper>
+					<globmapper from="${dir.temp}/*" to="*" handledirsep="true" />
+					<mapper type="package" from="*.mxml" to="*" />
+				</chainedmapper>
+			</compositemapper>
 		</pathconvert>
 		
 		<script language="javascript"> 
@@ -186,15 +200,22 @@
 	</target>
 	
 	<target name="bootstrap_puremvc_flex_spark" depends="">
-		<pathconvert pathsep=" " property="classes_puremvc_spark" dirsep=".">
-			<fileset dir="${dir.temp}">
-				<exclude name="**/moxie/**/**.*" />
-				<exclude name="**/robotlegs/**/**.*"/>
-			</fileset>
-			<chainedmapper>
-				<globmapper from="${dir.temp}/" to=""/>
-				<globmapper from="*.as" to="*"/>
-			</chainedmapper>
+		<fileset id="classes.bs.puremvc.spark" dir="${dir.temp}">
+			<exclude name="**/moxie/**/**.*" />
+			<exclude name="**/robotlegs/**/**.*"/>
+		</fileset>
+		<property name="classes.bs.puremvc.spark" refid="classes.bs.puremvc.spark" />
+		<pathconvert property="classes_puremvc_spark" pathsep=" " refid="classes.bs.puremvc.spark">
+			<compositemapper>
+				<chainedmapper>
+					<globmapper from="${dir.temp}/*" to="*" handledirsep="true" />
+					<mapper type="package" from="*.as" to="*" />
+				</chainedmapper>
+				<chainedmapper>
+					<globmapper from="${dir.temp}/*" to="*" handledirsep="true" />
+					<mapper type="package" from="*.mxml" to="*" />
+				</chainedmapper>
+			</compositemapper>
 		</pathconvert>
 			
 		<script language="javascript"> 
@@ -223,15 +244,22 @@
 	</target>
 	
 	<target name="bootstrap_puremvc_flex_moxie" depends="">
-		<pathconvert pathsep=" " property="classes_puremvc_moxie" dirsep=".">
-			<fileset dir="${dir.temp}">
-				<exclude name="**/spark/**/**.*" />
-				<exclude name="**/robotlegs/**/**.*"/>
-			</fileset>
-			<chainedmapper>
-				<globmapper from="${dir.temp}/" to=""/>
-				<globmapper from="*.as" to="*"/>
-			</chainedmapper>
+		<fileset id="classes.bs.puremvc.moxie" dir="${dir.temp}">
+			<exclude name="**/spark/**/**.*" />
+			<exclude name="**/robotlegs/**/**.*"/>
+		</fileset>
+		<property name="classes.bs.puremvc.moxie" refid="classes.bs.puremvc.moxie" />
+		<pathconvert property="classes_puremvc_moxie" pathsep=" " refid="classes.bs.puremvc.moxie">
+			<compositemapper>
+				<chainedmapper>
+					<globmapper from="${dir.temp}/*" to="*" handledirsep="true" />
+					<mapper type="package" from="*.as" to="*" />
+				</chainedmapper>
+				<chainedmapper>
+					<globmapper from="${dir.temp}/*" to="*" handledirsep="true" />
+					<mapper type="package" from="*.mxml" to="*" />
+				</chainedmapper>
+			</compositemapper>
 		</pathconvert>
 			
 		<script language="javascript"> 
@@ -260,15 +288,22 @@
 	</target>
 	
 	<target name="bootstrap_robotlegs_spark" depends="">
-		<pathconvert pathsep=" " property="classes_robotlegs_spark" dirsep=".">
-			<fileset dir="${dir.temp}">
-				<exclude name="**/puremvc/**/**.*"/>
-				<exclude name="**/moxie/**/**.*" />
-			</fileset>
-			<chainedmapper>
-				<globmapper from="${dir.temp}/" to=""/>
-				<globmapper from="*.as" to="*"/>
-			</chainedmapper>
+		<fileset id="classes.bs.robotlegs.spark" dir="${dir.temp}">
+			<exclude name="**/moxie/**/**.*" />
+			<exclude name="**/puremvc/**/**.*"/>
+		</fileset>
+		<property name="classes.bs.robotlegs.spark" refid="classes.bs.robotlegs.spark" />
+		<pathconvert property="classes_robotlegs_spark" pathsep=" " refid="classes.bs.robotlegs.spark">
+			<compositemapper>
+				<chainedmapper>
+					<globmapper from="${dir.temp}/*" to="*" handledirsep="true" />
+					<mapper type="package" from="*.as" to="*" />
+				</chainedmapper>
+				<chainedmapper>
+					<globmapper from="${dir.temp}/*" to="*" handledirsep="true" />
+					<mapper type="package" from="*.mxml" to="*" />
+				</chainedmapper>
+			</compositemapper>
 		</pathconvert>
 			
 		<script language="javascript"> 
@@ -295,15 +330,22 @@
 	</target>
 	
 	<target name="bootstrap_robotlegs_moxie" depends="">
-		<pathconvert pathsep=" " property="classes_robotlegs_moxie" dirsep=".">
-			<fileset dir="${dir.temp}">
-				<exclude name="**/puremvc/**/**.*"/>
-				<exclude name="**/spark/**/**.*" />
-			</fileset>
-			<chainedmapper>
-				<globmapper from="${dir.temp}/" to=""/>
-				<globmapper from="*.as" to="*"/>
-			</chainedmapper>
+		<fileset id="classes.bs.robotlegs.moxie" dir="${dir.temp}">
+			<exclude name="**/spark/**/**.*" />
+			<exclude name="**/puremvc/**/**.*"/>
+		</fileset>
+		<property name="classes.bs.robotlegs.moxie" refid="classes.bs.robotlegs.moxie" />
+		<pathconvert property="classes_robotlegs_moxie" pathsep=" " refid="classes.bs.robotlegs.moxie">
+			<compositemapper>
+				<chainedmapper>
+					<globmapper from="${dir.temp}/*" to="*" handledirsep="true" />
+					<mapper type="package" from="*.as" to="*" />
+				</chainedmapper>
+				<chainedmapper>
+					<globmapper from="${dir.temp}/*" to="*" handledirsep="true" />
+					<mapper type="package" from="*.mxml" to="*" />
+				</chainedmapper>
+			</compositemapper>
 		</pathconvert>
 			
 		<script language="javascript"> 

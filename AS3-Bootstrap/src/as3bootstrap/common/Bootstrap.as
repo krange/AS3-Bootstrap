@@ -158,13 +158,18 @@ package as3bootstrap.common
 				if( parameters )
 				{
 					_resourceBaseUrl = parameters.baseUrl;
-					if( !_resourceBaseUrl )
-					{
-						_resourceBaseUrl = "";
-					}
-					
 					configUrl = parameters.configXmlUrl;
 				}
+				
+				if( !_resourceBaseUrl )
+				{
+					_resourceBaseUrl = "";
+				}
+				
+				// Set the resource base URL on the models
+				_localizationModel.resourceBaseUrl = _resourceBaseUrl;
+				_fontModel.resourceBaseUrl = _resourceBaseUrl;
+				_stylesheetModel.resourceBaseUrl = _resourceBaseUrl;
 				
 				// Load the config
 				loadConfig( configUrl );
