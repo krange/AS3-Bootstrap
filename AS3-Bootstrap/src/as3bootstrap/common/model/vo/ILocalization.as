@@ -37,6 +37,11 @@ package as3bootstrap.common.model.vo
 		 */
 		function getResourceBundle( name:String ):IResourceBundle;
 		
+		/**
+		 * Destroy
+		 */		
+		function destroy():void;
+		
 		function get lang():String;
 		function set lang( value:String ):void;
 		

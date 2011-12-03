@@ -59,7 +59,7 @@ package as3bootstrap.common.model
 					var service_progress : IProgress = new Progress();
 					var service : IFontService;
 					
-					var fontName : String = data[i].@id;
+					var fontName : String = data[i].@name;
 					if( !checkFont( fontName ) )
 					{
 						if( fontName.length > 0 )
@@ -85,6 +85,40 @@ package as3bootstrap.common.model
 						url += data[i].@url;
 						
 						service.loadWithUrl( searchAndReplaceLangAndLocale( url ) );
+					}
+				}
+			}
+		}
+		
+		//----------------------------------
+		//  Override
+		//----------------------------------
+		
+		/**
+		 * @inheritDocs
+		 */		
+		override public function destroy():void
+		{
+			super.destroy();
+			
+			// Remove dependency
+			if( _dependency )
+			{
+				_dependency.removeEventListener( Event.COMPLETE, onAllServicesLoaded );
+				_dependency.destroy();
+				_dependency = null;
+			}
+			
+			// Remove services
+			if( services )
+			{
+				var servicesLen : int = services.length;
+				while( servicesLen-- )
+				{
+					var service : IService = services[servicesLen] as IService;
+					if( service )
+					{
+						service.destroy();
 					}
 				}
 			}

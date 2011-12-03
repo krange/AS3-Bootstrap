@@ -52,9 +52,19 @@ package as3bootstrap.common.model
 			init();
 		}
 		
-		//----------------------------------
-		//  Override
-		//----------------------------------
+		/**
+		 * Destroy the model
+		 */		
+		public function destroy():void
+		{
+			// Remove progress
+			progress.destroy();
+			progress = null;
+			
+			// Remove signals
+			loaded.removeAll();
+			errored.removeAll();
+		}
 		
 		//---------------------------------------------------------------------
 		//

@@ -54,6 +54,20 @@ package as3bootstrap.common.model
 			}
 		}
 		
+		//----------------------------------
+		//  Override
+		//----------------------------------
+		
+		/**
+		 * @inheritDocs
+		 */		
+		override public function destroy():void
+		{
+			super.destroy();
+			
+			service.destroy();
+		}
+		
 		//---------------------------------------------------------------------
 		//
 		//  Protected methods

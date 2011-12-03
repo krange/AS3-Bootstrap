@@ -32,6 +32,11 @@ package as3bootstrap.common.services
 		function loadWithUrlRequest( request:URLRequest ):void;
 		
 		/**
+		 * Destroy the service
+		 */		
+		function destroy():void;
+		
+		/**
 		 * Signal which is dispatched when the service has loaded 
 		 */
 		function get loaded():ISignalOwner;

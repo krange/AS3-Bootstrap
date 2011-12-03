@@ -127,6 +127,15 @@ package as3bootstrap.common.model.vo
 				return resourceBundle;
 			}
 		}
+		
+		/**
+		 * Destroy the service
+		 */		
+		public function destroy():void
+		{
+			_dictionary = null;
+			_resourceBundles = null;
+		}
 
 		//---------------------------------------------------------------------
 		//
@@ -139,7 +148,7 @@ package as3bootstrap.common.model.vo
 			return _lang;
 		}
 
-		public function set lang(value:String):void
+		public function set lang( value:String ):void
 		{
 			_lang = value;
 		}
@@ -149,7 +158,7 @@ package as3bootstrap.common.model.vo
 			return _locale;
 		}
 
-		public function set locale(value:String):void
+		public function set locale( value:String ):void
 		{
 			_locale = value;
 		}

@@ -75,6 +75,20 @@ package as3bootstrap.common.services
 			// Override
 		}
 		
+		/**
+		 * Destroy the service
+		 */
+		public function destroy():void
+		{
+			// Remove progress
+			progress.destroy();
+			progress = null;
+			
+			// Remove signals
+			loaded.removeAll();
+			errored.removeAll();
+		}
+		
 		//---------------------------------------------------------------------
 		//
 		//  Protected methods

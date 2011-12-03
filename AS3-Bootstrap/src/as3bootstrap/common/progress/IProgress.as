@@ -74,6 +74,11 @@ package as3bootstrap.common.progress
 		function removeChildLoadable( progress:IProgress ):Boolean;
 		
 		/**
+		 * Destroy the progress instance
+		 */		
+		function destroy():void;
+		
+		/**
 		 * Forces progress to complete itself. This is useful, for example,
 		 * if an error with high enough severity has occured.
 		 */

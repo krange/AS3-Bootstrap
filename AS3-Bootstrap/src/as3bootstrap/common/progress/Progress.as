@@ -219,6 +219,13 @@ package as3bootstrap.common.progress
 		}
 		
 		/**
+		 * Destroy the progress instance
+		 */		
+		public function destroy():void
+		{
+		}
+		
+		/**
 		 * Forces progress to quit itself. This is useful, for example,
 		 * if an error with high enough severity has occured.
 		 */

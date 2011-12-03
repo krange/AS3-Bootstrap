@@ -4,6 +4,7 @@ package as3bootstrap.common.model
 	import as3bootstrap.common.model.vo.Localization;
 	import as3bootstrap.common.progress.IProgress;
 	import as3bootstrap.common.progress.Progress;
+	import as3bootstrap.common.services.IService;
 	import as3bootstrap.common.services.xml.IXmlService;
 	import as3bootstrap.common.services.xml.XmlService;
 	import as3bootstrap.common.utils.Dependency;
@@ -100,6 +101,49 @@ package as3bootstrap.common.model
 				}
 			}
 			return null;
+		}
+		
+		//----------------------------------
+		//  Override
+		//----------------------------------
+		
+		/**
+		 * @inheritDocs
+		 */		
+		override public function destroy():void
+		{
+			super.destroy();
+			
+			// Remove dependency
+			if( _dependency )
+			{
+				_dependency.removeEventListener( Event.COMPLETE, onAllServicesLoaded );
+				_dependency.destroy();
+				_dependency = null;
+			}
+			
+			// Remove services
+			if( services )
+			{
+				var servicesLen : int = services.length;
+				while( servicesLen-- )
+				{
+					var service : IService = services[servicesLen] as IService;
+					if( service )
+					{
+						service.destroy();
+						service = null;
+					}
+					services.pop();
+				}
+			}
+			
+			// Remove localizations
+			if( localizations )
+			{
+				_localizations.destroy();
+				_localizations = null;
+			}
 		}
 		
 		//---------------------------------------------------------------------
