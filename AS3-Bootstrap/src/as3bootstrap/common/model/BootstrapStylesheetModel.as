@@ -8,8 +8,6 @@ package as3bootstrap.common.model
 	import as3bootstrap.common.utils.Dependency;
 	
 	import flash.events.Event;
-	import flash.events.EventDispatcher;
-	import flash.events.IEventDispatcher;
 	import flash.text.StyleSheet;
 	
 	/**
@@ -68,7 +66,15 @@ package as3bootstrap.common.model
 					_dependency.addDependancy( service );
 					service.loaded.add( onServiceLoaded );
 					service.errored.add( onServiceErrored );
-					service.loadWithUrl( searchAndReplaceLangAndLocale( data[i].@url ) );
+					
+					var url:String = "";
+					if( resourceBaseUrl ) {
+						url += resourceBaseUrl;
+					}
+					
+					url += data[i].@url;
+					
+					service.loadWithUrl( searchAndReplaceLangAndLocale( url ) );
 				}
 			}
 		}

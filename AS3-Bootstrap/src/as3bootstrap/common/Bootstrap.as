@@ -158,6 +158,11 @@ package as3bootstrap.common
 				if( parameters )
 				{
 					_resourceBaseUrl = parameters.baseUrl;
+					if( !_resourceBaseUrl )
+					{
+						_resourceBaseUrl = "";
+					}
+					
 					configUrl = parameters.configXmlUrl;
 				}
 				

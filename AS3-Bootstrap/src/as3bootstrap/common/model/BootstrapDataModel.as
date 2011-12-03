@@ -25,6 +25,7 @@ package as3bootstrap.common.model
 		
 		private var _locale : String;
 		private var _lang : String;
+		private var _resourceBaseUrl : String;
 		
 		//----------------------------------
 		//  Signals
@@ -170,6 +171,20 @@ package as3bootstrap.common.model
 		public function set lang( value:String ):void
 		{
 			_lang = value;
+		}
+		
+		/**
+		 * The resouce base URL, if available, of the application
+		 *  
+		 * @return String
+		 */	
+		public function get resourceBaseUrl():String
+		{
+			return _resourceBaseUrl;
+		}
+		public function set resourceBaseUrl( value:String ):void
+		{
+			_resourceBaseUrl = value;
 		}
 		
 		//----------------------------------
